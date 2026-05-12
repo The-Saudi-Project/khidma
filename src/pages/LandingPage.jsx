@@ -236,35 +236,31 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Service Categories Section */}
-      <section className="py-24 px-4 max-w-7xl mx-auto relative overflow-hidden">
-        {/* Background Decorative Blobs */}
-        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-[#C5A059]/5 rounded-full blur-[100px] animate-blob" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-brand-600/5 rounded-full blur-[80px] animate-blob animation-delay-2000" />
-        
-        <div className="text-center max-w-3xl mx-auto mb-16 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C5A059]/10 border border-[#C5A059]/20 mb-4 animate-fade-in">
-            <Sparkles size={12} className="text-[#C5A059]" />
-            <span className="text-[10px] font-black uppercase tracking-widest text-[#C5A059]">Service Ecosystem</span>
-          </div>
-          <h2 className="text-4xl sm:text-5xl font-black text-[#081225] tracking-tight animate-slide-up">
-            {searchQuery.trim() ? `Search Results for "${searchQuery}"` : 'Explore Elite Service Categories'}
-          </h2>
-          <p className="text-base text-slate-500 mt-4 font-medium animate-slide-up animation-delay-500">
-            Premium operational modules optimized for instant localized dispatch.
-          </p>
+      {/* Service Categories Section - High Contrast (Navy Glass on White) */}
+      <section className="py-24 px-4 relative overflow-hidden bg-white">
+        {/* Animated Background Lighting (Subtle Blobs) */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-600/5 rounded-full blur-[120px] animate-blob" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#C5A059]/5 rounded-full blur-[100px] animate-blob animation-delay-2000" />
         </div>
 
-        {filteredCategories.length === 0 ? (
-          <div className="card p-12 text-center max-w-md mx-auto">
-            <p className="text-base font-bold text-slate-700">No matching services found.</p>
-            <p className="text-xs text-slate-400 mt-1">Try searching for generic keywords like &apos;AC&apos;, &apos;Cleaning&apos;, or &apos;Plumbing&apos;.</p>
-            <button onClick={() => setSearchQuery('')} className="btn-secondary btn-sm mt-4 font-bold">
-              Reset search query
-            </button>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 mb-6 animate-fade-in">
+              <Sparkles size={14} className="text-[#C5A059]" />
+              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#C5A059]">Elite Marketplace</span>
+            </div>
+            <h2 className="text-4xl sm:text-6xl font-black text-[#081225] tracking-tight leading-tight animate-slide-up">
+              {searchQuery.trim() ? `Search Results for "${searchQuery}"` : (
+                <>Experience the <span className="text-[#C5A059]">Master Tier</span></>
+              )}
+            </h2>
+            <p className="text-lg text-slate-500 mt-6 font-medium animate-slide-up animation-delay-500 max-w-2xl mx-auto">
+              Precision-engineered home and business solutions for the most discerning clients in Saudi Arabia.
+            </p>
           </div>
-        ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredCategories.map((cat, idx) => {
               const Icon = cat.icon
               const sectorInfo = SECTOR_METADATA[cat.sector]
@@ -273,52 +269,51 @@ export default function LandingPage() {
                 <div
                   key={cat.id}
                   onClick={() => navigate(`/services?sector=${cat.sector}&category=${encodeURIComponent(catalogName)}`)}
-                  className="group cursor-pointer relative animate-fade-in"
+                  className="group cursor-pointer relative animate-fade-in bg-[#081225] rounded-[2.5rem] p-8 h-full flex flex-col justify-between border border-white/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(197,160,89,0.25)] hover:border-[#C5A059]/30 overflow-hidden"
                   style={{ animationDelay: `${idx * 100}ms` }}
                 >
-                  {/* Premium Glow Effect on Hover */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[#C5A059] to-[#081225] rounded-[2.5rem] opacity-0 group-hover:opacity-20 blur transition duration-500" />
+                  {/* Interior Decorative Pattern (Scanlines) */}
+                  <div className="absolute inset-0 bg-scanlines opacity-[0.03] pointer-events-none" />
                   
-                  <div className="relative bg-white rounded-[2.5rem] p-7 h-full border border-slate-100 flex flex-col justify-between transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-2 overflow-hidden">
-                    {/* Interior Design Patterns */}
-                    <div className="absolute -top-12 -right-12 w-24 h-24 bg-slate-50 rounded-full group-hover:bg-[#C5A059]/10 transition-colors duration-500" />
-                    
+                  <div className="relative z-10 flex-1 flex flex-col justify-between h-full">
                     <div>
-                      <div className="flex items-start justify-between mb-6 relative">
-                        <div className="w-14 h-14 rounded-2xl bg-slate-50 group-hover:bg-[#081225] transition-all duration-500 flex items-center justify-center shadow-inner group-hover:shadow-gold/20">
-                          <Icon className="w-7 h-7 text-[#081225] group-hover:text-[#C5A059] transition-colors duration-500" />
+                      <div className="flex items-start justify-between mb-8 relative">
+                        <div className="w-16 h-16 rounded-2xl bg-white/5 group-hover:bg-[#C5A059] transition-all duration-500 flex items-center justify-center border border-white/10 group-hover:border-[#C5A059] shadow-inner">
+                          <Icon className="w-8 h-8 text-[#C5A059] group-hover:text-[#081225] transition-colors duration-500" />
                         </div>
                         <div className="text-end">
-                          <span className="text-[10px] font-black text-[#C5A059] uppercase tracking-tighter block">
+                          <span className="text-[12px] font-black text-white uppercase tracking-tighter block">
                             {cat.price}
                           </span>
-                          <span className="text-[9px] font-bold text-slate-300 uppercase tracking-widest mt-0.5 block">
+                          <span className="text-[10px] font-bold text-[#C5A059] uppercase tracking-[0.15em] mt-1.5 block">
                             {sectorInfo.label}
                           </span>
                         </div>
                       </div>
 
                       <div className="relative">
-                        <h3 className="text-xl font-black text-[#081225] flex flex-col">
+                        <h3 className="text-2xl font-black text-white flex flex-col leading-tight">
                           <span>{isRTL ? cat.nameAr : cat.name}</span>
-                          <span className="text-[10px] text-slate-300 font-bold uppercase tracking-widest mt-0.5">
+                          <span className="text-[11px] text-slate-500 font-bold uppercase tracking-[0.2em] mt-1.5">
                             {isRTL ? cat.name : cat.nameAr}
                           </span>
                         </h3>
                         
-                        <p className="text-xs text-slate-500 mt-3 font-medium leading-relaxed line-clamp-2">
+                        <p className="text-sm text-slate-400 mt-4 font-medium leading-relaxed line-clamp-2">
                           {cat.desc}
                         </p>
                       </div>
                     </div>
 
-                    <div className="pt-6 mt-6 border-t border-slate-50 flex items-center justify-between text-[11px] font-black uppercase tracking-widest text-slate-400 group-hover:text-[#C5A059] transition-all">
-                      <span className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#10B981] opacity-0 group-hover:opacity-100 animate-pulse" />
-                        Book Now
-                      </span>
-                      <div className="w-8 h-8 rounded-full border border-slate-100 flex items-center justify-center group-hover:border-[#C5A059]/30 transition-all">
-                        <ChevronRight size={14} className="transform group-hover:translate-x-0.5 transition-transform" />
+                    <div className="pt-8 mt-8 border-t border-white/5 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                        <span className="text-[12px] font-black uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors">
+                          Deploy
+                        </span>
+                      </div>
+                      <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#C5A059]/20 group-hover:border-[#C5A059]/40 transition-all">
+                        <ChevronRight size={18} className="text-white group-hover:text-[#C5A059] transform group-hover:translate-x-0.5 transition-transform" />
                       </div>
                     </div>
                   </div>
@@ -326,36 +321,81 @@ export default function LandingPage() {
               )
             })}
           </div>
-        )}
+        </div>
       </section>
 
-      {/* How It Works Section */}
-      <section className="py-20 bg-white border-y border-slate-100/80 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#C5A059] block mb-2">Absolute Convenience</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#081225]">The Khidma Process</h2>
-            <p className="text-sm text-slate-500 mt-2">Three frictionless steps to restore state-of-the-art living.</p>
+      {/* How It Works Section - Master Tier UI Elevation */}
+      <section className="py-28 bg-white relative overflow-hidden">
+        {/* Ambient background watermark/gradient grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-60" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 mb-4 animate-fade-in">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
+              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#081225]">Frictionless Engagement</span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-black text-[#081225] tracking-tight leading-tight">
+              The <span className="text-[#C5A059]">Khidma</span> Protocol
+            </h2>
+            <p className="text-base sm:text-lg text-slate-500 mt-4 max-w-xl mx-auto font-medium">
+              Three streamlined phases engineered to dispatch elite talent directly to your mapped coordinates.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 relative">
-            {/* Visual connecting process line */}
-            <div className="hidden md:block absolute top-1/2 start-[15%] end-[15%] h-0.5 bg-gradient-to-r from-brand-100 via-[#C5A059]/40 to-brand-100 transform -translate-y-6" />
+            {/* Architectural timeline connector */}
+            <div className="hidden md:block absolute top-1/2 start-[18%] end-[18%] h-[2px] bg-gradient-to-r from-transparent via-[#C5A059]/30 to-transparent transform -translate-y-8" />
 
             {[
-              { step: '01', title: 'Book Service', desc: 'Select optimized time-slots and define mapping coordinates instantly.', icon: Smartphone },
-              { step: '02', title: 'Get Matched', desc: 'Our algorithmic routing connects your payload to verified local talent.', icon: HeartHandshake },
-              { step: '03', title: 'Service Completed', desc: 'Pay securely and authorize final commission closure upon total happiness.', icon: CheckCircle2 }
+              {
+                step: '01',
+                title: 'Define Payload',
+                desc: 'Select customized Master Tier service modules, input precise coverage parameters, and lock mapping coordinates instantly.',
+                icon: Smartphone
+              },
+              {
+                step: '02',
+                title: 'Algorithmic Routing',
+                desc: 'Our enterprise backend calculates real-time proximity and authenticates background parameters to match top-tier local talent.',
+                icon: HeartHandshake
+              },
+              {
+                step: '03',
+                title: 'Authorize Closure',
+                desc: 'Upon full deployment success, authorize digital commission release securely. Backed by our absolute satisfaction standard.',
+                icon: CheckCircle2
+              }
             ].map((item, idx) => {
               const Icon = item.icon
               return (
-                <div key={item.step} className="bg-surface-50 rounded-3xl p-8 border border-slate-100 relative z-10 text-center group hover:bg-white transition-colors hover:shadow-glass">
-                  <div className="w-12 h-12 rounded-full bg-white border border-slate-200 shadow-sm mx-auto flex items-center justify-center font-black text-sm text-[#081225] group-hover:border-[#C5A059] group-hover:text-[#C5A059] transition-colors mb-6">
-                    {item.step}
+                <div 
+                  key={item.step} 
+                  className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-[0_12px_40px_-12px_rgba(8,18,37,0.06)] relative z-10 text-center group hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(197,160,89,0.15)] hover:border-[#C5A059]/30 overflow-hidden flex flex-col justify-between"
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-slate-50 to-transparent rounded-bl-full opacity-50 group-hover:from-[#C5A059]/5 transition-colors duration-500 pointer-events-none" />
+
+                  <div>
+                    <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-100/80 mx-auto flex items-center justify-center relative mb-8 group-hover:bg-[#081225] transition-colors duration-500 shadow-inner">
+                      <span className="absolute -top-2.5 bg-[#C5A059] text-[#081225] text-[9px] font-black px-2 py-0.5 rounded-full shadow-sm">
+                        STEP {item.step}
+                      </span>
+                      <Icon className="w-7 h-7 text-[#081225] group-hover:text-[#C5A059] transition-colors duration-500 transform group-hover:scale-110 duration-500" />
+                    </div>
+
+                    <h3 className="font-black text-xl text-[#081225] mb-3 group-hover:text-[#C5A059] transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed">
+                      {item.desc}
+                    </p>
                   </div>
-                  <Icon className="w-8 h-8 text-[#081225] mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                  <h3 className="font-bold text-lg text-slate-900 mb-2">{item.title}</h3>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">{item.desc}</p>
+
+                  <div className="pt-6 mt-6 border-t border-slate-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#081225] flex items-center gap-1">
+                      System Phase Active <ChevronRight size={12} className="text-[#C5A059]" />
+                    </span>
+                  </div>
                 </div>
               )
             })}
@@ -363,59 +403,82 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Featured Providers Showcase */}
-      <section className="py-20 px-4 max-w-7xl mx-auto">
-        <div className="flex flex-col sm:flex-row items-center justify-between mb-12 gap-4">
+      {/* Featured Providers Showcase - Elevated Contrast Aesthetic */}
+      <section className="py-28 px-4 max-w-7xl mx-auto relative z-10">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-16 gap-6">
           <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#C5A059] block mb-1">Elite Partners</span>
-            <h2 className="text-3xl font-extrabold text-[#081225]">Meet Our Verified Professionals</h2>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-slate-100 mb-3">
+              <Award size={12} className="text-[#C5A059]" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#081225]">Verified Experts</span>
+            </div>
+            <h2 className="text-4xl font-black text-[#081225] tracking-tight leading-tight">
+              Elite Network Partners
+            </h2>
+            <p className="text-sm text-slate-500 mt-2 font-medium">Fully vetted technicians authorized for deployment across key Gulf hubs.</p>
           </div>
-          <Link to="/services" className="btn-secondary btn-sm font-bold flex items-center gap-1">
-            <span>View All Profiles</span>
-            <ArrowRight size={14} />
+          <Link 
+            to="/services" 
+            className="group px-6 py-3 rounded-xl bg-slate-50 hover:bg-[#081225] border border-slate-100 text-xs font-black uppercase tracking-widest text-[#081225] hover:text-white transition-all duration-300 flex items-center gap-2 hover:shadow-lg"
+          >
+            <span>Browse Master Profiles</span>
+            <ArrowRight size={14} className="text-[#C5A059] transform group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {FEATURED_PROVIDERS.map((provider) => (
-            <div key={provider.name} className="card p-6 flex flex-col justify-between text-start relative overflow-hidden border-slate-200/60">
-              <div className="absolute top-4 end-4">
-                <span className="badge-green bg-emerald-50 text-emerald-700 px-2.5 py-0.5 rounded-full flex items-center gap-1 font-bold text-[10px]">
-                  <Check size={10} /> Verified ID
+        <div className="grid md:grid-cols-3 gap-8">
+          {FEATURED_PROVIDERS.map((provider, idx) => (
+            <div 
+              key={provider.name} 
+              className="bg-white rounded-[2rem] p-7 border border-slate-100 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-1.5"
+            >
+              {/* Top ambient tag background strip */}
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#081225] via-[#C5A059] to-[#081225]" />
+
+              <div className="absolute top-5 right-5">
+                <span className="bg-[#10B981]/10 text-[#10B981] px-3 py-1 rounded-full flex items-center gap-1 font-black text-[9px] tracking-widest uppercase border border-[#10B981]/20">
+                  <Check size={10} className="stroke-[3]" /> SLA PASS
                 </span>
               </div>
 
               <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-[#081225] text-[#C5A059] font-bold text-sm flex items-center justify-center shadow-inner flex-shrink-0 border border-[#C5A059]/20">
+                <div className="flex items-center gap-4 mb-6 pt-2">
+                  <div className="w-14 h-14 rounded-2xl bg-[#081225] text-[#C5A059] font-black text-xl flex items-center justify-center shadow-lg border border-[#C5A059]/30 relative flex-shrink-0">
                     {provider.name.charAt(0)}
+                    <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-[#10B981] rounded-full border-2 border-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-900 text-sm">{provider.name}</h3>
-                    <p className="text-xs text-slate-400 font-medium">{provider.title}</p>
+                    <h3 className="font-black text-[#081225] text-base leading-tight">{provider.name}</h3>
+                    <p className="text-xs text-[#C5A059] font-bold mt-0.5">{provider.title}</p>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 bg-slate-50 rounded-xl p-3 mb-4 text-xs">
+                <div className="grid grid-cols-2 gap-3 bg-slate-50/80 rounded-2xl p-4 mb-6 border border-slate-100/50">
                   <div>
-                    <span className="text-slate-400 block text-[10px] font-bold uppercase">Coverage</span>
-                    <span className="font-bold text-slate-800">{provider.city} Area</span>
+                    <span className="text-slate-400 block text-[9px] font-black uppercase tracking-wider">Assigned Sector</span>
+                    <span className="font-bold text-xs text-[#081225] mt-0.5 block">{provider.city} Grid</span>
                   </div>
                   <div>
-                    <span className="text-slate-400 block text-[10px] font-bold uppercase">Completed</span>
-                    <span className="font-bold text-slate-800">{provider.reviews} Jobs</span>
+                    <span className="text-slate-400 block text-[9px] font-black uppercase tracking-wider">Payloads Closed</span>
+                    <span className="font-bold text-xs text-[#081225] mt-0.5 block">{provider.reviews} Active</span>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-slate-100">
-                <div className="flex items-center gap-1">
-                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  <span className="font-bold text-xs text-slate-900">{provider.rating}</span>
-                  <span className="text-[10px] text-slate-400">({provider.reviews})</span>
+              <div className="flex items-center justify-between pt-4 border-t border-slate-50">
+                <div className="flex items-center gap-1.5">
+                  <div className="flex items-center text-amber-400">
+                    <Star className="w-4 h-4 fill-amber-400" />
+                  </div>
+                  <span className="font-black text-sm text-[#081225]">{provider.rating}</span>
+                  <span className="text-[10px] font-bold text-slate-400">({provider.reviews} verified)</span>
                 </div>
-                <button onClick={() => navigate('/services')} type="button" className="text-xs font-bold text-[#081225] hover:text-[#C5A059] transition-colors">
-                  Request Available Slot
+                <button 
+                  onClick={() => navigate('/services')} 
+                  type="button" 
+                  className="text-[11px] font-black uppercase tracking-wider text-[#081225] hover:text-[#C5A059] transition-colors flex items-center gap-1"
+                >
+                  <span>Dispatch</span>
+                  <ChevronRight size={14} />
                 </button>
               </div>
             </div>
@@ -423,22 +486,26 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Trust & Metrics Counter Banner */}
-      <section className="py-16 bg-[#081225] text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#C5A059]/5 to-transparent pointer-events-none" />
+      {/* Trust & Metrics Counter Banner - Master Tier Matrix */}
+      <section className="py-20 bg-[#081225] text-white relative overflow-hidden border-y border-white/5">
+        <div className="absolute inset-0 bg-scanlines opacity-[0.03] pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#C5A059]/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-brand-600/5 rounded-full blur-[120px] pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
             {[
-              { value: '45,000+', label: 'Total Bookings Completed' },
-              { value: '1,200+', label: 'Active Verified Providers' },
-              { value: '12 Cities', label: 'Kingdom Coverage Map' },
-              { value: '99.4%', label: 'Satisfaction Index' },
+              { value: '45,000+', label: 'Total Deployments Handled' },
+              { value: '1,200+', label: 'Authorized Technicians' },
+              { value: '12 Hubs', label: 'Saudi Urban Coverage Map' },
+              { value: '99.4%', label: 'SLA Quality Retention' },
             ].map((stat, idx) => (
-              <div key={idx} className="p-4 border-e border-white/5 last:border-e-0">
-                <p className="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-[#C5A059] tracking-tight">
+              <div key={idx} className="p-4 border-e border-white/5 last:border-e-0 relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#C5A059]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm" />
+                <p className="relative text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#C5A059] tracking-tight">
                   {stat.value}
                 </p>
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mt-2">
+                <p className="relative text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mt-3 group-hover:text-white transition-colors">
                   {stat.label}
                 </p>
               </div>
@@ -447,47 +514,50 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Testimonials Carousel Section */}
-      <section className="py-20 px-4 max-w-5xl mx-auto">
-        <div className="text-center max-w-xl mx-auto mb-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#C5A059] block mb-2">Unbiased Excellence</span>
-          <h2 className="text-3xl font-extrabold text-[#081225]">What Our Patrons Attest</h2>
+      {/* Testimonials Carousel Section - Premium Executive Look */}
+      <section className="py-28 px-4 max-w-5xl mx-auto relative z-10">
+        <div className="text-center max-w-xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-slate-100 mb-3">
+            <span className="text-[10px] font-black uppercase tracking-widest text-[#C5A059]">Executive Approval</span>
+          </div>
+          <h2 className="text-4xl font-black text-[#081225] tracking-tight">Patron Attestations</h2>
         </div>
 
-        <div className="glass-card bg-white p-8 sm:p-10 border-slate-200/80 shadow-glass relative">
-          <div className="absolute -top-4 start-8 text-5xl text-[#C5A059]/20 font-serif select-none">
+        <div className="relative bg-white rounded-[2.5rem] p-10 sm:p-14 border border-slate-100 shadow-[0_20px_80px_-15px_rgba(8,18,37,0.08)]">
+          <div className="absolute -top-6 left-12 w-12 h-12 rounded-2xl bg-[#C5A059] text-[#081225] flex items-center justify-center font-serif text-4xl font-bold shadow-lg select-none">
             &ldquo;
           </div>
 
-          <div className="min-h-[120px] flex items-center justify-center">
-            <p className="text-base sm:text-lg font-medium text-slate-800 italic text-center leading-relaxed">
+          <div className="min-h-[140px] flex items-center justify-center relative z-10 pt-4">
+            <p className="text-lg sm:text-xl font-medium text-slate-800 italic text-center leading-relaxed max-w-3xl">
               &ldquo;{TESTIMONIALS[activeTestimonial].quote}&rdquo;
             </p>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="mt-10 pt-8 border-t border-slate-50 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
             <div className="text-center sm:text-start">
-              <p className="font-bold text-sm text-slate-900">{TESTIMONIALS[activeTestimonial].name}</p>
-              <p className="text-xs text-slate-400 font-medium">{TESTIMONIALS[activeTestimonial].role}</p>
+              <p className="font-black text-base text-[#081225]">{TESTIMONIALS[activeTestimonial].name}</p>
+              <p className="text-xs text-[#C5A059] font-bold tracking-wide mt-0.5">{TESTIMONIALS[activeTestimonial].role}</p>
             </div>
 
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1.5 bg-slate-50 px-4 py-2 rounded-full border border-slate-100">
               {[...Array(TESTIMONIALS[activeTestimonial].rating)].map((_, idx) => (
                 <Star key={idx} className="w-4 h-4 fill-amber-400 text-amber-400" />
               ))}
+              <span className="text-[10px] font-black text-[#081225] ml-1">5.0</span>
             </div>
           </div>
 
-          {/* Testimonial pill toggles */}
-          <div className="flex justify-center gap-2 mt-6">
+          {/* Precision pill toggles */}
+          <div className="flex justify-center gap-2 mt-8">
             {TESTIMONIALS.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveTestimonial(idx)}
                 type="button"
-                aria-label={`Slide ${idx + 1}`}
-                className={`w-2.5 h-2.5 rounded-full transition-all ${
-                  activeTestimonial === idx ? 'w-8 bg-[#081225]' : 'bg-slate-200 hover:bg-slate-300'
+                aria-label={`Attestation ${idx + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  activeTestimonial === idx ? 'w-10 bg-[#081225]' : 'w-2 bg-slate-200 hover:bg-slate-300'
                 }`}
               />
             ))}
@@ -498,90 +568,101 @@ export default function LandingPage() {
       {/* Keep internal onboard module integrated */}
       <BecomeProviderSection />
 
-      {/* Premium Exit Footer CTA */}
-      <footer className="bg-[#081225] text-white pt-16 pb-12 border-t border-white/10 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-12 border-b border-white/10">
+      {/* Premium Exit Footer CTA - Immersive Grid Interface */}
+      <footer className="bg-[#081225] text-white pt-20 pb-12 border-t border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-scanlines opacity-[0.02] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-white/5">
             
-            <div className="lg:col-span-4 space-y-4">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-[#081225] font-black text-sm">
+            <div className="lg:col-span-4 space-y-5">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-[#C5A059] rounded-xl flex items-center justify-center text-[#081225] font-black text-lg shadow-lg">
                   K
                 </div>
-                <span className="font-extrabold text-lg tracking-tight block">Khidma Platform</span>
+                <div>
+                  <span className="font-black text-xl tracking-tight block text-white leading-none">Khidma</span>
+                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#C5A059] block mt-1">Master Tier Platform</span>
+                </div>
               </div>
               <p className="text-xs text-slate-400 font-medium leading-relaxed max-w-sm">
-                Engineered for operational excellence and robust client trust. Delivering high-impact digital marketplace infrastructure across the Gulf.
+                Engineered for absolute operational precision and elite technical dispatch across private estates and corporate facilities in Saudi Arabia.
               </p>
               <div className="pt-2 flex items-center gap-3">
-                {/* Mock app download badges */}
-                <div className="px-3 py-1.5 bg-white/5 rounded-xl border border-white/10 flex items-center gap-2 cursor-pointer hover:bg-white/10 transition-colors">
-                  <Smartphone size={16} className="text-[#C5A059]" />
+                {/* Immersive Client App Downloads */}
+                <div className="px-3.5 py-2 bg-white/5 rounded-xl border border-white/10 flex items-center gap-2.5 cursor-pointer hover:bg-white/10 hover:border-[#C5A059]/40 transition-all duration-300">
+                  <Smartphone size={18} className="text-[#C5A059]" />
                   <div className="text-start">
-                    <span className="text-[8px] uppercase block text-slate-400 leading-none font-bold">Download on</span>
-                    <span className="text-xs font-bold block leading-tight">App Store</span>
+                    <span className="text-[8px] uppercase block text-slate-400 leading-none font-bold">iOS Terminal</span>
+                    <span className="text-xs font-black block leading-tight text-white">App Store</span>
                   </div>
                 </div>
-                <div className="px-3 py-1.5 bg-white/5 rounded-xl border border-white/10 flex items-center gap-2 cursor-pointer hover:bg-white/10 transition-colors">
-                  <Award size={16} className="text-[#10B981]" />
+                <div className="px-3.5 py-2 bg-white/5 rounded-xl border border-white/10 flex items-center gap-2.5 cursor-pointer hover:bg-white/10 hover:border-[#C5A059]/40 transition-all duration-300">
+                  <Award size={18} className="text-[#10B981]" />
                   <div className="text-start">
-                    <span className="text-[8px] uppercase block text-slate-400 leading-none font-bold">Get it on</span>
-                    <span className="text-xs font-bold block leading-tight">Google Play</span>
+                    <span className="text-[8px] uppercase block text-slate-400 leading-none font-bold">Android Build</span>
+                    <span className="text-xs font-black block leading-tight text-white">Google Play</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="lg:col-span-2 col-span-6 space-y-3">
-              <span className="text-xs font-bold tracking-widest uppercase text-[#C5A059] block">Solutions</span>
-              <ul className="space-y-2 text-xs font-medium text-slate-300">
-                <li><Link to="/services" className="hover:text-white transition-colors">Service Scope</Link></li>
-                <li><Link to="/signup" className="hover:text-white transition-colors">Instant Scheduling</Link></li>
-                <li><Link to="/login" className="hover:text-white transition-colors">Client Gateway</Link></li>
-                <li><a href="#become-provider" className="hover:text-white transition-colors">Join as Talent</a></li>
+            <div className="lg:col-span-2 col-span-6 space-y-4 pt-1">
+              <span className="text-[10px] font-black tracking-[0.2em] uppercase text-[#C5A059] block">Operations</span>
+              <ul className="space-y-2.5 text-xs font-medium text-slate-300">
+                <li><Link to="/services" className="hover:text-white transition-colors block">Scope Directory</Link></li>
+                <li><Link to="/signup" className="hover:text-white transition-colors block">Client Provisioning</Link></li>
+                <li><Link to="/login" className="hover:text-white transition-colors block">Gateway Telemetry</Link></li>
+                <li><a href="#become-provider" className="hover:text-white transition-colors block">Vetted Integration</a></li>
               </ul>
             </div>
 
-            <div className="lg:col-span-2 col-span-6 space-y-3">
-              <span className="text-xs font-bold tracking-widest uppercase text-[#C5A059] block">Legal &amp; Trust</span>
-              <ul className="space-y-2 text-xs font-medium text-slate-300">
-                <li><span className="text-slate-500 cursor-not-allowed">Terms of Core Service</span></li>
-                <li><span className="text-slate-500 cursor-not-allowed">Data Vault Protocol</span></li>
-                <li><span className="text-slate-500 cursor-not-allowed">Commission SLA (30%)</span></li>
-                <li><span className="text-slate-500 cursor-not-allowed">Fraud Abatement Info</span></li>
+            <div className="lg:col-span-2 col-span-6 space-y-4 pt-1">
+              <span className="text-[10px] font-black tracking-[0.2em] uppercase text-[#C5A059] block">Assurance</span>
+              <ul className="space-y-2.5 text-xs font-medium text-slate-300">
+                <li><span className="text-slate-500 cursor-not-allowed block">Master Protocols</span></li>
+                <li><span className="text-slate-500 cursor-not-allowed block">Encrypted State</span></li>
+                <li><span className="text-slate-500 cursor-not-allowed block">Commission SLA (30%)</span></li>
+                <li><span className="text-slate-500 cursor-not-allowed block">Anti-Tamper Layer</span></li>
               </ul>
             </div>
 
-            {/* Newsletter Container Block */}
-            <div className="lg:col-span-4 space-y-3">
-              <span className="text-xs font-bold tracking-widest uppercase text-[#C5A059] block">Dispatch Insights</span>
-              <p className="text-xs text-slate-400 font-medium">Subscribe for key infrastructure upgrades and premium promotions directly to your terminal.</p>
+            {/* Elite Subscription Stream */}
+            <div className="lg:col-span-4 space-y-4 pt-1">
+              <span className="text-[10px] font-black tracking-[0.2em] uppercase text-[#C5A059] block">Dispatch Telemetry</span>
+              <p className="text-xs text-slate-400 font-medium leading-relaxed">
+                Receive key infrastructure releases and seasonal capacity expansion notifications directly to your secure node.
+              </p>
               <div className="flex gap-2 pt-1">
                 <input
                   type="email"
-                  placeholder="Enter corporate email"
-                  className="bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs w-full text-white placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
+                  placeholder="Enter authorized identity email"
+                  className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs w-full text-white placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-[#C5A059] font-medium"
                 />
-                <button type="button" onClick={() => alert('Subscription saved.')} className="btn-gold py-2 px-4 text-xs rounded-xl font-bold">
-                  Join
+                <button 
+                  type="button" 
+                  onClick={() => alert('Secure node synchronized.')} 
+                  className="bg-[#C5A059] text-[#081225] py-3 px-6 text-xs rounded-xl font-black uppercase tracking-wider hover:bg-white transition-colors flex-shrink-0"
+                >
+                  Sync
                 </button>
               </div>
             </div>
 
           </div>
 
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-            <p className="font-medium">
-              © {new Date().getFullYear()} Khidma Platforms Inc. All Rights Securely Handled.
+          <div className="pt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium">
+            <p>
+              © {new Date().getFullYear()} Khidma Core Infrastructure Inc. State Cryptographically Enforced.
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 text-[11px]">
               <span>Riyadh</span>
               <span>•</span>
               <span>Jeddah</span>
               <span>•</span>
               <span>Dammam</span>
               <span>•</span>
-              <span className="text-[#C5A059] font-bold">Gulf Premium Hub</span>
+              <span className="text-[#C5A059] font-bold uppercase tracking-wider text-[10px]">Gulf Central Cluster</span>
             </div>
           </div>
         </div>

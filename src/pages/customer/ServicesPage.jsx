@@ -63,21 +63,25 @@ export default function ServicesPage() {
   }
 
   return (
-    <div className="animate-fade-in pb-12">
+    <div className="min-h-screen bg-white -mx-4 sm:-mx-8 px-4 sm:px-8 py-10 animate-fade-in pb-20 relative overflow-hidden">
+      {/* Background Lighting Effects */}
+      <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-brand-600/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-[#C5A059]/5 rounded-full blur-[120px] pointer-events-none" />
+
       {/* Header Section */}
-      <div className="mb-10">
-        <div className="flex items-center gap-2 mb-2">
-          <MapPin size={14} className="text-brand-600" />
-          <span className="text-xs font-bold text-brand-600 uppercase tracking-widest">Dammam & Eastern Province</span>
+      <div className="mb-12 relative z-10">
+        <div className="flex items-center gap-2 mb-3">
+          <MapPin size={14} className="text-[#C5A059]" />
+          <span className="text-[10px] font-black text-[#C5A059] uppercase tracking-[0.2em]">Dammam · Eastern Province</span>
         </div>
-        <h1 className="text-4xl font-black text-[#081225] tracking-tight">
-          Explore Premium Services
+        <h1 className="text-4xl sm:text-5xl font-black text-[#081225] tracking-tight leading-tight">
+          Elite <span className="text-[#C5A059]">Khidma</span> Catalog
         </h1>
-        <p className="text-slate-500 mt-2 text-lg">Elite home solutions for modern living in Dammam.</p>
+        <p className="text-slate-500 mt-4 text-lg max-w-2xl font-medium">Deploy professional maintenance modules for premium residences and enterprises.</p>
       </div>
 
-      {/* Sector Selector Toggle */}
-      <div className="flex bg-slate-100 p-1 rounded-2xl w-fit mb-8 shadow-inner">
+      {/* Sector Selector Toggle - Adjusted for White BG */}
+      <div className="flex bg-slate-100 p-1.5 rounded-2xl w-fit mb-10 border border-slate-200/60 relative z-10 shadow-inner">
         {SECTORS.map(s => {
           const Icon = s.icon
           const isActive = sector === s.id
@@ -89,36 +93,36 @@ export default function ServicesPage() {
                 setCategory('All')
                 setSearchParams({ sector: s.id, category: 'All' })
               }}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all
+              className={`flex items-center gap-2 px-8 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all
                 ${isActive 
-                  ? 'bg-white text-[#081225] shadow-sm scale-[1.02]' 
+                  ? 'bg-[#081225] text-white shadow-xl scale-[1.02]' 
                   : 'text-slate-400 hover:text-slate-600'
                 }`}
             >
-              <Icon size={16} className={isActive ? 'text-[#C5A059]' : ''} />
+              <Icon size={16} />
               {s.label}
             </button>
           )
         })}
       </div>
 
-      {/* Search & Filter Bar */}
-      <div className="sticky top-0 z-20 bg-[#f8fafc]/80 backdrop-blur-md py-4 -mx-4 px-4 mb-8">
+      {/* Search & Filter Bar - Sticky Lighter Glassmorphic */}
+      <div className="sticky top-4 z-20 bg-white/80 backdrop-blur-xl rounded-3xl p-3 mb-12 border border-slate-200/60 shadow-lg">
         <div className="flex flex-col lg:flex-row gap-4">
           <form onSubmit={handleSearch} className="relative flex-1">
-            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <Search size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
-              className="input pl-11 pr-24 py-4 shadow-sm border-none bg-white"
-              placeholder={`Search ${sector} services...`}
+              className="w-full bg-slate-50 border border-slate-100 rounded-2xl pl-14 pr-28 py-4 text-sm text-[#081225] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#081225]/20 transition-all"
+              placeholder={`Search ${sector} modules...`}
               value={searchInput}
               onChange={e => setSearchInput(e.target.value)}
             />
-            <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 btn-gold btn-sm h-10 px-6">
-              Search
+            <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#081225] text-white font-black uppercase tracking-tighter text-[11px] h-11 px-6 rounded-xl hover:bg-brand-800 transition-colors">
+              Execute
             </button>
           </form>
 
-          <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide pb-1">
+          <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
             {dynamicCategories.map(cat => (
               <button
                 key={cat}
@@ -126,10 +130,10 @@ export default function ServicesPage() {
                   setCategory(cat)
                   setSearchParams({ sector, category: cat })
                 }}
-                className={`flex-shrink-0 px-5 py-2.5 rounded-2xl text-sm font-bold transition-all
+                className={`flex-shrink-0 px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all border
                   ${category === cat
-                    ? 'bg-[#081225] text-white shadow-lg'
-                    : 'bg-white text-slate-500 hover:text-[#081225] hover:bg-slate-50 border border-slate-100'
+                    ? 'bg-[#081225] text-white border-[#081225] shadow-lg'
+                    : 'bg-white text-slate-400 border-slate-200 hover:border-slate-400 hover:text-slate-700'
                   }`}
               >
                 {cat}
@@ -141,13 +145,13 @@ export default function ServicesPage() {
 
       {/* Featured Section */}
       {category === 'All' && !search && featuredServices.length > 0 && (
-        <section className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-[#081225] flex items-center gap-2">
-              <Sparkles size={20} className="text-[#C5A059]" /> Featured Master Services
+        <section className="mb-16 relative z-10">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-black text-[#081225] flex items-center gap-3">
+              <Sparkles size={24} className="text-[#C5A059]" /> Master Tier Deployments
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {featuredServices.map(service => (
               <FeaturedCard key={service._id} service={service} onClick={() => navigate(`/services/${service._id}`)} />
             ))}
@@ -156,36 +160,38 @@ export default function ServicesPage() {
       )}
 
       {/* All Services Grid */}
-      <section>
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-[#081225]">
-            {search ? `Results for "${search}"` : category === 'All' ? 'All Catalog Services' : `${category} Services`}
+      <section className="relative z-10">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+          <h2 className="text-xl font-black text-[#081225] uppercase tracking-widest">
+            {search ? `Log: "${search}"` : category === 'All' ? 'Full Operational Catalog' : `${category} Modules`}
           </h2>
-          <div className="relative">
-            <SlidersHorizontal size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+          <div className="flex items-center gap-3 bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
+            <SlidersHorizontal size={14} className="ml-3 text-slate-400" />
             <select
               value={sortBy}
               onChange={e => setSortBy(e.target.value)}
-              className="bg-white border-none shadow-sm rounded-xl pl-9 py-2 pr-8 text-xs font-bold text-slate-600 cursor-pointer focus:ring-2 focus:ring-brand-500"
+              className="bg-transparent border-none text-xs font-black uppercase tracking-wider text-[#081225] cursor-pointer focus:ring-0 pr-8 py-1.5"
             >
               {SORT_OPTIONS.map(o => (
-                <option key={o.value} value={o.value}>{o.label}</option>
+                <option key={o.value} value={o.value} className="bg-white text-[#081225]">{o.label}</option>
               ))}
             </select>
           </div>
         </div>
 
         {isLoading ? (
-          <InlineLoader />
+          <div className="py-20 flex justify-center"><InlineLoader /></div>
         ) : services.length === 0 ? (
-          <EmptyState
-            icon={Search}
-            title="No services found"
-            description="Try adjusting your search or filters to explore more of our Dammam catalog."
-            action={<button onClick={() => { setSearch(''); setSearchInput(''); setCategory('All') }} className="btn-secondary">Clear filters</button>}
-          />
+          <div className="glass-navy rounded-[2.5rem] p-12 text-center border-white/5">
+            <EmptyState
+              icon={Search}
+              title="Matrix Empty"
+              description="No matching modules found in the current sector parameters."
+              action={<button onClick={() => { setSearch(''); setSearchInput(''); setCategory('All') }} className="bg-[#C5A059] text-[#081225] px-6 py-2.5 rounded-xl font-black uppercase text-xs tracking-widest hover:bg-white transition-colors">Reset Filters</button>}
+            />
+          </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map(service => (
               <ServiceCard key={service._id} service={service} onClick={() => navigate(`/services/${service._id}`)} />
             ))}
@@ -200,29 +206,29 @@ function FeaturedCard({ service, onClick }) {
   return (
     <div 
       onClick={onClick}
-      className="group relative h-64 rounded-3xl overflow-hidden cursor-pointer shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+      className="group relative h-80 rounded-[2.5rem] overflow-hidden cursor-pointer shadow-2xl transition-all duration-500 hover:scale-[1.02] active:scale-[0.98] border border-white/5"
     >
       <img 
         src={service.image || 'https://images.unsplash.com/photo-1581578731548-c64695cc6958?q=80&w=1000'} 
         alt={service.name}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#081225] via-[#081225]/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#081225] via-[#081225]/60 to-transparent" />
       
-      <div className="absolute top-4 left-4">
-        <span className="bg-[#C5A059] text-[#081225] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">
-          Master Level
+      <div className="absolute top-6 left-6">
+        <span className="bg-[#C5A059] text-[#081225] text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-lg flex items-center gap-2">
+          <Shield size={12} /> Master Verified
         </span>
       </div>
 
-      <div className="absolute bottom-6 left-6 right-6">
-        <p className="text-[#C5A059] text-xs font-black uppercase tracking-widest mb-1">{service.category}</p>
-        <h3 className="text-2xl font-black text-white mb-2 leading-tight">{service.name}</h3>
-        <div className="flex items-center gap-4">
-          <span className="text-white font-mono font-bold">{formatCurrency(service.price)}</span>
-          <div className="h-1 w-1 rounded-full bg-white/30" />
-          <span className="text-white/70 text-xs flex items-center gap-1">
-            <Clock size={12} /> {service.duration} min
+      <div className="absolute bottom-8 left-8 right-8">
+        <p className="text-[#C5A059] text-[10px] font-black uppercase tracking-[0.3em] mb-2">{service.category}</p>
+        <h3 className="text-3xl font-black text-white mb-3 leading-tight tracking-tight">{service.name}</h3>
+        <div className="flex items-center gap-5">
+          <span className="text-white text-lg font-black font-mono">{formatCurrency(service.price)}</span>
+          <div className="h-1.5 w-1.5 rounded-full bg-[#C5A059]/40" />
+          <span className="text-slate-400 text-[11px] font-bold uppercase tracking-widest flex items-center gap-1.5">
+            <Clock size={14} className="text-[#C5A059]" /> {service.duration} min
           </span>
         </div>
       </div>
@@ -234,53 +240,56 @@ function ServiceCard({ service, onClick }) {
   const isPremium = service.name.toLowerCase().includes('premium') || service.name.toLowerCase().includes('vip') || service.price > 400
 
   return (
-    <div onClick={onClick} className="glass-card group flex flex-col h-full hover:shadow-2xl transition-all duration-300 overflow-hidden border-none">
-      <div className="h-48 relative overflow-hidden">
+    <div onClick={onClick} className="bg-[#081225] group flex flex-col h-full hover:shadow-[0_20px_50px_rgba(197,160,89,0.25)] transition-all duration-500 rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-[#C5A059]/30 hover:-translate-y-2 cursor-pointer">
+      <div className="h-56 relative overflow-hidden">
         <img 
           src={service.image || 'https://images.unsplash.com/photo-1621905231291-00741c7e6335?q=80&w=1000'} 
           alt={service.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80" 
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#081225] via-transparent to-transparent opacity-60" />
         
         {isPremium && (
-          <div className="absolute top-3 right-3">
-            <div className="bg-white/90 backdrop-blur-md p-1.5 rounded-xl shadow-lg">
-              <Star size={14} className="text-[#C5A059] fill-[#C5A059]" />
+          <div className="absolute top-4 right-4">
+            <div className="bg-[#C5A059] p-2 rounded-xl shadow-lg">
+              <Star size={14} className="text-[#081225] fill-[#081225]" />
             </div>
           </div>
         )}
 
-        <div className="absolute bottom-3 left-3">
-          <span className="bg-[#081225]/80 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-lg uppercase tracking-wider">
+        <div className="absolute bottom-4 left-4">
+          <span className="bg-white/5 backdrop-blur-md text-[#C5A059] text-[10px] font-black px-3 py-1.5 rounded-xl uppercase tracking-widest border border-white/10">
             {service.category}
           </span>
         </div>
       </div>
 
-      <div className="p-6 flex flex-col flex-1">
-        <div className="flex-1">
-          <h3 className="font-black text-[#081225] text-lg mb-2 group-hover:text-brand-600 transition-colors">
+      <div className="p-7 flex flex-col flex-1 relative">
+        {/* Subtle scanline background */}
+        <div className="absolute inset-0 bg-scanlines opacity-[0.02] pointer-events-none" />
+
+        <div className="flex-1 relative">
+          <h3 className="font-black text-white text-xl mb-3 group-hover:text-[#C5A059] transition-colors leading-tight">
             {service.name}
           </h3>
-          <p className="text-slate-500 text-sm line-clamp-2 leading-relaxed mb-4">
+          <p className="text-slate-400 text-xs font-medium line-clamp-2 leading-relaxed mb-6">
             {service.description}
           </p>
         </div>
 
-        <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-50">
+        <div className="flex items-center justify-between mt-auto pt-6 border-t border-white/5 relative">
           <div>
-            <div className="flex items-baseline gap-1">
-              <span className="text-xl font-black text-[#081225] font-mono">
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-2xl font-black text-white font-mono">
                 {formatCurrency(service.price)}
               </span>
-              <span className="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">
+              <span className="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">
                 {service.priceType === 'starting_from' ? 'from' : service.priceType === 'hourly' ? '/hr' : ''}
               </span>
             </div>
           </div>
-          <button className="w-10 h-10 rounded-2xl bg-slate-50 flex items-center justify-center group-hover:bg-[#081225] transition-all duration-300">
-            <ChevronRight size={18} className="text-slate-400 group-hover:text-white" />
+          <button className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-[#C5A059] transition-all duration-500 border border-white/10 group-hover:border-[#C5A059]">
+            <ChevronRight size={20} className="text-[#C5A059] group-hover:text-[#081225] transform group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
       </div>
