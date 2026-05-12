@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 import { Users, Plus, ToggleLeft, ToggleRight, Loader2, Search } from 'lucide-react'
 import { InlineLoader, EmptyState, Pagination, Avatar } from '../../components/common/LoadingSpinner'
 
-export function AdminUsersPage() {
+export default function AdminUsersPage() {
   const qc = useQueryClient()
   const [role, setRole] = useState('')
   const [search, setSearch] = useState('')
@@ -141,5 +141,3 @@ export function AdminUsersPage() {
     </div>
   )
 }
-
-export default AdminUsersPage

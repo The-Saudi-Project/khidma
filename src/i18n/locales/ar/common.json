@@ -1,0 +1,38 @@
+{
+  "appName": "خدمة",
+  "nav": {
+    "services": "الخدمات",
+    "bookings": "حجوزاتي",
+    "profile": "الملف الشخصي",
+    "support": "الدعم",
+    "dashboard": "لوحة التحكم",
+    "jobs": "مهامي",
+    "earnings": "الأرباح",
+    "adminBookings": "الحجوزات",
+    "payments": "المدفوعات",
+    "payouts": "التحويلات",
+    "adminServices": "الخدمات",
+    "users": "المستخدمون",
+    "applications": "الطلبات",
+    "adminSupport": "الدعم",
+    "audit": "سجل التدقيق"
+  },
+  "actions": {
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "tryAgain": "إعادة المحاولة",
+    "markAllRead": "تعليم الكل كمقروء"
+  },
+  "errors": {
+    "generic": "حدث خطأ ما",
+    "boundaryTitle": "Something went wrong",
+    "boundaryAr": "حدث خطأ ما"
+  },
+  "language": {
+    "en": "English",
+    "ar": "العربية"
+  }
+}

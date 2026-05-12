@@ -1,0 +1,38 @@
+{
+  "appName": "Khidma",
+  "nav": {
+    "services": "Services",
+    "bookings": "My Bookings",
+    "profile": "Profile",
+    "support": "Support",
+    "dashboard": "Dashboard",
+    "jobs": "My Jobs",
+    "earnings": "Earnings",
+    "adminBookings": "Bookings",
+    "payments": "Payments",
+    "payouts": "Payouts",
+    "adminServices": "Services",
+    "users": "Users",
+    "applications": "Applications",
+    "adminSupport": "Support",
+    "audit": "Audit Log"
+  },
+  "actions": {
+    "logout": "Log out",
+    "login": "Log in",
+    "signup": "Sign up",
+    "save": "Save",
+    "cancel": "Cancel",
+    "tryAgain": "Try again",
+    "markAllRead": "Mark all read"
+  },
+  "errors": {
+    "generic": "Something went wrong",
+    "boundaryTitle": "Something went wrong",
+    "boundaryAr": "حدث خطأ ما"
+  },
+  "language": {
+    "en": "English",
+    "ar": "العربية"
+  }
+}

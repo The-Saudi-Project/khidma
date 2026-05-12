@@ -38,7 +38,14 @@ export function AuthProvider({ children }) {
     setUser(userData)
   }, [])
 
-  const logout = useCallback(() => {
+  const logout = useCallback(async () => {
+    try {
+      if (localStorage.getItem('accessToken')) {
+        await authAPI.logout()
+      }
+    } catch {
+      // still clear locally
+    }
     clearAuth()
     setUser(null)
   }, [])

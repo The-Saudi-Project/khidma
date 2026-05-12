@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { bookingsAPI } from '../../api'
 import { formatDate, formatDateTime, formatCurrency, TIMELINE_LABELS } from '../../utils/helpers'
 import toast from 'react-hot-toast'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ArrowLeft, MapPin, User, Phone, Calendar, Clock, Play, CheckCircle, Loader2 } from 'lucide-react'
 import { InlineLoader, StatusBadge } from '../../components/common/LoadingSpinner'
 
@@ -20,6 +20,36 @@ export default function ProviderJobDetailPage() {
   })
 
   const refetch = () => qc.invalidateQueries(['booking', id])
+
+  useEffect(() => {
+    if (!id) return undefined
+    const token = localStorage.getItem('accessToken')
+    if (!token) return undefined
+    const url = `${window.location.origin}/api/bookings/${id}/events?access_token=${encodeURIComponent(token)}`
+    const es = new EventSource(url)
+    es.onmessage = () => {
+      qc.invalidateQueries(['booking', id])
+    }
+    es.onerror = () => {
+      es.close()
+    }
+    return () => {
+      es.close()
+    }
+  }, [id, qc])
+
+  const handleAccept = async () => {
+    setActionLoading(true)
+    try {
+      await bookingsAPI.acceptJob(id)
+      toast.success('Job accepted!')
+      refetch()
+    } catch {
+      toast.error('Could not accept job.')
+    } finally {
+      setActionLoading(false)
+    }
+  }
 
   const handleStart = async () => {
     setActionLoading(true)
@@ -60,8 +90,14 @@ export default function ProviderJobDetailPage() {
       </div>
 
       {/* Action buttons */}
-      {booking.status === 'provider_assigned' && (
-        <button onClick={handleStart} disabled={actionLoading}
+      {booking.status === 'provider_assigned' && !booking.providerAcceptedAt && (
+        <button type="button" onClick={handleAccept} disabled={actionLoading}
+          className="w-full mb-3 py-4 rounded-2xl bg-slate-800 hover:bg-slate-900 text-white font-semibold text-base flex items-center justify-center gap-3 transition-colors">
+          {actionLoading ? <Loader2 size={18} className="animate-spin" /> : 'Accept Job'}
+        </button>
+      )}
+      {booking.status === 'provider_assigned' && booking.providerAcceptedAt && (
+        <button type="button" onClick={handleStart} disabled={actionLoading}
           className="btn-primary btn-lg w-full mb-4 gap-3">
           {actionLoading ? <Loader2 size={18} className="animate-spin" /> : <><Play size={18} /> Start Job</>}
         </button>

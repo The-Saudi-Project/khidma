@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'react-hot-toast'
+import './i18n'
 import App from './App'
+import LoadingSpinner from './components/common/LoadingSpinner'
 import './index.css'
 
 const queryClient = new QueryClient({
@@ -18,7 +20,9 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <Suspense fallback={<LoadingSpinner fullscreen />}>
+        <App />
+      </Suspense>
       <Toaster
         position="top-right"
         toastOptions={{

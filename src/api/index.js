@@ -4,6 +4,8 @@ import api from './client'
 export const authAPI = {
   signup: (data) => api.post('/auth/signup', data),
   login: (data) => api.post('/auth/login', data),
+  refresh: (refreshToken) => api.post('/auth/refresh', { refreshToken }),
+  logout: () => api.post('/auth/logout'),
   getMe: () => api.get('/auth/me'),
   forgotPassword: (email) => api.post('/auth/forgot-password', { email }),
   resetPassword: (data) => api.post('/auth/reset-password', data),
@@ -48,6 +50,7 @@ export const bookingsAPI = {
   getProviderJobs: (params) => api.get('/bookings/provider/jobs', { params }),
   startJob: (id) => api.patch(`/bookings/${id}/start`),
   completeJob: (id) => api.patch(`/bookings/${id}/complete`),
+  acceptJob: (id) => api.patch(`/bookings/${id}/accept`),
   // Admin
   getAllBookings: (params) => api.get('/bookings', { params }),
   assignProvider: (id, providerId) => api.patch(`/bookings/${id}/assign-provider`, { providerId }),
@@ -102,4 +105,11 @@ export const supportAPI = {
 // ─── Audit ────────────────────────────────────────────────────────────────────
 export const auditAPI = {
   getLogs: (params) => api.get('/audit', { params }),
+}
+
+export const providerInterestAPI = {
+  submit: (data) => api.post('/provider-interest', data),
+  list: (params) => api.get('/provider-interest', { params }),
+  approve: (id, data) => api.post(`/provider-interest/${id}/approve`, data),
+  reject: (id, data) => api.post(`/provider-interest/${id}/reject`, data),
 }

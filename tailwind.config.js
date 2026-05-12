@@ -1,3 +1,5 @@
+import rtl from 'tailwindcss-rtl'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
@@ -5,17 +7,20 @@ export default {
     extend: {
       colors: {
         brand: {
-          50:  '#f0f7ff',
-          100: '#e0effe',
-          200: '#bae0fd',
-          300: '#7cc8fb',
-          400: '#36aaf5',
-          500: '#0c8fe6',
-          600: '#0070c4',
-          700: '#0059a0',
-          800: '#054d84',
-          900: '#0a406e',
-          950: '#07294a',
+          50:  '#f0f6fc',
+          100: '#e1ecf8',
+          200: '#c3d8f1',
+          300: '#95bde6',
+          400: '#5f9bd7',
+          500: '#387dc4',
+          600: '#2563ab',
+          700: '#1e4f8a',
+          800: '#1a4371',
+          900: '#18385d',
+          950: '#081225', // Deep Navy root requested
+          gold: '#C5A059',
+          'gold-light': '#E6D5B8',
+          emerald: '#10B981',
         },
         surface: {
           DEFAULT: '#ffffff',
@@ -26,12 +31,15 @@ export default {
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-        display: ['"Cabinet Grotesk"', '"Plus Jakarta Sans"', 'sans-serif'],
+        display: ['"Outfit"', '"Plus Jakarta Sans"', 'sans-serif'],
       },
       boxShadow: {
-        'card': '0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.04)',
-        'card-hover': '0 4px 16px -2px rgb(0 0 0 / 0.10), 0 2px 8px -2px rgb(0 0 0 / 0.06)',
-        'modal': '0 20px 60px -10px rgb(0 0 0 / 0.25)',
+        'card': '0 2px 8px -2px rgb(8 18 37 / 0.05), 0 1px 2px -1px rgb(8 18 37 / 0.03)',
+        'card-hover': '0 12px 32px -4px rgb(8 18 37 / 0.12), 0 4px 12px -2px rgb(8 18 37 / 0.06)',
+        'glass': '0 8px 32px 0 rgb(8 18 37 / 0.08)',
+        'glass-hover': '0 16px 40px 0 rgb(8 18 37 / 0.16)',
+        'gold': '0 4px 20px -2px rgb(197 160 89 / 0.25)',
+        'modal': '0 24px 80px -12px rgb(8 18 37 / 0.35)',
       },
       borderRadius: {
         'xl': '0.75rem',
@@ -39,16 +47,18 @@ export default {
         '3xl': '1.5rem',
       },
       animation: {
-        'fade-in': 'fadeIn 0.2s ease-out',
-        'slide-up': 'slideUp 0.3s ease-out',
-        'scale-in': 'scaleIn 0.15s ease-out',
+        'fade-in': 'fadeIn 0.25s ease-out',
+        'slide-up': 'slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+        'scale-in': 'scaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+        'pulse-subtle': 'pulseSubtle 3s infinite ease-in-out',
       },
       keyframes: {
         fadeIn: { from: { opacity: 0 }, to: { opacity: 1 } },
-        slideUp: { from: { opacity: 0, transform: 'translateY(12px)' }, to: { opacity: 1, transform: 'translateY(0)' } },
-        scaleIn: { from: { opacity: 0, transform: 'scale(0.95)' }, to: { opacity: 1, transform: 'scale(1)' } },
+        slideUp: { from: { opacity: 0, transform: 'translateY(16px)' }, to: { opacity: 1, transform: 'translateY(0)' } },
+        scaleIn: { from: { opacity: 0, transform: 'scale(0.96)' }, to: { opacity: 1, transform: 'scale(1)' } },
+        pulseSubtle: { '0%, 100%': { opacity: 1 }, '50%': { opacity: 0.6 } },
       }
     }
   },
-  plugins: []
+  plugins: [rtl]
 }

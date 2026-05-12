@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { authAPI } from '../../api'
 import toast from 'react-hot-toast'
-import { Eye, EyeOff, Loader2 } from 'lucide-react'
+import { Eye, EyeOff, Loader2, ArrowLeft } from 'lucide-react'
 
 export default function LoginPage() {
   const { login } = useAuth()
@@ -30,7 +30,9 @@ export default function LoginPage() {
       const { accessToken, refreshToken, user } = data.data
       login({ accessToken, refreshToken }, user)
       toast.success(`Welcome back, ${user.name.split(' ')[0]}!`)
-      if (user.role === 'admin') navigate('/admin')
+      if (user.mustChangePassword) {
+        navigate('/change-password', { replace: true })
+      } else if (user.role === 'admin') navigate('/admin')
       else if (user.role === 'provider') navigate('/provider')
       else navigate('/services')
     } catch (err) {
@@ -42,7 +44,18 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-950 via-brand-800 to-brand-600 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-brand-950 via-brand-800 to-brand-600 flex items-center justify-center p-4 relative">
+      {/* Back to Home */}
+      <Link 
+        to="/" 
+        className="absolute top-8 left-8 flex items-center gap-2 text-white/70 hover:text-white transition-colors font-semibold text-sm group"
+      >
+        <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-all">
+          <ArrowLeft size={18} />
+        </div>
+        Back to Website
+      </Link>
+
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">

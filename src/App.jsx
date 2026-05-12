@@ -1,51 +1,54 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
+import LoadingSpinner from './components/common/LoadingSpinner'
+import ErrorBoundary from './components/common/ErrorBoundary'
 
-// Layouts
 import CustomerLayout from './components/common/CustomerLayout'
 import ProviderLayout from './components/common/ProviderLayout'
 import AdminLayout from './components/common/AdminLayout'
 
-// Auth pages
-import LoginPage from './pages/auth/LoginPage'
-import SignupPage from './pages/auth/SignupPage'
-import ForgotPasswordPage from './pages/auth/ForgotPasswordPage'
+const LoginPage = lazy(() => import('./pages/auth/LoginPage'))
+const SignupPage = lazy(() => import('./pages/auth/SignupPage'))
+const ForgotPasswordPage = lazy(() => import('./pages/auth/ForgotPasswordPage'))
+const ChangePasswordPage = lazy(() => import('./pages/auth/ChangePasswordPage'))
 
-// Customer pages
-import ServicesPage from './pages/customer/ServicesPage'
-import ServiceDetailPage from './pages/customer/ServiceDetailPage'
-import BookingPage from './pages/customer/BookingPage'
-import MyBookingsPage from './pages/customer/MyBookingsPage'
-import BookingDetailPage from './pages/customer/BookingDetailPage'
-import ProfilePage from './pages/customer/ProfilePage'
-import SupportPage from './pages/customer/SupportPage'
+const ServicesPage = lazy(() => import('./pages/customer/ServicesPage'))
+const ServiceDetailPage = lazy(() => import('./pages/customer/ServiceDetailPage'))
+const BookingPage = lazy(() => import('./pages/customer/BookingPage'))
+const MyBookingsPage = lazy(() => import('./pages/customer/MyBookingsPage'))
+const BookingDetailPage = lazy(() => import('./pages/customer/BookingDetailPage'))
+const ProfilePage = lazy(() => import('./pages/customer/ProfilePage'))
+const SupportPage = lazy(() => import('./pages/customer/SupportPage'))
 
-// Provider pages
-import ProviderDashboard from './pages/provider/ProviderDashboard'
-import ProviderJobsPage from './pages/provider/ProviderJobsPage'
-import ProviderJobDetailPage from './pages/provider/ProviderJobDetailPage'
-import ProviderEarningsPage from './pages/provider/ProviderEarningsPage'
-import ProviderProfilePage from './pages/provider/ProviderProfilePage'
+const ProviderDashboard = lazy(() => import('./pages/provider/ProviderDashboard'))
+const ProviderJobsPage = lazy(() => import('./pages/provider/ProviderJobsPage'))
+const ProviderJobDetailPage = lazy(() => import('./pages/provider/ProviderJobDetailPage'))
+const ProviderEarningsPage = lazy(() => import('./pages/provider/ProviderEarningsPage'))
+const ProviderProfilePage = lazy(() => import('./pages/provider/ProviderProfilePage'))
 
-// Admin pages
-import AdminDashboard from './pages/admin/AdminDashboard'
-import AdminBookingsPage from './pages/admin/AdminBookingsPage'
-import AdminBookingDetailPage from './pages/admin/AdminBookingDetailPage'
-import AdminServicesPage from './pages/admin/AdminServicesPage'
-import AdminUsersPage from './pages/admin/AdminUsersPage'
-import AdminPaymentsPage from './pages/admin/AdminPaymentsPage'
-import AdminPayoutsPage from './pages/admin/AdminPayoutsPage'
-import AdminSupportPage from './pages/admin/AdminSupportPage'
-import AdminAuditPage from './pages/admin/AdminAuditPage'
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'))
+const AdminBookingsPage = lazy(() => import('./pages/admin/AdminBookingsPage'))
+const AdminBookingDetailPage = lazy(() => import('./pages/admin/AdminBookingDetailPage'))
+const AdminServicesPage = lazy(() => import('./pages/admin/AdminServicesPage'))
+const AdminUsersPage = lazy(() => import('./pages/admin/AdminUsersPage'))
+const AdminPaymentsPage = lazy(() => import('./pages/admin/AdminPaymentsPage'))
+const AdminPayoutsPage = lazy(() => import('./pages/admin/AdminPayoutsPage'))
+const AdminSupportPage = lazy(() => import('./pages/admin/AdminSupportPage'))
+const AdminAuditPage = lazy(() => import('./pages/admin/AdminAuditPage'))
+const AdminProviderApplicationsPage = lazy(() => import('./pages/admin/AdminProviderApplicationsPage'))
 
-import LoadingSpinner from './components/common/LoadingSpinner'
+const LandingPage = lazy(() => import('./pages/LandingPage'))
 
-// ─── Route guards ─────────────────────────────────────────────────────────────
 function ProtectedRoute({ children, roles }) {
   const { user, loading } = useAuth()
+  const location = useLocation()
   if (loading) return <LoadingSpinner fullscreen />
-  if (!user) return <Navigate to="/login" replace />
-  if (roles && !roles.includes(user.role)) {
+  if (!user) return <Navigate to="/login" replace state={{ from: location }} />
+  if (user.mustChangePassword && location.pathname !== '/change-password') {
+    return <Navigate to="/change-password" replace />
+  }
+  if (roles && roles.length && !roles.includes(user.role)) {
     return <Navigate to={getDefaultRoute(user.role)} replace />
   }
   return children
@@ -64,63 +67,93 @@ function getDefaultRoute(role) {
   return '/services'
 }
 
-// ─── App ──────────────────────────────────────────────────────────────────────
+function HomeRoute() {
+  const { user, loading } = useAuth()
+  if (loading) return <LoadingSpinner fullscreen />
+  if (user) return <Navigate to={getDefaultRoute(user.role)} replace />
+  return (
+    <Suspense fallback={<LoadingSpinner fullscreen />}>
+      <LandingPage />
+    </Suspense>
+  )
+}
+
 export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Routes>
-          {/* Root redirect */}
-          <Route path="/" element={<RootRedirect />} />
+        <Suspense fallback={<LoadingSpinner fullscreen />}>
+          <Routes>
+            <Route path="/" element={<HomeRoute />} />
 
-          {/* Public auth routes */}
-          <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
-          <Route path="/signup" element={<PublicRoute><SignupPage /></PublicRoute>} />
-          <Route path="/forgot-password" element={<PublicRoute><ForgotPasswordPage /></PublicRoute>} />
+            <Route path="/login" element={<PublicRoute><ErrorBoundary><LoginPage /></ErrorBoundary></PublicRoute>} />
+            <Route path="/signup" element={<PublicRoute><ErrorBoundary><SignupPage /></ErrorBoundary></PublicRoute>} />
+            <Route path="/forgot-password" element={<PublicRoute><ErrorBoundary><ForgotPasswordPage /></ErrorBoundary></PublicRoute>} />
 
-          {/* Customer routes */}
-          <Route path="/" element={<ProtectedRoute roles={['customer']}><CustomerLayout /></ProtectedRoute>}>
-            <Route path="services" element={<ServicesPage />} />
-            <Route path="services/:id" element={<ServiceDetailPage />} />
-            <Route path="book/:serviceId" element={<BookingPage />} />
-            <Route path="bookings" element={<MyBookingsPage />} />
-            <Route path="bookings/:id" element={<BookingDetailPage />} />
-            <Route path="profile" element={<ProfilePage />} />
-            <Route path="support" element={<SupportPage />} />
-          </Route>
+            <Route path="/change-password" element={(
+              <ErrorBoundary>
+                <ProtectedRoute>
+                  <ChangePasswordPage />
+                </ProtectedRoute>
+              </ErrorBoundary>
+            )} />
 
-          {/* Provider routes */}
-          <Route path="/provider" element={<ProtectedRoute roles={['provider']}><ProviderLayout /></ProtectedRoute>}>
-            <Route index element={<ProviderDashboard />} />
-            <Route path="jobs" element={<ProviderJobsPage />} />
-            <Route path="jobs/:id" element={<ProviderJobDetailPage />} />
-            <Route path="earnings" element={<ProviderEarningsPage />} />
-            <Route path="profile" element={<ProviderProfilePage />} />
-          </Route>
+            <Route element={(
+              <ErrorBoundary>
+                <ProtectedRoute roles={['customer']}>
+                  <CustomerLayout />
+                </ProtectedRoute>
+              </ErrorBoundary>
+            )}
+            >
+              <Route path="services" element={<ServicesPage />} />
+              <Route path="services/:id" element={<ServiceDetailPage />} />
+              <Route path="book/:serviceId" element={<BookingPage />} />
+              <Route path="bookings" element={<MyBookingsPage />} />
+              <Route path="bookings/:id" element={<BookingDetailPage />} />
+              <Route path="profile" element={<ProfilePage />} />
+              <Route path="support" element={<SupportPage />} />
+            </Route>
 
-          {/* Admin routes */}
-          <Route path="/admin" element={<ProtectedRoute roles={['admin']}><AdminLayout /></ProtectedRoute>}>
-            <Route index element={<AdminDashboard />} />
-            <Route path="bookings" element={<AdminBookingsPage />} />
-            <Route path="bookings/:id" element={<AdminBookingDetailPage />} />
-            <Route path="services" element={<AdminServicesPage />} />
-            <Route path="users" element={<AdminUsersPage />} />
-            <Route path="payments" element={<AdminPaymentsPage />} />
-            <Route path="payouts" element={<AdminPayoutsPage />} />
-            <Route path="support" element={<AdminSupportPage />} />
-            <Route path="audit" element={<AdminAuditPage />} />
-          </Route>
+            <Route path="/provider" element={(
+              <ErrorBoundary>
+                <ProtectedRoute roles={['provider']}>
+                  <ProviderLayout />
+                </ProtectedRoute>
+              </ErrorBoundary>
+            )}
+            >
+              <Route index element={<ProviderDashboard />} />
+              <Route path="jobs" element={<ProviderJobsPage />} />
+              <Route path="jobs/:id" element={<ProviderJobDetailPage />} />
+              <Route path="earnings" element={<ProviderEarningsPage />} />
+              <Route path="profile" element={<ProviderProfilePage />} />
+            </Route>
 
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+            <Route path="/admin" element={(
+              <ErrorBoundary>
+                <ProtectedRoute roles={['admin']}>
+                  <AdminLayout />
+                </ProtectedRoute>
+              </ErrorBoundary>
+            )}
+            >
+              <Route index element={<AdminDashboard />} />
+              <Route path="bookings" element={<AdminBookingsPage />} />
+              <Route path="bookings/:id" element={<AdminBookingDetailPage />} />
+              <Route path="services" element={<AdminServicesPage />} />
+              <Route path="users" element={<AdminUsersPage />} />
+              <Route path="payments" element={<AdminPaymentsPage />} />
+              <Route path="payouts" element={<AdminPayoutsPage />} />
+              <Route path="support" element={<AdminSupportPage />} />
+              <Route path="audit" element={<AdminAuditPage />} />
+              <Route path="provider-applications" element={<AdminProviderApplicationsPage />} />
+            </Route>
+
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </AuthProvider>
   )
-}
-
-function RootRedirect() {
-  const { user, loading } = useAuth()
-  if (loading) return <LoadingSpinner fullscreen />
-  if (!user) return <Navigate to="/login" replace />
-  return <Navigate to={getDefaultRoute(user.role)} replace />
 }
