@@ -40,7 +40,9 @@ export default function BookingDetailPage() {
     if (!id) return undefined
     const token = localStorage.getItem('accessToken')
     if (!token) return undefined
-    const url = `${window.location.origin}/api/bookings/${id}/events?access_token=${encodeURIComponent(token)}`
+    const API_URL = import.meta.env.VITE_API_URL || '/api'
+    const baseUrl = API_URL.startsWith('http') ? API_URL : `${window.location.origin}${API_URL}`
+    const url = `${baseUrl}/bookings/${id}/events?access_token=${encodeURIComponent(token)}`
     const es = new EventSource(url)
     es.onmessage = () => {
       qc.invalidateQueries(['booking', id])
