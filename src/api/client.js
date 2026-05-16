@@ -1,8 +1,10 @@
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
+const API_URL = import.meta.env.VITE_API_URL || '/api'
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: API_URL,
   timeout: 30000,
   headers: { 'Content-Type': 'application/json' }
 })
@@ -52,7 +54,7 @@ api.interceptors.response.use(
       }
 
       try {
-        const { data } = await axios.post('/api/auth/refresh', { refreshToken })
+        const { data } = await axios.post(`${API_URL}/auth/refresh`, { refreshToken })
         const { accessToken, refreshToken: newRefresh } = data.data
         localStorage.setItem('accessToken', accessToken)
         localStorage.setItem('refreshToken', newRefresh)
