@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext'
 import { authAPI } from '../../api'
 import toast from 'react-hot-toast'
 import { Eye, EyeOff, Loader2, ArrowLeft, ShieldCheck, Star } from 'lucide-react'
+import Logo from '../../components/common/Logo'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // COMPONENT: LoginPage
@@ -62,13 +63,7 @@ export default function LoginPage() {
         {/* Top: Logo & Back Link */}
         <div className="relative z-10 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-4 group">
-            <div className="w-12 h-12 bg-brand-500 rounded-2xl flex items-center justify-center font-extrabold text-2xl text-[#0B1120] shadow-[0_0_30px_rgba(34,197,94,0.4)] transition-transform group-hover:scale-110 duration-500">
-              K
-            </div>
-            <div>
-              <span className="text-white font-extrabold text-2xl tracking-tight block leading-none">Khidma</span>
-              <span className="text-[10px] font-bold tracking-widest uppercase text-brand-500 block mt-1">Home Services</span>
-            </div>
+            <Logo />
           </Link>
           <Link to="/" className="text-sm font-bold text-slate-500 hover:text-white transition-all flex items-center gap-2 group">
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
@@ -126,8 +121,7 @@ export default function LoginPage() {
         {/* Mobile Header (Only visible on small screens) */}
         <div className="absolute top-6 left-6 right-6 flex justify-between items-center lg:hidden">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center font-extrabold text-[#0B1120]">K</div>
-            <span className="font-extrabold text-white text-lg">Khidma</span>
+            <Logo className="w-8 h-8" showText={true} />
           </Link>
           <Link to="/" className="text-sm text-slate-500 font-medium hover:text-white">
             Cancel

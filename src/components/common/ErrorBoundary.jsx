@@ -1,10 +1,11 @@
 import React from 'react'
+import Logo from './Logo'
 
 function ErrorFallback({ error, onReset }) {
   return (
     <div className="min-h-[50vh] flex flex-col items-center justify-center p-8 text-center">
-      <div className="w-14 h-14 bg-brand-600 rounded-2xl flex items-center justify-center mb-4">
-        <span className="text-white font-bold text-xl">K</span>
+      <div className="mb-4">
+        <Logo showText={false} className="w-14 h-14" />
       </div>
       <h1 className="text-lg font-bold text-white mb-1">Something went wrong</h1>
       <p className="text-slate-400 text-sm mb-1">حدث خطأ ما</p>

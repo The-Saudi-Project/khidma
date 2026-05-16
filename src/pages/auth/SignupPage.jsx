@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext'
 import { authAPI } from '../../api'
 import toast from 'react-hot-toast'
 import { Eye, EyeOff, Loader2, ArrowLeft, ShieldCheck, Zap } from 'lucide-react'
+import Logo from '../../components/common/Logo'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // COMPONENT: SignupPage
@@ -73,10 +74,7 @@ export default function SignupPage() {
         {/* Top: Logo & Back Link */}
         <div className="relative z-10 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-[#22C55E] rounded-2xl flex items-center justify-center font-extrabold text-xl text-white shadow-[0_0_20px_rgba(197,160,89,0.3)] transition-transform group-hover:scale-105">
-              K
-            </div>
-            <span className="text-white font-bold text-2xl tracking-tight">Khidma</span>
+            <Logo />
           </Link>
           <Link to="/" className="text-sm font-medium text-slate-400 hover:text-white transition-colors flex items-center gap-2">
             Return to site
@@ -138,8 +136,7 @@ export default function SignupPage() {
         {/* Mobile Header (Only visible on small screens) */}
         <div className="absolute top-6 left-6 right-6 flex justify-between items-center lg:hidden">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#0B1120] rounded-lg flex items-center justify-center font-extrabold text-[#22C55E]">K</div>
-            <span className="font-extrabold text-white text-lg">Khidma</span>
+            <Logo className="w-8 h-8" showText={true} />
           </Link>
           <Link to="/" className="text-sm text-slate-500 font-medium hover:text-white">
             Cancel

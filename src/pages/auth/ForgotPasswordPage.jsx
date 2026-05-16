@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { authAPI } from '../../api'
 import toast from 'react-hot-toast'
 import { Loader2, ArrowLeft, CheckCircle } from 'lucide-react'
+import Logo from '../../components/common/Logo'
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('')
@@ -26,11 +27,8 @@ export default function ForgotPasswordPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-brand-950 via-brand-800 to-brand-600 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <div className="w-12 h-12 glass rounded-2xl flex items-center justify-center shadow-lg mx-auto mb-4">
-            <span className="text-brand-700 font-bold text-xl">K</span>
-          </div>
-          <span className="text-white font-bold text-3xl tracking-tight">Khidma</span>
+        <div className="flex flex-col items-center mb-8">
+          <Logo showText={true} />
         </div>
 
         <div className="glass rounded-3xl shadow-modal p-8">

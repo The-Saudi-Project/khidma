@@ -10,6 +10,7 @@ import LanguageToggle from './LanguageToggle'
 import { Avatar } from './LoadingSpinner'
 import BottomNav from './BottomNav'
 import PWAInstallBanner from './PWAInstallBanner'
+import Logo from './Logo'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // COMPONENT: AdminLayout
@@ -57,10 +58,7 @@ export default function AdminLayout() {
         {/* Mobile top structural header - Minimalist */}
         <header className="lg:hidden sticky top-0 z-30 bg-white/5 backdrop-blur-md border-b border-white/5 px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#8B5CF6] rounded-lg flex items-center justify-center font-extrabold text-white">
-              <Crown size={16} />
-            </div>
-            <span className="font-extrabold text-white text-lg tracking-tight">Khidma Admin</span>
+            <Logo className="w-8 h-8" />
           </div>
           
           <div className="flex items-center gap-3">
@@ -112,13 +110,7 @@ function SidebarContent({ user, onLogout }) {
       {/* Brand High Tier Header */}
       <div className="mb-12">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-brand-500/10 flex items-center justify-center border border-brand-500/20">
-            <ShieldCheck className="text-brand-500" size={24} />
-          </div>
-          <div>
-            <h1 className="text-xl font-black text-white tracking-tighter">KHIDMA</h1>
-            <div className="text-[10px] font-bold text-brand-500 uppercase tracking-widest leading-none">ADMIN PORTAL</div>
-          </div>
+          <Logo />
         </div>
       </div>
 

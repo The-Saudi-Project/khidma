@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import LanguageToggle from '../components/common/LanguageToggle'
+import Logo from '../components/common/Logo'
 import BecomeProviderSection from '../components/landing/BecomeProviderSection'
 import {
   Sparkles, Shield, Clock, Search, CheckCircle2, Star, ChevronRight,
@@ -66,13 +67,7 @@ export default function LandingPage() {
       <header className="sticky top-0 z-50 bg-[#0B1120]/80 backdrop-blur-xl border-b border-white/5 transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-brand-500 rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.3)]">
-              <span className="text-[#0B1120] font-black text-xl tracking-tight">K</span>
-            </div>
-            <div className="hidden sm:block">
-              <span className="font-extrabold text-2xl tracking-tight text-white block leading-none">{t('appName')}</span>
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-500 block mt-1 opacity-90">Elite Saudi Platform</span>
-            </div>
+            <Logo />
           </div>
 
           <div className="flex items-center gap-2 sm:gap-8">
@@ -720,13 +715,7 @@ export default function LandingPage() {
             
             <div className="lg:col-span-4 space-y-5">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#22C55E] rounded-2xl flex items-center justify-center text-white font-extrabold text-lg shadow-lg">
-                  K
-                </div>
-                <div>
-                  <span className="font-extrabold text-xl tracking-tight block text-white leading-none">Khidma</span>
-                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#22C55E] block mt-1">Home Services Marketplace</span>
-                </div>
+                <Logo />
               </div>
               <p className="text-xs text-slate-400 font-medium leading-relaxed max-w-sm">
                 Your trusted platform for professional home services across Saudi Arabia. Verified technicians, transparent pricing, satisfaction guaranteed.

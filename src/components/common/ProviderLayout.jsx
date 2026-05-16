@@ -11,6 +11,7 @@ import LanguageToggle from './LanguageToggle'
 import { useNotifications } from '../../hooks/useNotifications'
 import BottomNav from './BottomNav'
 import PWAInstallBanner from './PWAInstallBanner'
+import Logo from './Logo'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // COMPONENT: ProviderLayout
@@ -111,8 +112,7 @@ export default function ProviderLayout() {
         {/* Mobile top structural header - Minimalist */}
         <header className="lg:hidden sticky top-0 z-30 bg-white/5 backdrop-blur-md border-b border-white/5 px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#10B981] rounded-lg flex items-center justify-center font-extrabold text-white">K</div>
-            <span className="font-extrabold text-white text-lg tracking-tight">Khidma Fleet</span>
+            <Logo className="w-8 h-8" />
           </div>
           
           <div className="flex items-center gap-3">
@@ -168,13 +168,7 @@ function SidebarContent({ user, onLogout, isAvailable, toggleAvailability }) {
     <div className="flex flex-col h-full py-4">
       <div className="px-2 mb-10">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-brand-500 rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.3)]">
-            <Briefcase size={20} className="text-[#0B1120]" />
-          </div>
-          <div>
-            <span className="text-white font-extrabold text-xl tracking-tight block leading-none">Khidma</span>
-            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-500 block mt-1 opacity-90">Professional</span>
-          </div>
+          <Logo />
         </div>
       </div>
 
