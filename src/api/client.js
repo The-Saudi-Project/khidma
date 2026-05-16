@@ -1,6 +1,9 @@
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
+// API URL resolution order:
+// 1. VITE_API_URL from .env (build-time, used in production)
+// 2. Fallback to '/api' if env var is not set (for dev proxy)
 const API_URL = import.meta.env.VITE_API_URL || '/api'
 
 const api = axios.create({
@@ -9,7 +12,7 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' }
 })
 
-// Attach token to every request
+// Attach JWT access token to every request
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('accessToken')
@@ -19,7 +22,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 )
 
-// Handle responses & auto-refresh
+// Handle 401 responses with automatic token refresh
 let isRefreshing = false
 let failedQueue = []
 
@@ -54,6 +57,7 @@ api.interceptors.response.use(
       }
 
       try {
+        // Refresh token request goes directly to the refresh endpoint
         const { data } = await axios.post(`${API_URL}/auth/refresh`, { refreshToken })
         const { accessToken, refreshToken: newRefresh } = data.data
         localStorage.setItem('accessToken', accessToken)
@@ -80,6 +84,7 @@ api.interceptors.response.use(
   }
 )
 
+// Clear all auth data and redirect to login
 function clearAuth() {
   localStorage.removeItem('accessToken')
   localStorage.removeItem('refreshToken')
