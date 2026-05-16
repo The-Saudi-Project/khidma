@@ -6,7 +6,8 @@ import BecomeProviderSection from '../components/landing/BecomeProviderSection'
 import {
   Sparkles, Shield, Clock, Search, CheckCircle2, Star, ChevronRight,
   Smartphone, Award, Zap, HeartHandshake, ShieldCheck, Wrench, Paintbrush,
-  Car, Truck, Scissors, ArrowRight, Check, Building, ShoppingBag, Settings
+  Car, Truck, Scissors, ArrowRight, Check, Building, ShoppingBag, Settings,
+  Plus, Minus, Play, Download, ArrowUpRight, BarChart3, Fingerprint, Lock
 } from 'lucide-react'
 
 // Mock categories for interactive layout discovery
@@ -39,6 +40,13 @@ const TESTIMONIALS = [
   { name: 'Majed R.', role: 'Property Manager', quote: 'Integrating maintenance requests through this digital marketplace saved us countless administrative hours. Highly recommended.', rating: 5 },
 ]
 
+const FAQ_ITEMS = [
+  { q: 'How are Khidma professionals vetted?', a: 'Every technician undergoes a rigorous 5-step background check, skills verification, and behavioral interview. We only onboard the top 5% of applicants.' },
+  { q: 'Is there a warranty on services?', a: 'Yes. All completed payloads carry a 30-day Khidma Quality Guarantee. If the resolution is not absolute, we deploy a Master Tech to rectify it at zero cost.' },
+  { q: 'Can I track my technician in real-time?', a: 'Absolutely. Once dispatched, our interactive map provides live GPS telemetry and an exact ETA down to the minute.' },
+  { q: 'What is the "Encrypted Layer"?', a: 'We employ bank-grade 256-bit encryption for all data and financial transactions, ensuring your private estate details remain strictly confidential.' },
+]
+
 export default function LandingPage() {
   const { t, i18n } = useTranslation('common')
   const navigate = useNavigate()
@@ -46,6 +54,7 @@ export default function LandingPage() {
   
   const [searchQuery, setSearchQuery] = useState('')
   const [activeTestimonial, setActiveTestimonial] = useState(0)
+  const [openFaq, setOpenFaq] = useState(null)
 
   const filteredCategories = useMemo(() => {
     if (!searchQuery.trim()) return CATEGORIES
@@ -236,6 +245,190 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* 2. Brand Trust Strip */}
+      <div className="bg-[#081225] border-y border-white/5 py-6">
+        <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+          <div className="text-xl font-black tracking-widest text-white uppercase flex items-center gap-2">
+            <Building size={20} /> AL-RAJHI ESTATES
+          </div>
+          <div className="text-xl font-black tracking-widest text-white uppercase flex items-center gap-2">
+            <ShieldCheck size={20} /> ARAMCO FM
+          </div>
+          <div className="text-xl font-black tracking-widest text-white uppercase flex items-center gap-2">
+            <Award size={20} /> NEOM DEV
+          </div>
+          <div className="text-xl font-black tracking-widest text-white uppercase flex items-center gap-2 hidden md:flex">
+            <Building size={20} /> EMAAR
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Core Values (Bento Grid) */}
+      <section className="py-24 px-4 relative overflow-hidden bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 mb-6">
+              <Star size={14} className="text-[#C5A059] fill-[#C5A059]" />
+              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#C5A059]">The Khidma Standard</span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-black text-[#081225] tracking-tight leading-tight">
+              Absolute Precision.<br />Zero Compromise.
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 auto-rows-[280px]">
+            <div className="md:col-span-2 bg-[#081225] rounded-3xl p-10 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#10B981]/20 to-transparent rounded-bl-full pointer-events-none" />
+              <div className="relative z-10 flex flex-col h-full justify-between">
+                <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md border border-white/10">
+                  <ShieldCheck size={28} className="text-[#10B981]" />
+                </div>
+                <div>
+                  <h3 className="text-3xl font-black text-white mb-3">Vetted Excellence</h3>
+                  <p className="text-slate-400 font-medium max-w-md">Every technician clears a rigorous 5-stage background check, ensuring only the top 5% step foot into your property.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-50 rounded-3xl p-10 border border-slate-100 relative group overflow-hidden">
+              <div className="relative z-10 flex flex-col h-full justify-between">
+                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100">
+                  <Clock size={28} className="text-[#C5A059]" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black text-[#081225] mb-2">On-Time SLA</h3>
+                  <p className="text-slate-500 font-medium text-sm">Automated dispatch guarantees arrival within exact allocated windows.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-50 rounded-3xl p-10 border border-slate-100 relative group overflow-hidden">
+              <div className="relative z-10 flex flex-col h-full justify-between">
+                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100">
+                  <BarChart3 size={28} className="text-[#C5A059]" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black text-[#081225] mb-2">Fixed Pricing</h3>
+                  <p className="text-slate-500 font-medium text-sm">Transparent matrix billing. No hidden fees, no last-minute negotiations.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="md:col-span-2 bg-[#C5A059] rounded-3xl p-10 relative overflow-hidden group">
+              <div className="absolute top-1/2 right-10 -translate-y-1/2 pointer-events-none opacity-20">
+                <Fingerprint size={160} className="text-[#081225]" />
+              </div>
+              <div className="relative z-10 flex flex-col h-full justify-between">
+                <div className="w-14 h-14 bg-[#081225]/10 rounded-2xl flex items-center justify-center backdrop-blur-md border border-[#081225]/20">
+                  <Lock size={28} className="text-[#081225]" />
+                </div>
+                <div>
+                  <h3 className="text-3xl font-black text-[#081225] mb-3">Bank-Grade Escrow</h3>
+                  <p className="text-[#081225]/70 font-bold max-w-md">Funds are held securely and only released when the service meets our absolute standard of quality.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Premium Value Proposition (Split Screen) */}
+      <section className="py-24 bg-surface-50 border-y border-slate-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="order-2 lg:order-1 relative">
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#C5A059]/10 to-transparent rounded-[3rem] transform -rotate-3 scale-105" />
+              <div className="relative bg-white rounded-[3rem] p-8 border border-slate-100 shadow-[0_20px_50px_rgba(8,18,37,0.05)] h-[600px] flex flex-col">
+                <div className="flex items-center justify-between mb-8 pb-6 border-b border-slate-50">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-[#081225] rounded-xl flex items-center justify-center text-[#C5A059] font-black">K</div>
+                    <span className="font-extrabold text-lg tracking-tight">Active Dispatch</span>
+                  </div>
+                  <span className="px-3 py-1 bg-[#10B981]/10 text-[#10B981] font-bold text-[10px] uppercase tracking-widest rounded-full">Secure</span>
+                </div>
+
+                <div className="flex-1 overflow-y-auto space-y-4 pr-2">
+                  <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">System Notification</p>
+                    <p className="text-sm font-bold text-[#081225]">Master Plumber dispatched to your coordinates.</p>
+                  </div>
+                  
+                  <div className="bg-[#081225] text-white rounded-2xl p-5 shadow-lg relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#10B981]/20 rounded-full blur-3xl pointer-events-none" />
+                    <div className="flex justify-between items-start relative z-10">
+                      <div>
+                        <p className="text-[10px] font-black text-[#10B981] uppercase tracking-widest mb-1">ETA</p>
+                        <p className="text-3xl font-black tracking-tight">12 MIN</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Provider</p>
+                        <p className="text-sm font-bold">Faisal A.</p>
+                        <div className="flex items-center gap-1 mt-1 justify-end">
+                          <Star size={12} className="fill-[#C5A059] text-[#C5A059]" />
+                          <span className="text-[10px] font-bold text-slate-300">4.9</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm flex items-center gap-4">
+                    <div className="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center">
+                      <Search size={20} className="text-slate-400" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="h-2 bg-slate-100 rounded-full w-3/4 mb-2" />
+                      <div className="h-2 bg-slate-100 rounded-full w-1/2" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-slate-50">
+                  <div className="h-12 bg-slate-50 rounded-xl border border-slate-100 flex items-center px-4">
+                    <span className="w-2 h-2 rounded-full bg-[#10B981] animate-ping mr-3" />
+                    <span className="text-xs font-bold text-slate-400">Tracking telemetry active...</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2 space-y-8">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 mb-6 shadow-sm">
+                  <Shield size={14} className="text-[#081225]" />
+                  <span className="text-xs font-black uppercase tracking-wider text-[#081225]">The Premium Edge</span>
+                </div>
+                <h2 className="text-4xl sm:text-5xl font-black text-[#081225] tracking-tight leading-[1.1]">
+                  Command your estate from <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#081225] to-[#C5A059]">one interface.</span>
+                </h2>
+              </div>
+
+              <div className="space-y-6">
+                {[
+                  { title: 'Live Telemetry', desc: 'Watch your assigned professional approach your location in real-time.' },
+                  { title: 'Digital Sign-offs', desc: 'Approve completion and release funds purely through the platform.' },
+                  { title: 'Encrypted Audits', desc: 'Every transaction and interaction is logged in your secure history.' }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center justify-center flex-shrink-0 text-[#C5A059] font-black">
+                      {i + 1}
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-black text-[#081225] mb-1">{item.title}</h4>
+                      <p className="text-slate-500 font-medium text-sm leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <button onClick={() => navigate('/services')} className="btn-primary btn-lg rounded-2xl flex items-center gap-2 group">
+                Initiate Dispatch 
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Service Categories Section - High Contrast (Navy Glass on White) */}
       <section className="py-24 px-4 relative overflow-hidden bg-white">
         {/* Animated Background Lighting (Subtle Blobs) */}
@@ -320,6 +513,71 @@ export default function LandingPage() {
                 </div>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. App Download Prompt (Mobile Mockup) */}
+      <section className="py-24 relative overflow-hidden bg-[#081225]">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#C5A059]/10 rounded-full blur-[150px] pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-[3rem] overflow-hidden flex flex-col md:flex-row items-center justify-between p-8 md:p-16 lg:p-20 backdrop-blur-md">
+            <div className="md:w-1/2 text-center md:text-start mb-12 md:mb-0">
+              <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight leading-[1.1] mb-6">
+                Carry the Master Tier in your pocket.
+              </h2>
+              <p className="text-lg text-slate-300 font-medium mb-10 max-w-md mx-auto md:mx-0">
+                Install the Khidma Progressive Web App to access instant bookings, push notifications, and offline mode.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+                <button className="w-full sm:w-auto px-8 py-4 bg-white text-[#081225] rounded-xl font-black flex items-center justify-center gap-3 hover:bg-slate-100 transition-colors shadow-lg">
+                  <Download size={20} /> Install App
+                </button>
+                <Link to="/signup" className="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 text-white rounded-xl font-black flex items-center justify-center gap-3 hover:bg-white/5 transition-colors">
+                  Create Account
+                </Link>
+              </div>
+            </div>
+
+            <div className="md:w-5/12 relative flex justify-center w-full">
+              {/* Abstract Mobile Device */}
+              <div className="w-[280px] h-[580px] bg-[#081225] rounded-[3rem] border-[8px] border-white/20 shadow-[0_30px_60px_rgba(0,0,0,0.5)] relative overflow-hidden flex flex-col items-center">
+                {/* Dynamic Island */}
+                <div className="w-24 h-7 bg-black rounded-full mt-2 absolute top-0 z-20" />
+                
+                {/* Screen Content */}
+                <div className="w-full h-full bg-surface-50 pt-16 px-4 pb-6 flex flex-col">
+                  <div className="flex justify-between items-center mb-6">
+                    <div>
+                      <p className="text-[10px] font-black uppercase text-[#C5A059] tracking-wider">Good Morning</p>
+                      <p className="text-lg font-black text-[#081225]">Ahmad</p>
+                    </div>
+                    <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex justify-center items-center">
+                      <div className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+                    </div>
+                  </div>
+
+                  <div className="bg-[#081225] text-white rounded-2xl p-4 mb-4 shadow-lg">
+                    <p className="text-[10px] font-black uppercase tracking-widest mb-1 text-[#10B981]">Active Payload</p>
+                    <p className="text-lg font-black mb-1">Deep Cleaning</p>
+                    <p className="text-xs text-slate-400">Arriving in 15 mins</p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3 flex-1">
+                    <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-3 flex flex-col justify-center items-center gap-2">
+                      <Sparkles size={24} className="text-[#C5A059]" />
+                      <span className="text-[10px] font-bold text-[#081225]">Cleaning</span>
+                    </div>
+                    <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-3 flex flex-col justify-center items-center gap-2">
+                      <Wrench size={24} className="text-[#C5A059]" />
+                      <span className="text-[10px] font-bold text-[#081225]">Plumbing</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -561,6 +819,49 @@ export default function LandingPage() {
                 }`}
               />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 9. Dynamic FAQ */}
+      <section className="py-24 bg-surface-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black text-[#081225] tracking-tight">Intelligence Base</h2>
+            <p className="text-slate-500 font-medium mt-4">Clarifications on the Khidma Master Protocol.</p>
+          </div>
+
+          <div className="space-y-4">
+            {FAQ_ITEMS.map((faq, index) => {
+              const isOpen = openFaq === index;
+              return (
+                <div 
+                  key={index}
+                  className={`bg-white border transition-all duration-300 rounded-2xl overflow-hidden ${
+                    isOpen ? 'border-[#C5A059] shadow-md' : 'border-slate-200 shadow-sm hover:border-slate-300'
+                  }`}
+                >
+                  <button
+                    className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
+                    onClick={() => setOpenFaq(isOpen ? null : index)}
+                  >
+                    <span className={`font-black text-lg ${isOpen ? 'text-[#081225]' : 'text-slate-700'}`}>
+                      {faq.q}
+                    </span>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isOpen ? 'bg-[#C5A059] text-[#081225]' : 'bg-slate-100 text-slate-500'}`}>
+                      {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+                    </div>
+                  </button>
+                  <div 
+                    className={`px-6 overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-40 pb-6 opacity-100' : 'max-h-0 opacity-0'}`}
+                  >
+                    <p className="text-slate-500 font-medium leading-relaxed">
+                      {faq.a}
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>

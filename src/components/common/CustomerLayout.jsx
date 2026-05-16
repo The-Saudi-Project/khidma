@@ -2,19 +2,29 @@ import { Outlet, NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import {
   LayoutGrid, CalendarDays, User, HeadphonesIcon,
-  LogOut, Bell, Menu, X, ShieldAlert
+  LogOut, Bell, ShieldAlert
 } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Avatar } from './LoadingSpinner'
 import LanguageToggle from './LanguageToggle'
 import { useNotifications } from '../../hooks/useNotifications'
+import BottomNav from './BottomNav'
+import PWAInstallBanner from './PWAInstallBanner'
+
+// ─────────────────────────────────────────────────────────────────────────────
+// COMPONENT: CustomerLayout
+// PURPOSE: Layout shell for logged-in Customers. Contains desktop sidebar
+//          and mobile BottomNav for a native app feel.
+// KEY DECISIONS:
+//   - Removed mobile hamburger drawer in favor of BottomNav (PWA goal)
+//   - Integrated PWAInstallBanner
+// ─────────────────────────────────────────────────────────────────────────────
 
 export default function CustomerLayout() {
   const { t } = useTranslation('common')
   const { user, logout } = useAuth()
   const navigate = useNavigate()
-  const [mobileOpen, setMobileOpen] = useState(false)
   const [notifOpen, setNotifOpen] = useState(false)
   const { unreadCount, notifications, markAllAsRead } = useNotifications()
 
@@ -32,7 +42,7 @@ export default function CustomerLayout() {
 
   return (
     <div className="min-h-screen bg-surface-50 flex">
-      {/* Premium Floating Glass Sidebar Container */}
+      {/* Premium Floating Glass Sidebar Container (Desktop Only) */}
       <aside className="hidden lg:flex flex-col w-72 p-4 sticky top-0 h-screen flex-shrink-0">
         <div className="flex-1 bg-[#081225] rounded-3xl p-5 flex flex-col justify-between border border-white/10 shadow-glass text-white relative overflow-hidden">
           {/* Subtle gold glow lighting corner */}
@@ -52,28 +62,9 @@ export default function CustomerLayout() {
         </div>
       </aside>
 
-      {/* Mobile Drawer */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
-          <aside className="absolute start-0 top-0 bottom-0 w-72 bg-[#081225] text-white p-5 z-10 flex flex-col justify-between">
-            <SidebarContent
-              nav={nav}
-              user={user}
-              unreadCount={unreadCount}
-              notifications={notifications}
-              notifOpen={notifOpen}
-              setNotifOpen={setNotifOpen}
-              markAllAsRead={markAllAsRead}
-              onLogout={handleLogout}
-              onClose={() => setMobileOpen(false)}
-            />
-          </aside>
-        </div>
-      )}
-
       {/* Main Container Shell */}
-      <div className="flex-1 flex flex-col min-w-0">
+      {/* Added pb-20 to ensure content isn't hidden behind the BottomNav on mobile */}
+      <div className="flex-1 flex flex-col min-w-0 pb-20 lg:pb-0">
         <header className="hidden lg:flex items-center justify-end gap-4 px-8 py-4 sticky top-0 z-30 bg-surface-50/80 backdrop-blur-md">
           {/* Verified tier indicators preview */}
           <div className="flex items-center gap-2 px-3 py-1 bg-white rounded-xl border border-slate-100 shadow-sm text-xs text-slate-500 font-medium me-auto">
@@ -121,25 +112,46 @@ export default function CustomerLayout() {
           </div>
         </header>
 
-        {/* Mobile Header */}
-        <header className="lg:hidden sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-100 px-4 py-3 flex items-center gap-3">
-          <button type="button" onClick={() => setMobileOpen(true)} className="p-2 bg-slate-50 rounded-xl text-slate-700">
-            <Menu size={20} />
-          </button>
-          <span className="font-extrabold text-[#081225] text-lg flex-1 tracking-tight">Khidma</span>
-          <LanguageToggle />
+        {/* Mobile Header - Minimalist */}
+        <header className="lg:hidden sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-100 px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-[#C5A059] rounded-lg flex items-center justify-center font-black text-[#081225]">K</div>
+            <span className="font-extrabold text-[#081225] text-lg tracking-tight">Khidma</span>
+          </div>
+          
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => navigate('/profile')} // Map bell to profile/notifications on mobile
+              className="relative p-2 text-slate-700"
+            >
+              <Bell size={20} />
+              {unreadCount > 0 && (
+                <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-[#C5A059] rounded-full" />
+              )}
+            </button>
+            <LanguageToggle />
+          </div>
         </header>
 
         <main className="flex-1 p-4 lg:px-8 lg:py-4 max-w-6xl w-full mx-auto">
           <Outlet />
         </main>
       </div>
+
+      {/* Native App Elements */}
+      <BottomNav role="customer" />
+      <PWAInstallBanner />
     </div>
   )
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// COMPONENT: SidebarContent
+// PURPOSE: Reusable sidebar logic (now exclusive to desktop view)
+// ─────────────────────────────────────────────────────────────────────────────
 function SidebarContent({
-  nav, user, unreadCount, notifications, notifOpen, setNotifOpen, markAllAsRead, onLogout, onClose, isDesktop
+  nav, user, unreadCount, notifications, notifOpen, setNotifOpen, markAllAsRead, onLogout, isDesktop
 }) {
   const { t } = useTranslation('common')
   return (
@@ -156,15 +168,9 @@ function SidebarContent({
               <span className="text-[9px] font-bold tracking-widest uppercase text-[#C5A059] block mt-0.5">Patron Shell</span>
             </div>
           </div>
-          
-          {onClose && (
-            <button type="button" onClick={onClose} className="p-1 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-colors">
-              <X size={20} />
-            </button>
-          )}
         </div>
 
-        {/* Navigation list tailored with transparent white hover states */}
+        {/* Navigation list */}
         <nav className="flex flex-col gap-1.5">
           {nav.map(({ to, label, icon: Icon }) => (
             <NavLink
@@ -185,38 +191,8 @@ function SidebarContent({
         </nav>
       </div>
 
-      {/* Footer Profile & Exit actions inside Navy container */}
+      {/* Footer Profile & Exit actions */}
       <div className="pt-4 border-t border-white/10 space-y-2 mt-auto">
-        {!isDesktop && (
-          <div className="relative mb-2">
-            <button
-              type="button"
-              onClick={() => setNotifOpen((o) => !o)}
-              className="flex items-center justify-between w-full px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-400 hover:bg-white/5 hover:text-white transition-colors"
-            >
-              <span className="flex items-center gap-3">
-                <Bell size={16} />
-                Notifications
-              </span>
-              {unreadCount > 0 && (
-                <span className="bg-[#C5A059] text-[#081225] text-[10px] font-black rounded-full px-1.5 py-0.5">
-                  {unreadCount}
-                </span>
-              )}
-            </button>
-            {notifOpen && (
-              <div className="mt-2 rounded-xl bg-white/5 border border-white/10 p-2 text-start">
-                <button type="button" className="text-[10px] text-[#C5A059] font-bold block mb-2" onClick={() => { markAllAsRead(); setNotifOpen(false) }}>
-                  {t('actions.markAllRead')}
-                </button>
-                {notifications.slice(0, 3).map((n) => (
-                  <p key={n._id} className="text-[11px] text-slate-300 py-1 border-b border-white/5 last:border-0 truncate">{n.title}</p>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-
         <div className="bg-white/5 rounded-xl p-3 flex items-center gap-3 border border-white/5">
           <Avatar name={user?.name || 'Patron User'} size="sm" />
           <div className="flex-1 min-w-0">
