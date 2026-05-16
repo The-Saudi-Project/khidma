@@ -55,15 +55,15 @@ export default function BecomeProviderSection() {
           <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-emerald-100">
             <CheckCircle className="w-10 h-10 text-brand-400" />
           </div>
-          <h2 className="text-3xl font-extrabold text-white tracking-tight mb-3">Telemetry Acknowledged</h2>
+          <h2 className="text-3xl font-extrabold text-white tracking-tight mb-3">Application Received!</h2>
           <p className="text-sm text-slate-500 mb-8 font-medium leading-relaxed max-w-md mx-auto">
-            Your technical dossier has been indexed into our Master Tier talent routing matrix. Authorization credentials will be delivered via secure terminal stream.
+            Thank you for your interest! Our team will review your application and reach out within 48 hours.
           </p>
           <Link 
             to="/login" 
             className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#0B1120] text-white font-extrabold uppercase text-xs tracking-widest hover:bg-[#22C55E] hover:text-white transition-all duration-300 shadow-md"
           >
-            <span>Access Node Stream</span>
+            <span>Sign In</span>
           </Link>
         </div>
       </section>
@@ -78,13 +78,13 @@ export default function BecomeProviderSection() {
       <div className="max-w-3xl mx-auto relative z-10">
         <div className="text-center max-w-xl mx-auto mb-14">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full glass border border-white/5 mb-3">
-            <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#22C55E]">Network Authorization</span>
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#22C55E]">Join Our Team</span>
           </div>
           <h2 className="text-4xl font-extrabold text-white tracking-tight leading-tight">
-            Integrate as Vetted Talent
+            Become a Khidma Professional
           </h2>
           <p className="text-sm text-slate-500 mt-2 font-medium">
-            Join the Kingdom&apos;s leading network of elite technicians operating under Master Tier dispatch protocols.
+            Join Saudi Arabia&apos;s fastest-growing home services platform. Set your own schedule, grow your client base, and earn more.
           </p>
         </div>
 
@@ -94,7 +94,7 @@ export default function BecomeProviderSection() {
 
           <div className="grid sm:grid-cols-2 gap-6 mb-6">
             <div>
-              <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">Full Identity Name</label>
+              <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">Full Name</label>
               <input 
                 className="w-full glass border border-white/5 rounded-2xl px-4 py-3.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all" 
                 placeholder="e.g. Tariq Al-Mansour"
@@ -104,7 +104,7 @@ export default function BecomeProviderSection() {
               />
             </div>
             <div>
-              <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">Secure Email</label>
+              <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">Email Address</label>
               <input 
                 type="email" 
                 className="w-full glass border border-white/5 rounded-2xl px-4 py-3.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all" 
@@ -115,7 +115,7 @@ export default function BecomeProviderSection() {
               />
             </div>
             <div>
-              <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">Terminal Contact (Phone)</label>
+              <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">Phone Number</label>
               <input 
                 className="w-full glass border border-white/5 rounded-2xl px-4 py-3.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all" 
                 placeholder="+966 5X XXX XXXX"
@@ -125,7 +125,7 @@ export default function BecomeProviderSection() {
               />
             </div>
             <div>
-              <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">Primary Grid (City)</label>
+              <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">City</label>
               <input 
                 className="w-full glass border border-white/5 rounded-2xl px-4 py-3.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all" 
                 placeholder="Riyadh, Jeddah, Dammam..."
@@ -137,7 +137,7 @@ export default function BecomeProviderSection() {
           </div>
 
           <div className="mb-6">
-            <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2.5">Authorized Modules (Select Scope)</label>
+            <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2.5">Your Skills</label>
             <div className="flex flex-wrap gap-2">
               {SKILL_OPTIONS.map((s) => (
                 <button
@@ -157,12 +157,12 @@ export default function BecomeProviderSection() {
           </div>
 
           <div className="mb-8">
-            <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">Technical Dossier &amp; Certifications</label>
+            <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">Experience &amp; Certifications</label>
             <textarea 
               className="w-full glass border border-white/5 rounded-2xl p-4 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all min-h-[120px]" 
               value={form.experience} 
               onChange={(e) => setForm({ ...form, experience: e.target.value })} 
-              placeholder="Outline your years of active duty, specialized tools operated, and regional coverage limitations..." 
+              placeholder="Tell us about your experience, certifications, and the areas you serve..." 
             />
           </div>
 
@@ -171,7 +171,7 @@ export default function BecomeProviderSection() {
             disabled={submitting} 
             className="btn-primary w-full py-4 text-xs tracking-[0.2em] uppercase font-black"
           >
-            {submitting ? <Loader2 className="animate-spin" size={18} /> : 'Transmit Dossier Authorization'}
+            {submitting ? <Loader2 className="animate-spin" size={18} /> : 'Apply Now'}
           </button>
         </form>
       </div>

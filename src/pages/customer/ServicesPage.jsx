@@ -62,13 +62,13 @@ export default function ServicesPage() {
           <div className="space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20">
               <Zap size={14} className="text-brand-400" />
-              <span className="text-[10px] font-bold text-brand-300 uppercase tracking-widest">Master Verified Catalog</span>
+              <span className="text-[10px] font-bold text-brand-300 uppercase tracking-widest">Available Services</span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Elite <span className="text-brand-500">Service</span> Modules.
+              Home <span className="text-brand-500">Services</span>.
             </h1>
             <p className="text-slate-400 max-w-xl font-medium leading-relaxed">
-              Deploy professional maintenance solutions with absolute precision. All technicians are vetted and verified for Tier-1 performance.
+              Browse and book professional services for your home or business.
             </p>
           </div>
 

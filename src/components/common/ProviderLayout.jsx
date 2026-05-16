@@ -68,7 +68,7 @@ export default function ProviderLayout() {
           {/* Signal active state preview badge */}
           <div className="flex items-center gap-2 px-3 py-1 glass rounded-2xl border border-white/5 shadow-2xl text-xs text-slate-500 font-medium me-auto">
             <Zap size={14} className="text-[#10B981]" />
-            <span>Telemetry Channel Active</span>
+            <span>Notifications</span>
           </div>
 
           <LanguageToggle />
@@ -173,7 +173,7 @@ function SidebarContent({ user, onLogout, isAvailable, toggleAvailability }) {
           </div>
           <div>
             <span className="text-white font-extrabold text-xl tracking-tight block leading-none">Khidma</span>
-            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-500 block mt-1 opacity-90">Provider Node</span>
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-500 block mt-1 opacity-90">Professional</span>
           </div>
         </div>
       </div>

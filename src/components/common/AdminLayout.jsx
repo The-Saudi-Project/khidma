@@ -60,7 +60,7 @@ export default function AdminLayout() {
             <div className="w-8 h-8 bg-[#8B5CF6] rounded-lg flex items-center justify-center font-extrabold text-white">
               <Crown size={16} />
             </div>
-            <span className="font-extrabold text-white text-lg tracking-tight">Khidma Node</span>
+            <span className="font-extrabold text-white text-lg tracking-tight">Khidma Admin</span>
           </div>
           
           <div className="flex items-center gap-3">

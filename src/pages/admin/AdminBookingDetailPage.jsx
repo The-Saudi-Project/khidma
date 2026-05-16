@@ -43,48 +43,48 @@ export default function AdminBookingDetailPage() {
   }
 
   const handleConfirmPayment = async () => {
-    if (!booking.paymentId) return toast.error('No cryptographic proof payload mapped')
+    if (!booking.paymentId) return toast.error('No payment proof uploaded')
     setConfirmingPayment(true)
     try {
       await paymentsAPI.confirmPayment(booking.paymentId._id || booking.paymentId)
-      toast.success('Escrow buffer lock released!')
+      toast.success('Payment approved!')
       refetch()
-    } catch { toast.error('Failed to handshake escrow settlement.') }
+    } catch { toast.error('Failed to approve payment.') }
     finally { setConfirmingPayment(false) }
   }
 
   const handleRejectPayment = async () => {
-    if (!rejectReason.trim()) return toast.error('Audit exception parameters mandatory')
+    if (!rejectReason.trim()) return toast.error('Rejection reason is required')
     setRejectingPayment(true)
     try {
       await paymentsAPI.rejectPayment(booking.paymentId._id || booking.paymentId, rejectReason)
-      toast.success('Escrow snapshot flagged as fraudulent.')
+      toast.success('Payment rejected.')
       setShowRejectModal(false)
       setRejectReason('')
       refetch()
-    } catch { toast.error('Failed to trigger exception hook.') }
+    } catch { toast.error('Failed to reject payment.') }
     finally { setRejectingPayment(false) }
   }
 
   const handleAssignProvider = async () => {
-    if (!selectedProvider) return toast.error('Please map specific fleet technician coordinates')
+    if (!selectedProvider) return toast.error('Please select a professional')
     setAssigning(true)
     try {
       await bookingsAPI.assignProvider(id, selectedProvider)
-      toast.success('Fleet technician dispatched!')
+      toast.success('Professional assigned!')
       refetch()
-    } catch { toast.error('Failed to route provider dispatch.') }
+    } catch { toast.error('Failed to assign professional.') }
     finally { setAssigning(false) }
   }
 
   const handleCancel = async () => {
     setCancelling(true)
     try {
-      await bookingsAPI.cancelBooking(id, 'Aborted by Master Executive node')
-      toast.success('SLA permanently terminated.')
+      await bookingsAPI.cancelBooking(id, 'Cancelled by Admin')
+      toast.success('Booking cancelled.')
       setShowCancelModal(false)
       refetch()
-    } catch { toast.error('Failed to override SLA state.') }
+    } catch { toast.error('Failed to cancel booking.') }
     finally { setCancelling(false) }
   }
 
@@ -92,8 +92,8 @@ export default function AdminBookingDetailPage() {
   if (!booking) return (
     <div className="glass rounded-3xl p-12 text-center text-slate-400 border border-white/5 max-w-2xl mx-auto mt-12">
       <AlertTriangle size={32} className="mx-auto mb-3 text-amber-500 animate-bounce" />
-      <p className="text-sm font-bold text-slate-300">Cryptographic Node Unresolved</p>
-      <p className="text-xs text-slate-400 mt-1">Requested document index could not be extracted from storage partitions.</p>
+      <p className="text-sm font-bold text-slate-300">Booking Not Found</p>
+      <p className="text-xs text-slate-400 mt-1">Requested booking could not be found.</p>
     </div>
   )
 
@@ -101,72 +101,67 @@ export default function AdminBookingDetailPage() {
 
   return (
     <div className="animate-fade-in max-w-6xl space-y-6 pb-12">
-      {/* Structural Back Hook */}
       <button onClick={() => navigate('/admin/bookings')} type="button"
         className="inline-flex items-center gap-2 px-3 py-1.5 rounded-2xl glass border border-white/5 text-xs font-bold text-slate-500 hover:text-white hover:border-white/10 transition-all shadow-2xl">
-        <ArrowLeft size={14} /> Back to Telemetry Ledgers
+        <ArrowLeft size={14} /> Back to Bookings
       </button>
 
-      {/* Dynamic Upper Metadata Panel */}
       <div className="glass rounded-3xl p-6 lg:p-8 border border-white/5 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="px-2 py-0.5 rounded bg-white/5 text-slate-400 font-mono text-[10px] font-bold">
               ID: {booking.bookingNumber || booking._id.slice(-6).toUpperCase()}
             </span>
-            <span className="text-[10px] text-[#22C55E] font-bold uppercase tracking-tight">Master Command View</span>
+            <span className="text-[10px] text-[#22C55E] font-bold uppercase tracking-tight">Booking Details</span>
           </div>
           <h1 className="text-xl lg:text-2xl font-extrabold text-white tracking-tight">{booking.serviceName}</h1>
-          <p className="text-xs text-slate-400 mt-0.5">Origin creation hash logged on {formatDate(booking.createdAt || booking.scheduledDate)}</p>
+          <p className="text-xs text-slate-400 mt-0.5">Created on {formatDate(booking.createdAt || booking.scheduledDate)}</p>
         </div>
 
         <div className="flex items-center gap-3 flex-shrink-0 pt-2 md:pt-0 border-t md:border-0 border-white/[0.05]">
           <div className="text-right hidden sm:block">
-            <span className="text-[9px] text-slate-400 uppercase tracking-widest block font-bold">SLA Phase</span>
-            <span className="text-xs font-bold text-slate-300">Live Handshake</span>
+            <span className="text-[9px] text-slate-400 uppercase tracking-widest block font-bold">Status</span>
+            <span className="text-xs font-bold text-slate-300">Current Progress</span>
           </div>
           <StatusBadge status={booking.status} />
         </div>
       </div>
 
-      {/* Principal Split Panel Navigation Container */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
         
-        {/* Left Side: Heavy Escrow & Fleet Telemetry Execution (2 cols) */}
         <div className="lg:col-span-2 space-y-6">
 
-          {/* Payment Wire Verification Moderation Component */}
           {booking.status === 'payment_uploaded' && paymentObj && (
             <div className="bg-gradient-to-br from-amber-50/90 via-white to-amber-50/40 rounded-3xl p-6 border-2 border-amber-200 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 end-0 bg-amber-500 text-white px-3 py-1 rounded-bl-2xl text-[9px] font-extrabold uppercase tracking-widest shadow-2xl">
-                Root Settlement Required
+                Action Required
               </div>
 
               <div className="flex items-center gap-2 text-amber-800 font-extrabold text-sm tracking-tight mb-3">
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-ping flex-shrink-0" />
-                <span>Uploaded Transaction Slip Auditing</span>
+                <span>Verify Payment Slip</span>
               </div>
 
               <p className="text-xs text-slate-400 mb-4 leading-relaxed">
-                Patron generated cryptographic upload detected. Review wire proof validation keys below to transition order state into live technician assignment buffer.
+                A payment proof has been uploaded. Please review the transaction details below to approve the payment.
               </p>
 
               <div className="glass rounded-2xl p-4 border border-amber-100/80 space-y-3 mb-5 shadow-2xl">
                 <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
-                  <span className="text-slate-400 font-bold">Payload Pointer:</span>
+                  <span className="text-slate-400 font-bold">Booking Details:</span>
                   {paymentObj.proofFile ? (
                     <a href={paymentObj.proofFile.path} target="_blank" rel="noopener noreferrer"
                       className="text-xs font-extrabold text-[#10B981] hover:underline inline-flex items-center gap-1 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-100">
-                      <ExternalLink size={13} /> View Attached Slip Image
+                      <ExternalLink size={13} /> View Slip
                     </a>
                   ) : (
-                    <span className="text-slate-400 italic">No storage URL key indexed</span>
+                    <span className="text-slate-400 italic">No proof attached</span>
                   )}
                 </div>
 
                 {paymentObj.transactionReference && (
                   <div className="flex items-center justify-between text-xs pt-2 border-t border-white/[0.05]">
-                    <span className="text-slate-400 font-bold">Bank TRN Reference:</span>
+                    <span className="text-slate-400 font-bold">Reference:</span>
                     <code className="font-mono font-extrabold text-white glass px-2 py-0.5 rounded border border-white/5">
                       {paymentObj.transactionReference}
                     </code>
@@ -177,84 +172,81 @@ export default function AdminBookingDetailPage() {
               <div className="flex flex-wrap sm:flex-nowrap gap-3">
                 <button onClick={handleConfirmPayment} disabled={confirmingPayment} type="button"
                   className="flex-1 px-4 py-3 rounded-2xl bg-[#10B981] hover:bg-[#0EA5E9] text-white hover:text-white font-extrabold text-xs transition-all shadow-2xl flex items-center justify-center gap-2">
-                  {confirmingPayment ? <Loader2 size={16} className="animate-spin" /> : <><Check size={16} /> Release Lock (Approve)</>}
+                  {confirmingPayment ? <Loader2 size={16} className="animate-spin" /> : <><Check size={16} /> Approve Payment</>}
                 </button>
                 <button onClick={() => setShowRejectModal(true)} type="button"
                   className="px-4 py-3 rounded-2xl glass hover:bg-red-50 text-red-500 border border-red-100 font-bold text-xs transition-all flex items-center justify-center gap-1.5">
-                  <XCircle size={15} /> Flag Payload
+                  <XCircle size={15} /> Reject
                 </button>
               </div>
             </div>
           )}
 
-          {/* Capital Allocation & Liquidity Matrix */}
           <div className="glass rounded-3xl p-6 border border-white/5 shadow-2xl space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Escrow Liquidity Settlement</h3>
-              <span className="text-[10px] font-mono text-[#10B981] bg-emerald-50 px-2 py-0.5 rounded font-bold">Guaranteed Clearing</span>
+              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Payment Breakdown</h3>
+              <span className="text-[10px] font-mono text-[#10B981] bg-emerald-50 px-2 py-0.5 rounded font-bold">Verified</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
               <div className="glass rounded-2xl p-3.5 border border-white/5">
-                <span className="text-[10px] text-slate-400 uppercase tracking-tight block font-bold">Total Quoted</span>
+                <span className="text-[10px] text-slate-400 uppercase tracking-tight block font-bold">Total</span>
                 <span className="text-lg font-extrabold text-white font-mono block mt-0.5">{formatCurrency(booking.totalAmount)}</span>
               </div>
               <div className="glass rounded-2xl p-3.5 border border-white/5 border-b-2 border-b-[#22C55E]">
-                <span className="text-[10px] text-[#22C55E] uppercase tracking-tight block font-bold">Platform Retained</span>
+                <span className="text-[10px] text-[#22C55E] uppercase tracking-tight block font-bold">Platform Fee</span>
                 <span className="text-lg font-extrabold text-[#22C55E] font-mono block mt-0.5">{formatCurrency(booking.platformCommission || booking.totalAmount * 0.3)}</span>
               </div>
               <div className="glass rounded-2xl p-3.5 border border-white/5 border-b-2 border-b-[#10B981]">
-                <span className="text-[10px] text-[#10B981] uppercase tracking-tight block font-bold">Fleet Disbursement</span>
+                <span className="text-[10px] text-[#10B981] uppercase tracking-tight block font-bold">Payout</span>
                 <span className="text-lg font-extrabold text-[#10B981] font-mono block mt-0.5">{formatCurrency(booking.providerEarning || booking.totalAmount * 0.7)}</span>
               </div>
             </div>
           </div>
 
-          {/* Unit Deployment Array (Assign Technician) */}
           {booking.status === 'payment_confirmed' && (
             <div className="glass rounded-3xl p-6 border border-[#10B981]/40 shadow-2xl relative overflow-hidden space-y-4">
               <div className="absolute top-0 end-0 bg-[#10B981]/10 text-white font-mono text-[9px] font-extrabold px-3 py-1 rounded-bl-2xl">
-                Ready For Dispatch
+                Assign Professional
               </div>
 
               <h3 className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-2">
-                <UserCheck size={14} className="text-[#10B981]" /> Map Specialized Technician Node
+                <UserCheck size={14} className="text-[#10B981]" /> Assign Professional
               </h3>
 
               <p className="text-xs text-slate-500">
-                Escrow funds verified. Allocate highly rated operational provider profiles active in target geography.
+                Assign a professional to this booking.
               </p>
 
               <div className="space-y-3">
                 <select className="w-full px-4 py-3 rounded-2xl glass border border-white/5 text-xs font-bold text-white focus:outline-none focus:ring-2 focus:ring-[#10B981]/30 transition-all"
                   value={selectedProvider} onChange={e => setSelectedProvider(e.target.value)}>
-                  <option value="">Select target operational profile candidate…</option>
+                  <option value="">Select professional...</option>
                   {providers?.map(p => (
                     <option key={p._id} value={p._id}>
-                      {p.name} — Skills: {p.providerProfile?.skills?.join(', ') || 'General Asset'} · Rating: ({p.providerProfile?.averageRating || 5.0}★)
+                      {p.name} — Skills: {p.providerProfile?.skills?.join(', ') || 'N/A'} · Rating: ({p.providerProfile?.averageRating || 5.0}★)
                     </option>
                   ))}
                 </select>
 
                 <button onClick={handleAssignProvider} disabled={assigning || !selectedProvider} type="button"
                   className="w-full py-3 rounded-2xl bg-[#0B1120] hover:bg-[#22C55E] text-white hover:text-white font-extrabold text-xs transition-all shadow-2xl flex items-center justify-center gap-2 disabled:opacity-50">
-                  {assigning ? <Loader2 size={16} className="animate-spin" /> : 'Confirm Dispatch Coordinates'}
+                  {assigning ? <Loader2 size={16} className="animate-spin" /> : 'Confirm Assignment'}
                 </button>
               </div>
             </div>
           )}
 
-          {/* Reassignment Node Buffer */}
           {booking.status === 'provider_assigned' && (
             <div className="glass rounded-3xl p-6 border border-white/5 shadow-2xl space-y-4">
               <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                <UserCheck size={14} className="text-[#22C55E]" /> Hot-Swap Assigned Asset
+                <UserCheck size={14} className="text-[#22C55E]" /> Change Professional
               </h3>
               
               <div className="space-y-3">
                 <select className="w-full px-4 py-3 rounded-2xl glass border border-white/5 text-xs font-bold text-white focus:outline-none focus:ring-2 focus:ring-[#22C55E]/30 transition-all"
                   value={selectedProvider} onChange={e => setSelectedProvider(e.target.value)}>
-                  <option value="">Select fallback candidate node…</option>
+                  <option value="">Select professional...</option>
                   {providers?.filter(p => p._id.toString() !== booking.provider?._id?.toString()).map(p => (
                     <option key={p._id} value={p._id}>{p.name} — Skills: {p.providerProfile?.skills?.join(', ')}</option>
                   ))}
@@ -262,15 +254,14 @@ export default function AdminBookingDetailPage() {
 
                 <button onClick={handleAssignProvider} disabled={assigning || !selectedProvider} type="button"
                   className="w-full py-2.5 rounded-2xl bg-white/5 hover:bg-[#0B1120] text-slate-300 hover:text-white font-bold text-xs transition-all flex items-center justify-center gap-2 disabled:opacity-50">
-                  {assigning ? <Loader2 size={16} className="animate-spin" /> : 'Override Current Mapping'}
+                  {assigning ? <Loader2 size={16} className="animate-spin" /> : 'Reassign'}
                 </button>
               </div>
             </div>
           )}
 
-          {/* Connected Logistics Cryptographic Timeline */}
           <div className="glass rounded-3xl p-6 border border-white/5 shadow-2xl space-y-4">
-            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">SLA Lifecycle Ledger Audit</h3>
+            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">History</h3>
             
             <div className="space-y-4 pt-2 relative before:absolute before:start-1.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-white/5">
               {booking.timeline?.map((e, i) => (
@@ -290,18 +281,16 @@ export default function AdminBookingDetailPage() {
 
         </div>
 
-        {/* Right Side: Sticky Structural Telemetry & Absolute Node Authority (1 col) */}
         <div className="space-y-6 sticky top-24">
 
-          {/* Execution Coordinates */}
           <div className="glass rounded-3xl p-5 border border-white/5 shadow-2xl space-y-3">
-            <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">Geographic Dispatch Array</h3>
+            <h3 className="text-[10px] font-bold text-brand-500 uppercase tracking-widest">Booking Details</h3>
             
             <div className="space-y-2.5 text-xs">
               <div className="flex items-start gap-2.5 p-2 rounded-2xl glass">
                 <Calendar size={14} className="text-[#22C55E] flex-shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-[10px] text-slate-400 block font-bold uppercase">Scheduled Horizon</span>
+                  <span className="text-[10px] text-slate-400 block font-bold uppercase">Scheduled</span>
                   <span className="font-bold text-slate-200">{formatDate(booking.scheduledDate)} @ {booking.scheduledTime}</span>
                 </div>
               </div>
@@ -309,14 +298,14 @@ export default function AdminBookingDetailPage() {
               <div className="flex items-start gap-2.5 p-2 rounded-2xl glass">
                 <MapPin size={14} className="text-[#10B981] flex-shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-[10px] text-slate-400 block font-bold uppercase">Patron Node Address</span>
+                  <span className="text-[10px] text-slate-400 block font-bold uppercase">Customer Address</span>
                   <span className="font-medium text-slate-300 leading-tight block">{booking.address?.fullAddress || 'Unresolved Coordinate String'}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Patron Telemetry */}
+          {/* Customer Details */}
           <div className="glass rounded-3xl p-5 border border-white/5 shadow-2xl space-y-2 text-xs">
             <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">Patron Origin Hash</h3>
             <p className="font-extrabold text-white text-sm tracking-tight">{booking.customer?.name || 'Encrypted Client'}</p>
@@ -326,7 +315,7 @@ export default function AdminBookingDetailPage() {
             )}
           </div>
 
-          {/* Provider Node Mapping Preview */}
+          {/* Provider Details Preview */}
           {booking.provider && (
             <div className="glass rounded-3xl p-5 border border-white/5 shadow-2xl space-y-2 text-xs border-s-4 border-s-[#10B981]">
               <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">Allocated Provider Unit</h3>

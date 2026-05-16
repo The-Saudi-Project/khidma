@@ -38,30 +38,30 @@ export default function ProviderDashboard() {
 
         <div className="max-w-xl relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 text-brand-400 font-bold text-[10px] uppercase tracking-widest mb-6 border border-brand-500/20">
-            <Sparkles size={12} /> Live Operations Center
+            <Sparkles size={12} /> Dashboard Overview
           </div>
           <h1 className="text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-none">
             Welcome back, <span className="text-brand-500">{user?.name?.split(' ')[0] || 'Partner'}.</span>
           </h1>
           <p className="text-sm text-slate-400 mt-4 leading-relaxed font-medium">
-            Your automated dispatch matrices are synchronized. Monitor your custom regional coordinates and instantaneous clearing splits.
+            Manage your active bookings, view recent requests, and track your earnings.
           </p>
         </div>
 
         <div className="mt-10 pt-8 border-t border-white/5 flex flex-wrap items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse" />
-            <span className="text-xs font-bold text-slate-300">Escrow Buffer: <span className="text-brand-400">100% Guaranteed</span></span>
+            <span className="text-xs font-bold text-slate-300">Account Status: <span className="text-brand-400">Verified</span></span>
           </div>
           <div className="flex items-center gap-4">
             <div className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-              Region: KSA Hub Standard
+              Region: KSA Standard
             </div>
           </div>
         </div>
       </div>
 
-      {/* Luxury KPI Metric Gauge Container */}
+      {/* KPI Metric Container */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="glass-card !p-8 group">
           <div className="flex items-center justify-between mb-6">
@@ -70,7 +70,7 @@ export default function ProviderDashboard() {
             </div>
             <span className="text-[10px] font-black text-brand-400 uppercase tracking-widest px-2 py-1 bg-brand-500/10 rounded-lg">Cleared</span>
           </div>
-          <p className="text-[11px] font-bold text-slate-500 uppercase tracking-tight block mb-1">Total Cleared Earnings</p>
+          <p className="text-[11px] font-bold text-slate-500 uppercase tracking-tight block mb-1">Total Earnings</p>
           <p className="text-3xl font-extrabold text-white font-mono tracking-tight">{formatCurrency(earnings.totalEarned || 0)}</p>
         </div>
 
@@ -81,7 +81,7 @@ export default function ProviderDashboard() {
             </div>
             <span className="text-[10px] font-black text-amber-400 uppercase tracking-widest px-2 py-1 bg-amber-500/10 rounded-lg">Pending</span>
           </div>
-          <p className="text-[11px] font-bold text-slate-500 uppercase tracking-tight block mb-1">Escrow Awaiting Handshake</p>
+          <p className="text-[11px] font-bold text-slate-500 uppercase tracking-tight block mb-1">Pending Earnings</p>
           <p className="text-3xl font-extrabold text-amber-500 font-mono tracking-tight">{formatCurrency(earnings.pendingEarnings || 0)}</p>
         </div>
 
@@ -92,21 +92,21 @@ export default function ProviderDashboard() {
             </div>
             <span className="text-[10px] font-black text-brand-300 uppercase tracking-widest px-2 py-1 bg-brand-400/10 rounded-lg">Deposited</span>
           </div>
-          <p className="text-[11px] font-bold text-slate-500 uppercase tracking-tight block mb-1">Total Vault Deposits</p>
+          <p className="text-[11px] font-bold text-slate-500 uppercase tracking-tight block mb-1">Total Deposits</p>
           <p className="text-3xl font-extrabold text-brand-300 font-mono tracking-tight">{formatCurrency(earnings.totalPaidOut || 0)}</p>
         </div>
       </div>
 
-      {/* Core Operational Dispatches Stream Viewport */}
+      {/* Bookings Stream */}
       <div className="space-y-4">
         <div className="flex items-center justify-between px-1">
           <div>
-            <h2 className="text-base font-extrabold text-white tracking-tight">Active Dispatches Array</h2>
-            <p className="text-xs text-slate-400">Target jobs instantly mapped to your verified profile coordinates</p>
+            <h2 className="text-base font-extrabold text-white tracking-tight">Recent Bookings</h2>
+            <p className="text-xs text-slate-400">View your latest service appointments</p>
           </div>
           <button onClick={() => navigate('/provider/jobs')} type="button"
             className="text-xs font-bold text-[#22C55E] hover:underline flex items-center gap-1">
-            Access Full Pipeline <ChevronRight size={14} />
+            View All <ChevronRight size={14} />
           </button>
         </div>
 
@@ -118,8 +118,7 @@ export default function ProviderDashboard() {
               <Compass size={24} />
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-300">Zero Target Missions Currently Active</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">As customer escrows clear verification, automated matching assigns immediate tasks here.</p>
+              <p className="text-xs font-bold text-slate-300">No active bookings found.</p>
             </div>
           </div>
         ) : (
@@ -141,7 +140,7 @@ export default function ProviderDashboard() {
                     </div>
                     
                     <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-[11px] text-slate-400">
-                      <span className="font-medium text-slate-400">{job.customer?.name || 'Patron Asset'}</span>
+                      <span className="font-medium text-slate-400">{job.customer?.name || 'Customer'}</span>
                       <span className="flex items-center gap-1">
                         <Clock size={11} className="text-slate-400" />
                         {formatDate(job.scheduledDate)} @ {job.scheduledTime}

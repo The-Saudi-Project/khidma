@@ -38,7 +38,7 @@ export default function AdminDashboard() {
             Infrastructure <span className="text-brand-500">Overview.</span>
           </h1>
           <p className="text-sm text-slate-400 mt-4 leading-relaxed font-medium">
-            Live telemetry from the Gulf service cluster is synchronized. Monitor real-time dispatch state, financial clearing, and technician availability modules.
+            Live status from the service platform is synchronized. Monitor real-time bookings, payments, and professional availability.
           </p>
         </div>
 
@@ -58,7 +58,7 @@ export default function AdminDashboard() {
       {/* Critical Operational Attention Task widgets */}
       <div className="space-y-6">
         <div className="flex items-center justify-between px-1">
-          <h2 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Priority Dispatch Queues</h2>
+          <h2 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Priority Bookings</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
@@ -142,7 +142,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Aggregate Network Dispatch Status Array */}
+      {/* Recent Bookings List */}
       <div className="glass rounded-3xl p-6 border border-white/5 shadow-2xl">
         <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Network Indices Distribution</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -168,7 +168,7 @@ export default function AdminDashboard() {
       {/* Data Ledger Table View */}
       <div className="space-y-3">
         <div className="flex items-center justify-between px-1">
-          <h2 className="text-sm font-extrabold text-white tracking-tight uppercase">Recent Telemetry Feed</h2>
+          <h2 className="text-sm font-extrabold text-white tracking-tight uppercase">Recent Bookings</h2>
           <button onClick={() => navigate('/admin/bookings')} type="button"
             className="text-xs font-bold text-[#22C55E] hover:underline flex items-center gap-1">
             Access Full Ledger <ChevronRight size={14} />
@@ -182,7 +182,7 @@ export default function AdminDashboard() {
                 <tr className="bg-white/5 border-b border-white/5 text-[10px] font-bold text-slate-400 uppercase tracking-tight">
                   <th className="py-3 px-4">Identifier</th>
                   <th className="py-3 px-4">Service Descriptor</th>
-                  <th className="py-3 px-4">Origin Node</th>
+                  <th className="py-3 px-4">City</th>
                   <th className="py-3 px-4">SLA State</th>
                   <th className="py-3 px-4 text-right">Escrow Quoted</th>
                 </tr>
@@ -211,7 +211,7 @@ export default function AdminDashboard() {
                 {(!recentBookings || recentBookings.length === 0) && (
                   <tr>
                     <td colSpan={5} className="text-center py-12 text-slate-400 text-xs font-medium">
-                      Zero cryptographically logged dispatches located in short term persistence buffer.
+                      No recent bookings found.
                     </td>
                   </tr>
                 )}

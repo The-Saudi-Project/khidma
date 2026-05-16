@@ -12,39 +12,33 @@ import {
 
 // Mock categories for interactive layout discovery
 const SECTOR_METADATA = {
-  residential: { label: 'Home Services', desc: 'Elite solutions for your residence', icon: Sparkles },
-  commercial: { label: 'Business & Office', desc: 'Professional facilities management', icon: Shield },
-  industrial: { label: 'Industrial Support', desc: 'Heavy-duty technical operations', icon: Zap }
+  residential: { label: 'Home Services', desc: 'For your home & family', icon: Sparkles },
+  commercial: { label: 'Business & Office', desc: 'For your workplace', icon: Shield },
+  industrial: { label: 'Industrial', desc: 'Heavy-duty support', icon: Zap }
 }
 
 const CATEGORIES = [
-  { id: 'cleaning', sector: 'residential', name: 'Home Cleaning', nameAr: 'تنظيف المنازل', icon: Sparkles, desc: 'Deep sanitation & upkeep', price: 'from 120 SAR' },
-  { id: 'plumbing', sector: 'residential', name: 'Plumbing', nameAr: 'سباكة', icon: Wrench, desc: 'Pipe repair & installation', price: 'from 80 SAR' },
-  { id: 'electrical', sector: 'residential', name: 'Electrical', nameAr: 'كهرباء', icon: Zap, desc: 'Wiring, lighting & safety', price: 'from 90 SAR' },
-  { id: 'ac', sector: 'residential', name: 'AC Repair', nameAr: 'صيانة المكيفات', icon: Shield, desc: 'Freon recharge & overhaul', price: 'from 150 SAR' },
-  { id: 'corporate', sector: 'commercial', name: 'Office Maintenance', nameAr: 'صيانة المكاتب', icon: Building, desc: 'Daily housekeeping & FM', price: 'Contract base' },
-  { id: 'retail', sector: 'commercial', name: 'Retail Support', nameAr: 'دعم التجزئة', icon: ShoppingBag, desc: 'Mall & shop management', price: '24/7 Support' },
-  { id: 'industrial', sector: 'industrial', name: 'Industrial HVAC', nameAr: 'التكييف الصناعي', icon: Settings, desc: 'Chillers & AHU support', price: 'Custom Quote' },
-  { id: 'moving', sector: 'residential', name: 'Movers', nameAr: 'نقل عفش', icon: Truck, desc: 'Secure packing & transit', price: 'from 400 SAR' },
-]
-
-const FEATURED_PROVIDERS = [
-  { name: 'Fahad Al-Otaibi', title: 'Master AC Technician', rating: 4.9, reviews: 142, verified: true, city: 'Riyadh' },
-  { name: 'Sarah Mansour', title: 'Premium Home Stylist', rating: 5.0, reviews: 98, verified: true, city: 'Jeddah' },
-  { name: 'Tariq Ziad', title: 'Advanced Electrical Specialist', rating: 4.8, reviews: 210, verified: true, city: 'Dammam' },
+  { id: 'cleaning', sector: 'residential', name: 'Home Cleaning', nameAr: 'تنظيف المنازل', icon: Sparkles, desc: 'Deep cleaning, sanitization & regular upkeep for your home' },
+  { id: 'plumbing', sector: 'residential', name: 'Plumbing', nameAr: 'سباكة', icon: Wrench, desc: 'Pipe repair, leak fixes & new installations' },
+  { id: 'electrical', sector: 'residential', name: 'Electrical', nameAr: 'كهرباء', icon: Zap, desc: 'Wiring, lighting, sockets & safety checks' },
+  { id: 'ac', sector: 'residential', name: 'AC Repair', nameAr: 'صيانة المكيفات', icon: Shield, desc: 'AC servicing, gas refill & full maintenance' },
+  { id: 'corporate', sector: 'commercial', name: 'Office Maintenance', nameAr: 'صيانة المكاتب', icon: Building, desc: 'Cleaning, repairs & daily facilities management' },
+  { id: 'retail', sector: 'commercial', name: 'Retail Support', nameAr: 'دعم التجزئة', icon: ShoppingBag, desc: 'Mall & storefront maintenance services' },
+  { id: 'industrial', sector: 'industrial', name: 'Industrial HVAC', nameAr: 'التكييف الصناعي', icon: Settings, desc: 'Chiller systems, AHU & industrial cooling' },
+  { id: 'moving', sector: 'residential', name: 'Movers', nameAr: 'نقل عفش', icon: Truck, desc: 'Professional packing, moving & furniture assembly' },
 ]
 
 const TESTIMONIALS = [
-  { name: 'Abdulrahman K.', role: 'Homeowner, Riyadh', quote: 'Khidma completely changed how we manage our estate. Elite technicians arrived perfectly on time. Worth every Riyal.', rating: 5 },
-  { name: 'Nouf Al-Saud', role: 'Executive, Jeddah', quote: 'The interactive snapshot pricing and verified identity badges provide true peace of mind. Simply outstanding interface.', rating: 5 },
-  { name: 'Majed R.', role: 'Property Manager', quote: 'Integrating maintenance requests through this digital marketplace saved us countless administrative hours. Highly recommended.', rating: 5 },
+  { name: 'Abdulrahman K.', role: 'Homeowner, Riyadh', quote: 'Khidma makes finding reliable home services so easy. The AC technician arrived on time, fixed our unit quickly, and the pricing was clear from the start.', rating: 5 },
+  { name: 'Nouf S.', role: 'Mother of three, Jeddah', quote: 'I love that I can see the price before booking and that every professional is background-checked. It gives me real peace of mind.', rating: 5 },
+  { name: 'Majed R.', role: 'Property Manager, Riyadh', quote: 'We use Khidma to manage all maintenance for our apartment buildings. It has saved us so much time compared to calling individual contractors.', rating: 5 },
 ]
 
 const FAQ_ITEMS = [
-  { q: 'How are Khidma professionals vetted?', a: 'Every technician undergoes a rigorous 5-step background check, skills verification, and behavioral interview. We only onboard the top 5% of applicants.' },
-  { q: 'Is there a warranty on services?', a: 'Yes. All completed payloads carry a 30-day Khidma Quality Guarantee. If the resolution is not absolute, we deploy a Master Tech to rectify it at zero cost.' },
-  { q: 'Can I track my technician in real-time?', a: 'Absolutely. Once dispatched, our interactive map provides live GPS telemetry and an exact ETA down to the minute.' },
-  { q: 'What is the "Encrypted Layer"?', a: 'We employ bank-grade 256-bit encryption for all data and financial transactions, ensuring your private estate details remain strictly confidential.' },
+  { q: 'How are professionals verified?', a: 'Every professional goes through identity verification, background checks, and skills testing. Only qualified technicians are approved to work on the platform.' },
+  { q: 'What if I\'m not satisfied with the work?', a: 'All services come with a 30-day satisfaction guarantee. If something isn\'t right, we\'ll send another professional to fix it at no extra cost.' },
+  { q: 'Can I track my professional?', a: 'Yes! Once your booking is confirmed, you can track your professional\'s location in real-time and see their exact estimated arrival time.' },
+  { q: 'Is my payment secure?', a: 'Absolutely. We use bank-level encryption for all transactions. Your payment is held securely and only released after you approve the completed work. We support Mada, Visa, Mastercard, and Apple Pay.' },
 ]
 
 export default function LandingPage() {
@@ -97,7 +91,7 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[#0B1120] pt-24 pb-32 lg:pt-40 lg:pb-56 text-white">
+      <section className="relative overflow-hidden bg-[#0B1120] pt-12 pb-20 lg:pt-20 lg:pb-32 text-white">
         {/* Subtle background mesh gradients */}
         <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
@@ -107,18 +101,18 @@ export default function LandingPage() {
             <div className="lg:col-span-7 space-y-12">
               <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-brand-500/10 border border-brand-500/20 backdrop-blur-md">
                 <Award size={16} className="text-brand-500" />
-                <span className="text-[10px] font-black tracking-[0.2em] text-brand-400 uppercase">KSA&apos;s Elite Service Marketplace</span>
+                <span className="text-[10px] font-black tracking-[0.2em] text-brand-400 uppercase">Trusted by Saudi Homeowners</span>
               </div>
 
               <h1 className="text-6xl sm:text-7xl lg:text-[7rem] font-black tracking-tighter leading-[0.9] text-balance">
                 Home Services. <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-brand-500">
-                  Perfected.
+                  Simplified.
                 </span>
               </h1>
 
               <p className="text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
-                Experience a new standard of property care. Premium vetted technicians, instant scheduling, and absolute transparent pricing across the Kingdom.
+                Book verified professionals for AC repair, cleaning, plumbing and more. Same-day availability across Riyadh, Jeddah & Dammam.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-6">
@@ -144,7 +138,7 @@ export default function LandingPage() {
               {/* Quick Suggestion Pills */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-2">
                 <span className="text-xs text-slate-400 font-medium">Popular:</span>
-                {['AC Repair', 'Deep Cleaning', 'Electrical', 'Painting'].map((tag) => (
+                {['AC Repair', 'Home Cleaning', 'Plumbing', 'Painting'].map((tag) => (
                   <button
                     key={tag}
                     onClick={() => setSearchQuery(tag)}
@@ -156,19 +150,18 @@ export default function LandingPage() {
                 ))}
               </div>
 
-              {/* Trust Badges Row */}
               <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-[#10B981]" />
-                  <span className="text-xs font-bold text-slate-300">Vetted Techs</span>
+                  <span className="text-xs font-bold text-slate-300">Verified Pros</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4 text-[#22C55E]" />
-                  <span className="text-xs font-bold text-slate-300">Instant Slots</span>
+                  <span className="text-xs font-bold text-slate-300">Same-Day Booking</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <HeartHandshake className="w-4 h-4 text-[#22C55E]" />
-                  <span className="text-xs font-bold text-slate-300">Platform Guarantee</span>
+                  <span className="text-xs font-bold text-slate-300">Satisfaction Guarantee</span>
                 </div>
               </div>
             </div>
@@ -183,7 +176,7 @@ export default function LandingPage() {
                 {/* Embedded High-Fidelity Artifact Render/Illustration Container */}
                 <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/10 shadow-2xl overflow-hidden animate-float">
                   <div className="absolute top-0 end-0 bg-gradient-to-l from-white/10 to-transparent px-4 py-1 text-[9px] tracking-widest font-bold uppercase text-[#22C55E] rounded-bl-xl">
-                    Secure Sandbox
+                    Live Preview
                   </div>
                   
                   {/* Visual Artwork Container */}
@@ -199,8 +192,8 @@ export default function LandingPage() {
                           AC
                         </div>
                         <div>
-                          <p className="text-xs font-bold text-white">Central Cooling Check</p>
-                          <p className="text-[10px] text-brand-200">Assigned to Master Tech</p>
+                          <p className="text-xs font-bold text-white">AC Maintenance</p>
+                          <p className="text-[10px] text-brand-200">Faisal is on his way</p>
                         </div>
                       </div>
                       <span className="text-[10px] font-extrabold tracking-tight px-2 py-0.5 rounded bg-[#10B981]/20 text-[#10B981] border border-[#10B981]/30">
@@ -213,7 +206,7 @@ export default function LandingPage() {
                       <div className="w-28 h-28 mx-auto rounded-full border-4 border-dashed border-[#22C55E]/30 border-t-[#22C55E] animate-spin duration-1000 flex items-center justify-center" />
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
                         <span className="text-2xl font-extrabold text-white block">100%</span>
-                        <span className="text-[9px] font-bold text-[#22C55E] tracking-widest uppercase block">Verified Quality</span>
+                        <span className="text-[9px] font-bold text-[#22C55E] tracking-widest uppercase block">Satisfaction Rate</span>
                       </div>
                     </div>
 
@@ -221,17 +214,17 @@ export default function LandingPage() {
                     <div className="bg-[#0B1120]/90 rounded-2xl p-3 border border-white/10 flex items-center gap-3">
                       <div className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-ping flex-shrink-0" />
                       <p className="text-[11px] text-slate-300 font-medium truncate flex-1">
-                        Live match: <span className="text-white font-bold">Provider 1.2km away</span>
+                        Your technician is <span className="text-white font-bold">1.2 km away</span>
                       </p>
-                      <span className="text-[10px] font-bold text-[#22C55E]">Instant</span>
+                      <span className="text-[10px] font-bold text-[#22C55E]">Arriving soon</span>
                     </div>
                   </div>
 
                   {/* Trust metadata overlay bar */}
                   <div className="mt-4 pt-4 border-t border-white/5 flex justify-between items-center text-xs text-slate-400">
-                    <span>Secured with 256-bit Token Layer</span>
+                    <span>Secure payments via Mada & Apple Pay</span>
                     <span className="flex items-center gap-1 font-bold text-slate-300">
-                      <Star className="w-3.5 h-3.5 fill-[#22C55E] text-[#22C55E]" /> 4.9 Global Avg
+                      <Star className="w-3.5 h-3.5 fill-[#22C55E] text-[#22C55E]" /> 4.9 avg rating
                     </span>
                   </div>
                 </div>
@@ -242,20 +235,24 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 2. Brand Trust Strip */}
-      <div className="bg-[#0B1120] border-y border-white/5 py-6">
-        <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-          <div className="text-xl font-extrabold tracking-widest text-white uppercase flex items-center gap-2">
-            <Building size={20} /> AL-RAJHI ESTATES
+      {/* 2. Stats Highlights Strip */}
+      <div className="bg-[#0B1120] border-y border-white/5 py-8">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div>
+            <p className="text-3xl font-extrabold text-white">45,000+</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-1">Bookings Completed</p>
           </div>
-          <div className="text-xl font-extrabold tracking-widest text-white uppercase flex items-center gap-2">
-            <ShieldCheck size={20} /> ARAMCO FM
+          <div>
+            <p className="text-3xl font-extrabold text-white">1,200+</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-1">Verified Professionals</p>
           </div>
-          <div className="text-xl font-extrabold tracking-widest text-white uppercase flex items-center gap-2">
-            <Award size={20} /> NEOM DEV
+          <div>
+            <p className="text-3xl font-extrabold text-white">12 Cities</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-1">Across Saudi Arabia</p>
           </div>
-          <div className="text-xl font-extrabold tracking-widest text-white uppercase flex items-center gap-2 hidden md:flex">
-            <Building size={20} /> EMAAR
+          <div>
+            <p className="text-3xl font-extrabold text-white">99.4%</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-1">Customer Satisfaction</p>
           </div>
         </div>
       </div>
@@ -266,10 +263,10 @@ export default function LandingPage() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-white/5 mb-6">
               <Star size={14} className="text-[#22C55E] fill-[#22C55E]" />
-              <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#22C55E]">The Khidma Standard</span>
+              <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#22C55E]">Why Choose Khidma</span>
             </div>
             <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-              Absolute Precision.<br />Zero Compromise.
+              Quality You Can<br />Count On.
             </h2>
           </div>
 
@@ -281,8 +278,8 @@ export default function LandingPage() {
                   <ShieldCheck size={28} className="text-[#10B981]" />
                 </div>
                 <div>
-                  <h3 className="text-3xl font-extrabold text-white mb-3">Vetted Excellence</h3>
-                  <p className="text-slate-400 font-medium max-w-md">Every technician clears a rigorous 5-stage background check, ensuring only the top 5% step foot into your property.</p>
+                  <h3 className="text-3xl font-extrabold text-white mb-3">Verified Professionals</h3>
+                  <p className="text-slate-400 font-medium max-w-md">Every technician passes background checks, skills tests, and identity verification before joining our platform.</p>
                 </div>
               </div>
             </div>
@@ -293,8 +290,8 @@ export default function LandingPage() {
                   <Clock size={28} className="text-[#22C55E]" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-extrabold text-white mb-2">On-Time SLA</h3>
-                  <p className="text-slate-500 font-medium text-sm">Automated dispatch guarantees arrival within exact allocated windows.</p>
+                  <h3 className="text-2xl font-extrabold text-white mb-2">Always On Time</h3>
+                  <p className="text-slate-500 font-medium text-sm">We guarantee your professional arrives within the scheduled window, or the visit is on us.</p>
                 </div>
               </div>
             </div>
@@ -305,8 +302,8 @@ export default function LandingPage() {
                   <BarChart3 size={28} className="text-[#22C55E]" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-extrabold text-white mb-2">Fixed Pricing</h3>
-                  <p className="text-slate-500 font-medium text-sm">Transparent matrix billing. No hidden fees, no last-minute negotiations.</p>
+                  <h3 className="text-2xl font-extrabold text-white mb-2">Transparent Pricing</h3>
+                  <p className="text-slate-500 font-medium text-sm">See the full price upfront before you book. No hidden charges, no surprises.</p>
                 </div>
               </div>
             </div>
@@ -320,8 +317,8 @@ export default function LandingPage() {
                   <Lock size={28} className="text-white" />
                 </div>
                 <div>
-                  <h3 className="text-3xl font-extrabold text-white mb-3">Bank-Grade Escrow</h3>
-                  <p className="text-white/70 font-bold max-w-md">Funds are held securely and only released when the service meets our absolute standard of quality.</p>
+                  <h3 className="text-3xl font-extrabold text-white mb-3">Secure Payments</h3>
+                  <p className="text-white/70 font-bold max-w-md">Your money is held safely until the job is done to your satisfaction. Pay with Mada, Visa, or Apple Pay.</p>
                 </div>
               </div>
             </div>
@@ -339,15 +336,15 @@ export default function LandingPage() {
                 <div className="flex items-center justify-between mb-8 pb-6 border-b border-white/[0.05]">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-[#0B1120] rounded-2xl flex items-center justify-center text-[#22C55E] font-extrabold">K</div>
-                    <span className="font-extrabold text-lg tracking-tight">Active Dispatch</span>
+                    <span className="font-extrabold text-lg tracking-tight">Live Tracking</span>
                   </div>
-                  <span className="px-3 py-1 bg-[#10B981]/10 text-[#10B981] font-bold text-[10px] uppercase tracking-widest rounded-full">Secure</span>
+                  <span className="px-3 py-1 bg-[#10B981]/10 text-[#10B981] font-bold text-[10px] uppercase tracking-widest rounded-full">Active</span>
                 </div>
 
                 <div className="flex-1 overflow-y-auto space-y-4 pr-2">
                   <div className="glass rounded-2xl p-4 border border-white/5">
-                    <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-2">System Notification</p>
-                    <p className="text-sm font-bold text-white">Master Plumber dispatched to your coordinates.</p>
+                    <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-2">Job Update</p>
+                    <p className="text-sm font-bold text-white">Your plumber is heading to you now.</p>
                   </div>
                   
                   <div className="bg-[#0B1120] text-white rounded-2xl p-5 shadow-lg relative overflow-hidden">
@@ -382,7 +379,7 @@ export default function LandingPage() {
                 <div className="mt-6 pt-6 border-t border-white/[0.05]">
                   <div className="h-12 glass rounded-2xl border border-white/5 flex items-center px-4">
                     <span className="w-2 h-2 rounded-full bg-[#10B981] animate-ping mr-3" />
-                    <span className="text-xs font-bold text-slate-400">Tracking telemetry active...</span>
+                    <span className="text-xs font-bold text-slate-400">Watching your technician's route...</span>
                   </div>
                 </div>
               </div>
@@ -392,18 +389,18 @@ export default function LandingPage() {
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border border-white/10 mb-6 shadow-2xl">
                   <Shield size={14} className="text-white" />
-                  <span className="text-xs font-extrabold uppercase tracking-tight text-white">The Premium Edge</span>
+                  <span className="text-xs font-extrabold uppercase tracking-tight text-white">How It Looks</span>
                 </div>
                 <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
-                  Command your estate from <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B1120] to-[#22C55E]">one interface.</span>
+                  Manage everything from <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B1120] to-[#22C55E]">your phone.</span>
                 </h2>
               </div>
 
               <div className="space-y-6">
                 {[
-                  { title: 'Live Telemetry', desc: 'Watch your assigned professional approach your location in real-time.' },
-                  { title: 'Digital Sign-offs', desc: 'Approve completion and release funds purely through the platform.' },
-                  { title: 'Encrypted Audits', desc: 'Every transaction and interaction is logged in your secure history.' }
+                  { title: 'Track Your Pro', desc: 'See exactly where your technician is and when they\'ll arrive.' },
+                  { title: 'Approve & Pay', desc: 'Review the completed work and release payment with one tap.' },
+                  { title: 'Full History', desc: 'Every booking, payment, and review is saved in your account.' }
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4">
                     <div className="w-10 h-10 rounded-2xl glass border border-white/10 shadow-2xl flex items-center justify-center flex-shrink-0 text-[#22C55E] font-extrabold">
@@ -418,7 +415,7 @@ export default function LandingPage() {
               </div>
 
               <button onClick={() => navigate('/services')} className="btn-primary btn-lg rounded-2xl flex items-center gap-2 group">
-                Initiate Dispatch 
+                Browse Services 
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -438,15 +435,15 @@ export default function LandingPage() {
           <div className="text-center max-w-3xl mx-auto mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-white/5 mb-6 animate-fade-in">
               <Sparkles size={14} className="text-[#22C55E]" />
-              <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#22C55E]">Elite Marketplace</span>
+              <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#22C55E]">Our Services</span>
             </div>
             <h2 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight animate-slide-up">
               {searchQuery.trim() ? `Search Results for "${searchQuery}"` : (
-                <>Experience the <span className="text-[#22C55E]">Master Tier</span></>
+                <>Browse Our <span className="text-[#22C55E]">Services</span></>
               )}
             </h2>
             <p className="text-lg text-slate-500 mt-6 font-medium animate-slide-up animation-delay-500 max-w-2xl mx-auto">
-              Precision-engineered home and business solutions for the most discerning clients in Saudi Arabia.
+              Professional home and business maintenance services across Saudi Arabia.
             </p>
           </div>
 
@@ -472,10 +469,7 @@ export default function LandingPage() {
                           <Icon className="w-8 h-8 text-[#22C55E] group-hover:text-white transition-colors duration-500" />
                         </div>
                         <div className="text-end">
-                          <span className="text-[12px] font-extrabold text-white uppercase tracking-tighter block">
-                            {cat.price}
-                          </span>
-                          <span className="text-[10px] font-bold text-[#22C55E] uppercase tracking-[0.15em] mt-1.5 block">
+                          <span className="text-[10px] font-bold text-[#22C55E] uppercase tracking-[0.15em] block">
                             {sectorInfo.label}
                           </span>
                         </div>
@@ -499,7 +493,7 @@ export default function LandingPage() {
                       <div className="flex items-center gap-3">
                         <div className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
                         <span className="text-[12px] font-extrabold uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors">
-                          Deploy
+                          Book Now
                         </span>
                       </div>
                       <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#22C55E]/20 group-hover:border-[#22C55E]/40 transition-all">
@@ -522,10 +516,10 @@ export default function LandingPage() {
           <div className="bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-[3rem] overflow-hidden flex flex-col md:flex-row items-center justify-between p-8 md:p-16 lg:p-20 backdrop-blur-md">
             <div className="md:w-1/2 text-center md:text-start mb-12 md:mb-0">
               <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.1] mb-6">
-                Carry the Master Tier in your pocket.
+                Khidma on your phone.
               </h2>
               <p className="text-lg text-slate-300 font-medium mb-10 max-w-md mx-auto md:mx-0">
-                Install the Khidma Progressive Web App to access instant bookings, push notifications, and offline mode.
+                Add Khidma to your home screen for instant booking, notifications, and quick access to all your services.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
@@ -557,7 +551,7 @@ export default function LandingPage() {
                   </div>
 
                   <div className="bg-[#0B1120] text-white rounded-2xl p-4 mb-4 shadow-lg">
-                    <p className="text-[10px] font-extrabold uppercase tracking-widest mb-1 text-[#10B981]">Active Payload</p>
+                    <p className="text-[10px] font-extrabold uppercase tracking-widest mb-1 text-[#10B981]">Active Booking</p>
                     <p className="text-lg font-extrabold mb-1">Deep Cleaning</p>
                     <p className="text-xs text-slate-400">Arriving in 15 mins</p>
                   </div>
@@ -579,203 +573,54 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* How It Works Section - Master Tier UI Elevation */}
-      <section className="py-28 glass relative overflow-hidden">
-        {/* Ambient background watermark/gradient grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-60" />
+      {/* How It Works — Clean Timeline */}
+      <section className="py-28 relative overflow-hidden bg-[#0B1120]">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-brand-500/5 rounded-full blur-[120px]" />
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-white/5 mb-4 animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]" />
-              <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-white">Frictionless Engagement</span>
+              <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-brand-400">Simple as 1-2-3</span>
             </div>
             <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-              The <span className="text-[#22C55E]">Khidma</span> Protocol
+              How <span className="text-[#22C55E]">Khidma</span> Works
             </h2>
             <p className="text-base sm:text-lg text-slate-500 mt-4 max-w-xl mx-auto font-medium">
-              Three streamlined phases engineered to dispatch elite talent directly to your mapped coordinates.
+              Three simple steps from booking to completion.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 relative">
-            {/* Architectural timeline connector */}
-            <div className="hidden md:block absolute top-1/2 start-[18%] end-[18%] h-[2px] bg-gradient-to-r from-transparent via-[#22C55E]/30 to-transparent transform -translate-y-8" />
+          <div className="grid md:grid-cols-3 gap-12 md:gap-16 relative">
+            <div className="hidden md:block absolute top-8 start-[15%] end-[15%] h-px bg-gradient-to-r from-transparent via-[#22C55E]/30 to-transparent" />
 
             {[
-              {
-                step: '01',
-                title: 'Define Payload',
-                desc: 'Select customized Master Tier service modules, input precise coverage parameters, and lock mapping coordinates instantly.',
-                icon: Smartphone
-              },
-              {
-                step: '02',
-                title: 'Algorithmic Routing',
-                desc: 'Our enterprise backend calculates real-time proximity and authenticates background parameters to match top-tier local talent.',
-                icon: HeartHandshake
-              },
-              {
-                step: '03',
-                title: 'Authorize Closure',
-                desc: 'Upon full deployment success, authorize digital commission release securely. Backed by our absolute satisfaction standard.',
-                icon: CheckCircle2
-              }
-            ].map((item, idx) => {
-              const Icon = item.icon
-              return (
-                <div 
-                  key={item.step} 
-                  className="glass rounded-[2rem] p-8 border border-white/5 shadow-[0_12px_40px_-12px_rgba(8,18,37,0.06)] relative z-10 text-center group hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(197,160,89,0.15)] hover:border-[#22C55E]/30 overflow-hidden flex flex-col justify-between"
-                >
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-slate-50 to-transparent rounded-bl-full opacity-50 group-hover:from-[#22C55E]/5 transition-colors duration-500 pointer-events-none" />
-
-                  <div>
-                    <div className="w-16 h-16 rounded-2xl glass border border-white/5 mx-auto flex items-center justify-center relative mb-8 group-hover:bg-[#0B1120] transition-colors duration-500 shadow-inner">
-                      <span className="absolute -top-2.5 bg-[#22C55E] text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full shadow-2xl">
-                        STEP {item.step}
-                      </span>
-                      <Icon className="w-7 h-7 text-white group-hover:text-[#22C55E] transition-colors duration-500 transform group-hover:scale-110 duration-500" />
-                    </div>
-
-                    <h3 className="font-extrabold text-xl text-white mb-3 group-hover:text-[#22C55E] transition-colors duration-300">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-
-                  <div className="pt-6 mt-6 border-t border-white/[0.05] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-white flex items-center gap-1">
-                      System Phase Active <ChevronRight size={12} className="text-[#22C55E]" />
-                    </span>
-                  </div>
+              { num: '01', title: 'Choose a Service', desc: 'Pick from AC repair, cleaning, plumbing, electrical, and more. Select your date, time, and address.' },
+              { num: '02', title: 'We Match You', desc: 'We find the best-rated, nearest available professional and confirm your booking instantly.' },
+              { num: '03', title: 'Job Done, You Pay', desc: 'Your pro completes the work, you approve it, and payment is released. Backed by our satisfaction guarantee.' }
+            ].map((item) => (
+              <div key={item.num} className="text-center relative group">
+                <div className="w-16 h-16 rounded-full bg-brand-500/10 border-2 border-brand-500/30 mx-auto flex items-center justify-center mb-6 group-hover:bg-brand-500/20 group-hover:border-brand-500/50 transition-all duration-300">
+                  <span className="text-2xl font-black text-[#22C55E]">{item.num}</span>
                 </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Providers Showcase - Elevated Contrast Aesthetic */}
-      <section className="py-28 px-4 max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-16 gap-6">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border border-white/5 mb-3">
-              <Award size={12} className="text-[#22C55E]" />
-              <span className="text-[10px] font-extrabold uppercase tracking-widest text-white">Verified Experts</span>
-            </div>
-            <h2 className="text-4xl font-extrabold text-white tracking-tight leading-tight">
-              Elite Network Partners
-            </h2>
-            <p className="text-sm text-slate-500 mt-2 font-medium">Fully vetted technicians authorized for deployment across key Gulf hubs.</p>
-          </div>
-          <Link 
-            to="/services" 
-            className="group px-6 py-3 rounded-2xl glass hover:bg-[#0B1120] border border-white/5 text-xs font-extrabold uppercase tracking-widest text-white hover:text-white transition-all duration-300 flex items-center gap-2 hover:shadow-lg"
-          >
-            <span>Browse Master Profiles</span>
-            <ArrowRight size={14} className="text-[#22C55E] transform group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {FEATURED_PROVIDERS.map((provider, idx) => (
-            <div 
-              key={provider.name} 
-              className="glass rounded-[2rem] p-7 border border-white/5 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-1.5"
-            >
-              {/* Top ambient tag background strip */}
-              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#0B1120] via-[#22C55E] to-[#0B1120]" />
-
-              <div className="absolute top-5 right-5">
-                <span className="bg-[#10B981]/10 text-[#10B981] px-3 py-1 rounded-full flex items-center gap-1 font-extrabold text-[9px] tracking-widest uppercase border border-[#10B981]/20">
-                  <Check size={10} className="stroke-[3]" /> SLA PASS
-                </span>
-              </div>
-
-              <div>
-                <div className="flex items-center gap-4 mb-6 pt-2">
-                  <div className="w-14 h-14 rounded-2xl bg-[#0B1120] text-[#22C55E] font-extrabold text-xl flex items-center justify-center shadow-lg border border-[#22C55E]/30 relative flex-shrink-0">
-                    {provider.name.charAt(0)}
-                    <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-[#10B981] rounded-full border-2 border-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-extrabold text-white text-base leading-tight">{provider.name}</h3>
-                    <p className="text-xs text-[#22C55E] font-bold mt-0.5">{provider.title}</p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3 bg-white/5 rounded-2xl p-4 mb-6 border border-white/5">
-                  <div>
-                    <span className="text-slate-400 block text-[9px] font-extrabold uppercase tracking-tight">Assigned Sector</span>
-                    <span className="font-bold text-xs text-white mt-0.5 block">{provider.city} Grid</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block text-[9px] font-extrabold uppercase tracking-tight">Payloads Closed</span>
-                    <span className="font-bold text-xs text-white mt-0.5 block">{provider.reviews} Active</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between pt-4 border-t border-white/[0.05]">
-                <div className="flex items-center gap-1.5">
-                  <div className="flex items-center text-amber-400">
-                    <Star className="w-4 h-4 fill-amber-400" />
-                  </div>
-                  <span className="font-extrabold text-sm text-white">{provider.rating}</span>
-                  <span className="text-[10px] font-bold text-slate-400">({provider.reviews} verified)</span>
-                </div>
-                <button 
-                  onClick={() => navigate('/services')} 
-                  type="button" 
-                  className="text-[11px] font-extrabold uppercase tracking-tight text-white hover:text-[#22C55E] transition-colors flex items-center gap-1"
-                >
-                  <span>Dispatch</span>
-                  <ChevronRight size={14} />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Trust & Metrics Counter Banner - Master Tier Matrix */}
-      <section className="py-20 bg-[#0B1120] text-white relative overflow-hidden border-y border-white/5">
-        <div className="absolute inset-0 bg-scanlines opacity-[0.03] pointer-events-none" />
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#22C55E]/5 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-brand-600/5 rounded-full blur-[120px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
-            {[
-              { value: '45,000+', label: 'Total Deployments Handled' },
-              { value: '1,200+', label: 'Authorized Technicians' },
-              { value: '12 Hubs', label: 'Saudi Urban Coverage Map' },
-              { value: '99.4%', label: 'SLA Quality Retention' },
-            ].map((stat, idx) => (
-              <div key={idx} className="p-4 border-e border-white/5 last:border-e-0 relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#22C55E]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm" />
-                <p className="relative text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#22C55E] tracking-tight">
-                  {stat.value}
-                </p>
-                <p className="relative text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400 mt-3 group-hover:text-white transition-colors">
-                  {stat.label}
-                </p>
+                <h3 className="font-extrabold text-xl text-white mb-3">{item.title}</h3>
+                <p className="text-sm text-slate-500 font-medium leading-relaxed max-w-xs mx-auto">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+
       {/* Testimonials Carousel Section - Premium Executive Look */}
       <section className="py-28 px-4 max-w-5xl mx-auto relative z-10">
         <div className="text-center max-w-xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border border-white/5 mb-3">
-            <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#22C55E]">Executive Approval</span>
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#22C55E]">What Our Customers Say</span>
           </div>
-          <h2 className="text-4xl font-extrabold text-white tracking-tight">Patron Attestations</h2>
+          <h2 className="text-4xl font-extrabold text-white tracking-tight">Customer Reviews</h2>
         </div>
 
         <div className="relative glass rounded-3xl p-10 sm:p-14 border border-white/5 shadow-[0_20px_80px_-15px_rgba(8,18,37,0.08)]">
@@ -824,8 +669,8 @@ export default function LandingPage() {
       <section className="py-24 bg-[#0B1120]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-extrabold text-white tracking-tight">Intelligence Base</h2>
-            <p className="text-slate-500 font-medium mt-4">Clarifications on the Khidma Master Protocol.</p>
+            <h2 className="text-4xl font-extrabold text-white tracking-tight">Frequently Asked Questions</h2>
+            <p className="text-slate-500 font-medium mt-4">Everything you need to know about using Khidma.</p>
           </div>
 
           <div className="space-y-4">
@@ -880,25 +725,25 @@ export default function LandingPage() {
                 </div>
                 <div>
                   <span className="font-extrabold text-xl tracking-tight block text-white leading-none">Khidma</span>
-                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#22C55E] block mt-1">Master Tier Platform</span>
+                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#22C55E] block mt-1">Home Services Marketplace</span>
                 </div>
               </div>
               <p className="text-xs text-slate-400 font-medium leading-relaxed max-w-sm">
-                Engineered for absolute operational precision and elite technical dispatch across private estates and corporate facilities in Saudi Arabia.
+                Your trusted platform for professional home services across Saudi Arabia. Verified technicians, transparent pricing, satisfaction guaranteed.
               </p>
               <div className="pt-2 flex items-center gap-3">
                 {/* Immersive Client App Downloads */}
                 <div className="px-3.5 py-2 bg-white/5 rounded-2xl border border-white/10 flex items-center gap-2.5 cursor-pointer hover:bg-white/5 hover:border-[#22C55E]/40 transition-all duration-300">
                   <Smartphone size={18} className="text-[#22C55E]" />
                   <div className="text-start">
-                    <span className="text-[8px] uppercase block text-slate-400 leading-none font-bold">iOS Terminal</span>
+                    <span className="text-[8px] uppercase block text-slate-400 leading-none font-bold">Download on</span>
                     <span className="text-xs font-extrabold block leading-tight text-white">App Store</span>
                   </div>
                 </div>
                 <div className="px-3.5 py-2 bg-white/5 rounded-2xl border border-white/10 flex items-center gap-2.5 cursor-pointer hover:bg-white/5 hover:border-[#22C55E]/40 transition-all duration-300">
                   <Award size={18} className="text-[#10B981]" />
                   <div className="text-start">
-                    <span className="text-[8px] uppercase block text-slate-400 leading-none font-bold">Android Build</span>
+                    <span className="text-[8px] uppercase block text-slate-400 leading-none font-bold">Get it on</span>
                     <span className="text-xs font-extrabold block leading-tight text-white">Google Play</span>
                   </div>
                 </div>
@@ -906,43 +751,43 @@ export default function LandingPage() {
             </div>
 
             <div className="lg:col-span-2 col-span-6 space-y-4 pt-1">
-              <span className="text-[10px] font-extrabold tracking-[0.2em] uppercase text-[#22C55E] block">Operations</span>
+              <span className="text-[10px] font-extrabold tracking-[0.2em] uppercase text-[#22C55E] block">Quick Links</span>
               <ul className="space-y-2.5 text-xs font-medium text-slate-300">
-                <li><Link to="/services" className="hover:text-white transition-colors block">Scope Directory</Link></li>
-                <li><Link to="/signup" className="hover:text-white transition-colors block">Client Provisioning</Link></li>
-                <li><Link to="/login" className="hover:text-white transition-colors block">Gateway Telemetry</Link></li>
-                <li><a href="#become-provider" className="hover:text-white transition-colors block">Vetted Integration</a></li>
+                <li><Link to="/services" className="hover:text-white transition-colors block">Browse Services</Link></li>
+                <li><Link to="/signup" className="hover:text-white transition-colors block">Create Account</Link></li>
+                <li><Link to="/login" className="hover:text-white transition-colors block">Sign In</Link></li>
+                <li><a href="#become-provider" className="hover:text-white transition-colors block">Become a Provider</a></li>
               </ul>
             </div>
 
             <div className="lg:col-span-2 col-span-6 space-y-4 pt-1">
-              <span className="text-[10px] font-extrabold tracking-[0.2em] uppercase text-[#22C55E] block">Assurance</span>
+              <span className="text-[10px] font-extrabold tracking-[0.2em] uppercase text-[#22C55E] block">Company</span>
               <ul className="space-y-2.5 text-xs font-medium text-slate-300">
-                <li><span className="text-slate-500 cursor-not-allowed block">Master Protocols</span></li>
-                <li><span className="text-slate-500 cursor-not-allowed block">Encrypted State</span></li>
-                <li><span className="text-slate-500 cursor-not-allowed block">Commission SLA (30%)</span></li>
-                <li><span className="text-slate-500 cursor-not-allowed block">Anti-Tamper Layer</span></li>
+                <li><span className="text-slate-500 cursor-not-allowed block">About Us</span></li>
+                <li><span className="text-slate-500 cursor-not-allowed block">Privacy Policy</span></li>
+                <li><span className="text-slate-500 cursor-not-allowed block">Terms of Service</span></li>
+                <li><span className="text-slate-500 cursor-not-allowed block">Contact Support</span></li>
               </ul>
             </div>
 
             {/* Elite Subscription Stream */}
             <div className="lg:col-span-4 space-y-4 pt-1">
-              <span className="text-[10px] font-extrabold tracking-[0.2em] uppercase text-[#22C55E] block">Dispatch Telemetry</span>
+              <span className="text-[10px] font-extrabold tracking-[0.2em] uppercase text-[#22C55E] block">Stay Updated</span>
               <p className="text-xs text-slate-400 font-medium leading-relaxed">
-                Receive key infrastructure releases and seasonal capacity expansion notifications directly to your secure node.
+                Get updates on new services, seasonal offers, and platform improvements.
               </p>
               <div className="flex gap-2 pt-1">
                 <input
                   type="email"
-                  placeholder="Enter authorized identity email"
+                  placeholder="Enter your email"
                   className="bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-xs w-full text-white placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-[#22C55E] font-medium"
                 />
                 <button 
                   type="button" 
-                  onClick={() => alert('Secure node synchronized.')} 
+                  onClick={() => alert('Thanks for subscribing!')} 
                   className="bg-[#22C55E] text-white py-3 px-6 text-xs rounded-2xl font-extrabold uppercase tracking-tight hover:glass transition-colors flex-shrink-0"
                 >
-                  Sync
+                  Subscribe
                 </button>
               </div>
             </div>
@@ -951,7 +796,7 @@ export default function LandingPage() {
 
           <div className="pt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium">
             <p>
-              © {new Date().getFullYear()} Khidma Core Infrastructure Inc. State Cryptographically Enforced.
+              © {new Date().getFullYear()} Khidma. All rights reserved.
             </p>
             <div className="flex items-center gap-4 text-[11px]">
               <span>Riyadh</span>
@@ -960,7 +805,7 @@ export default function LandingPage() {
               <span>•</span>
               <span>Dammam</span>
               <span>•</span>
-              <span className="text-[#22C55E] font-bold uppercase tracking-tight text-[10px]">Gulf Central Cluster</span>
+              <span className="text-[#22C55E] font-bold uppercase tracking-tight text-[10px]">🇸🇦 Saudi Arabia</span>
             </div>
           </div>
         </div>

@@ -67,7 +67,7 @@ export default function LoginPage() {
             </div>
             <div>
               <span className="text-white font-extrabold text-2xl tracking-tight block leading-none">Khidma</span>
-              <span className="text-[10px] font-bold tracking-widest uppercase text-brand-500 block mt-1">Elite Portal</span>
+              <span className="text-[10px] font-bold tracking-widest uppercase text-brand-500 block mt-1">Home Services</span>
             </div>
           </Link>
           <Link to="/" className="text-sm font-bold text-slate-500 hover:text-white transition-all flex items-center gap-2 group">
@@ -80,22 +80,22 @@ export default function LoginPage() {
         <div className="relative z-10 max-w-lg mt-24">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500/10 border border-brand-500/20 mb-8 backdrop-blur-md">
             <Star size={14} className="text-brand-500 fill-brand-500" />
-            <span className="text-[10px] font-bold text-brand-400 uppercase tracking-[0.2em]">Master Tier Verified</span>
+            <span className="text-[10px] font-bold text-brand-400 uppercase tracking-[0.2em]">Trusted Platform</span>
           </div>
           <h1 className="text-6xl font-extrabold text-white leading-[1.05] tracking-tight mb-8">
-            Access your <br />
+            Welcome <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-brand-500">
-              Service Node.
+              back.
             </span>
           </h1>
           <p className="text-lg text-slate-400 font-medium leading-relaxed mb-12">
-            Secure multi-factor authentication for property owners and verified technicians across the Gulf.
+            Sign in to book services, track your professionals, and manage your home maintenance.
           </p>
 
           <div className="grid grid-cols-1 gap-6">
             {[
-              'Real-time SLA tracking',
-              'Instant Clearing & Settlements'
+              'Track your bookings',
+              'Secure payments'
             ].map((text, i) => (
               <div key={i} className="flex items-center gap-3 text-slate-400 font-bold text-sm uppercase tracking-wide">
                 <ShieldCheck size={20} className="text-brand-500" />

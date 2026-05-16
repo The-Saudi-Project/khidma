@@ -104,7 +104,7 @@ export default function CustomerLayout() {
                     </li>
                   ))}
                   {!notifications.length && (
-                    <li className="text-xs text-slate-400 py-8 text-center">Terminal quiet — zero unread dispatches.</li>
+                    <li className="text-xs text-slate-400 py-8 text-center">No new notifications.</li>
                   )}
                 </ul>
               </div>

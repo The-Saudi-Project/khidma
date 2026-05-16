@@ -56,7 +56,7 @@ export default function BookingDetailPage() {
   const handleFileSelect = (e) => {
     const file = e.target.files[0]
     if (file && file.size > 5 * 1024 * 1024) {
-      toast.error('Attached payload exceeded maximum allowable bound (5MB)')
+      toast.error('File size exceeded limit (5MB)')
       return
     }
     setProofFile(file)
@@ -69,11 +69,11 @@ export default function BookingDetailPage() {
       const formData = new FormData()
       formData.append('proofFile', proofFile)
       await paymentsAPI.uploadProof(booking._id, formData)
-      toast.success('Payment snapshot encrypted & transmitted! Moderation alert dispatched.')
+      toast.success('Payment proof uploaded successfully!')
       setProofFile(null)
       refetch()
     } catch {
-      toast.error('Encryption transmission failed. Please retry cluster connection.')
+      toast.error('Failed to upload payment proof. Please try again.')
     } finally {
       setUploading(false)
     }
@@ -83,11 +83,11 @@ export default function BookingDetailPage() {
     setCancelling(true)
     try {
       await bookingsAPI.cancelBooking(id, 'Patron initiated final abort sequence')
-      toast.success('Service payload assignment cancelled.')
+      toast.success('Service booking cancelled.')
       setShowCancelModal(false)
       refetch()
     } catch {
-      toast.error('SLA interruption failed.')
+      toast.error('Failed to cancel booking.')
     } finally {
       setCancelling(false)
     }
@@ -97,18 +97,18 @@ export default function BookingDetailPage() {
     setSubmittingReview(true)
     try {
       await reviewsAPI.createReview({ bookingId: id, rating, comment })
-      toast.success('Quality metrics recorded into global blockchain ledger!')
+      toast.success('Review submitted successfully!')
       setShowReviewForm(false)
       refetch()
     } catch {
-      toast.error('Telemetry update failed.')
+      toast.error('Failed to submit review.')
     } finally {
       setSubmittingReview(false)
     }
   }
 
   if (isLoading) return <InlineLoader />
-  if (!booking) return <div className="text-center py-20 text-slate-400">Target payload index broken or purged.</div>
+  if (!booking) return <div className="text-center py-20 text-slate-400">Booking not found.</div>
 
   const canUploadPayment = ['pending_payment', 'payment_uploaded'].includes(booking.status)
   const canCancel = !['completed', 'cancelled', 'expired', 'in_progress'].includes(booking.status)
@@ -125,11 +125,11 @@ export default function BookingDetailPage() {
       <div className="flex items-center justify-between mb-8">
         <button onClick={() => navigate('/bookings')} type="button"
           className="flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-white transition-colors">
-          <ArrowLeft size={16} /> Return to Order Matrices
+          <ArrowLeft size={16} /> Back to My Bookings
         </button>
         
         <button onClick={refetch} type="button" className="text-[10px] text-slate-400 hover:text-brand-500 flex items-center gap-1">
-          <RefreshCw size={12} className="animate-spin-slow" /> Force State Sync
+          <RefreshCw size={12} className="animate-spin-slow" /> Refresh Status
         </button>
       </div>
 
@@ -142,13 +142,13 @@ export default function BookingDetailPage() {
           {/* Header Metadata container */}
           <div className="glass-card !p-8 relative overflow-hidden">
             <div className="absolute top-0 end-0 glass border-b border-s border-white/5 px-4 py-1.5 rounded-bl-2xl text-[9px] font-mono text-slate-400">
-              NODE ID: {booking._id.slice(-6).toUpperCase()}
+              BOOKING ID: {booking._id.slice(-6).toUpperCase()}
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
               <div>
                 <span className="text-[10px] font-bold text-brand-500 tracking-[0.2em] uppercase block mb-3">
-                  Service Dispatch Descriptor
+                  Service Details
                 </span>
                 <h1 className="text-3xl font-extrabold text-white tracking-tight leading-none">
                   {booking.serviceName}
@@ -158,7 +158,7 @@ export default function BookingDetailPage() {
                     Ref: #{booking.bookingNumber}
                   </span>
                   <div className="w-1 h-1 rounded-full bg-slate-700" />
-                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">SLA v1.4</span>
+                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Standardized</span>
                 </div>
               </div>
 
@@ -168,8 +168,8 @@ export default function BookingDetailPage() {
             </div>
 
             <div className="mt-10 pt-8 border-t border-white/5 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <DetailBox icon={Calendar} label="Target Date" value={`${formatDate(booking.scheduledDate)} @ ${booking.scheduledTime}`} />
-              <DetailBox icon={MapPin} label="Geofence Anchor" value={`${booking.address?.city || 'Riyadh'}, ${booking.address?.district || 'Sector A'}`} />
+              <DetailBox icon={Calendar} label="Scheduled Date" value={`${formatDate(booking.scheduledDate)} @ ${booking.scheduledTime}`} />
+              <DetailBox icon={MapPin} label="Service Address" value={`${booking.address?.city || 'Riyadh'}, ${booking.address?.district || 'Sector A'}`} />
             </div>
 
             {booking.provider && (
@@ -180,12 +180,12 @@ export default function BookingDetailPage() {
                   </div>
                   <div>
                     <p className="text-xs font-bold text-white">{booking.provider.name}</p>
-                    <p className="text-[10px] font-bold text-brand-400 uppercase tracking-tight mt-0.5">Verified Technician Cluster</p>
+                    <p className="text-[10px] font-bold text-brand-400 uppercase tracking-tight mt-0.5">Verified Professional</p>
                   </div>
                 </div>
                 <div className="hidden sm:flex items-center gap-1.5 text-brand-400">
                   <ShieldCheck size={14} />
-                  <span className="text-[10px] font-bold uppercase tracking-widest">Secure Link</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest">Verified</span>
                 </div>
               </div>
             )}
@@ -195,7 +195,7 @@ export default function BookingDetailPage() {
           <div className="glass-card !p-8">
             <div className="flex items-center gap-3 mb-8 pb-4 border-b border-white/5">
               <Layers className="w-5 h-5 text-brand-500" />
-              <h3 className="font-extrabold text-white text-lg tracking-tight">Logistics Audit Trail</h3>
+              <h3 className="font-extrabold text-white text-lg tracking-tight">Booking Timeline</h3>
             </div>
 
             <div className="relative ps-4">
@@ -224,7 +224,7 @@ export default function BookingDetailPage() {
                           </span>
                         </div>
                         <p className="text-xs text-slate-400 font-medium leading-relaxed">
-                          {ev.description || 'System cluster updated task array configuration.'}
+                          {ev.description || 'System updated the booking status.'}
                         </p>
                       </div>
                     </div>
@@ -239,7 +239,7 @@ export default function BookingDetailPage() {
             <div className="text-center pt-4">
               <button onClick={() => setShowCancelModal(true)} type="button"
                 className="inline-flex items-center gap-2 text-xs font-bold text-red-500/60 hover:text-red-400 hover:bg-red-500/10 px-6 py-3 rounded-2xl transition-all">
-                <XCircle size={14} /> Initiate SLA Abort Protocol
+                <XCircle size={14} /> Cancel Booking
               </button>
             </div>
           )}
@@ -254,20 +254,20 @@ export default function BookingDetailPage() {
             <div className="absolute top-[-20%] right-[-10%] w-48 h-48 bg-brand-500/10 rounded-full blur-[80px] pointer-events-none" />
 
             <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 block mb-3">
-              Final Escrow Value
+              Total Price
             </span>
             <div className="flex items-baseline justify-between mb-6">
               <span className="text-4xl font-extrabold text-white font-mono tracking-tighter">
                 {formatCurrency(booking.totalAmount)}
               </span>
               <span className="text-[10px] text-brand-500 font-black tracking-widest uppercase px-2 py-1 bg-brand-500/10 rounded-lg">
-                Protected
+                Secure
               </span>
             </div>
 
             <div className="pt-6 border-t border-white/5 space-y-3">
               <div className="flex justify-between text-xs font-bold">
-                <span className="text-slate-400">Base Unit Price</span>
+                <span className="text-slate-400">Base Price</span>
                 <span className="text-white">{formatCurrency(booking.totalAmount || 0)}</span>
               </div>
               <div className="flex justify-between text-[11px] font-medium">
@@ -288,18 +288,18 @@ export default function BookingDetailPage() {
                 <div className="w-10 h-10 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-500">
                   <FileText size={20} />
                 </div>
-                <h3 className="text-lg font-extrabold text-white tracking-tight">Wire Handshake</h3>
+                <h3 className="text-lg font-extrabold text-white tracking-tight">Upload Payment Proof</h3>
               </div>
               
               <p className="text-xs text-slate-400 font-medium leading-relaxed mb-8">
-                Transmit your payment snapshot to our vault to unlock technical dispatch.
+                Upload your bank transfer receipt to confirm your booking.
               </p>
 
               {/* High fidelity static account display block */}
               <div className="glass rounded-2xl p-6 border border-white/5 space-y-4 text-xs mb-8">
                 <div className="flex justify-between items-center">
                   <span className="text-slate-500 font-bold text-[10px] uppercase tracking-widest">Bank</span>
-                  <span className="font-extrabold text-white">Al Rajhi Central Hub</span>
+                  <span className="font-extrabold text-white">Al Rajhi Bank</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-slate-500 font-bold text-[10px] uppercase tracking-widest">Account</span>
@@ -310,7 +310,7 @@ export default function BookingDetailPage() {
                   <span className="font-mono text-white text-[11px]">SA44 2000 0001 2345 6789</span>
                 </div>
                 <div className="pt-4 border-t border-white/5 flex justify-between items-center">
-                  <span className="text-brand-500 font-black text-[10px] uppercase tracking-[0.2em]">Mandatory Ref</span>
+                  <span className="text-brand-500 font-black text-[10px] uppercase tracking-[0.2em]">Booking Reference</span>
                   <span className="bg-brand-500/20 text-brand-400 font-black px-2 py-1 rounded-lg border border-brand-500/30">
                     {booking.bookingNumber}
                   </span>
@@ -335,7 +335,7 @@ export default function BookingDetailPage() {
                   <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                     <Upload size={20} className="text-slate-500 group-hover:text-brand-500" />
                   </div>
-                  <span className="text-sm font-bold text-white block mb-1">Transmit Payload</span>
+                  <span className="text-sm font-bold text-white block mb-1">Upload Receipt</span>
                   <span className="text-[10px] text-slate-500 font-medium block">JPG, PNG, PDF (Max 5MB)</span>
                 </button>
               )}
@@ -343,14 +343,14 @@ export default function BookingDetailPage() {
               {booking.status === 'payment_uploaded' && !proofFile && (
                 <div className="bg-brand-500/10 border border-brand-500/20 rounded-2xl p-4 text-xs font-bold flex items-center gap-3 mb-6">
                   <Clock size={16} className="text-brand-500 animate-spin-slow" />
-                  <span className="text-brand-400">Snapshot locked in audit buffer. Waiting for clearance.</span>
+                  <span className="text-brand-400">Receipt uploaded. Waiting for admin confirmation.</span>
                 </div>
               )}
 
               {proofFile && (
                 <button onClick={handleUploadProof} disabled={uploading} type="button"
                   className="btn-primary w-full justify-center py-4 text-xs tracking-widest uppercase font-black">
-                  {uploading ? <Loader2 size={20} className="animate-spin" /> : 'Force Synchronization'}
+                  {uploading ? <Loader2 size={20} className="animate-spin" /> : 'Upload Proof'}
                 </button>
               )}
             </div>
@@ -363,9 +363,9 @@ export default function BookingDetailPage() {
                 <ShieldCheck size={24} />
               </div>
               <div>
-                <p className="text-sm font-bold text-white mb-1">Handshake Confirmed</p>
+                <p className="text-sm font-bold text-white mb-1">Payment Confirmed</p>
                 <p className="text-xs text-slate-400 leading-relaxed font-medium">
-                  Escrow locked successfully. Logistics cluster has matched your technical team vectors.
+                  Payment verified. Your professional will be assigned shortly.
                 </p>
               </div>
             </div>
@@ -381,15 +381,15 @@ export default function BookingDetailPage() {
                       <Star size={20} className="text-slate-400 group-hover:text-brand-500 transition-colors" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-extrabold text-white">Rate Logistics</p>
-                      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tight mt-0.5">Improve regional routing</p>
+                      <p className="text-sm font-extrabold text-white">Rate Your Experience</p>
+                      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tight mt-0.5">Help us improve</p>
                     </div>
                     <ArrowLeft className="w-5 h-5 text-brand-500 rotate-180 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </button>
               ) : (
                 <div className="space-y-6 animate-fade-in">
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">Select Quality Tier</h3>
+                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">Rate out of 5</h3>
                   <div className="flex justify-between gap-2">
                     {[1, 2, 3, 4, 5].map(i => (
                       <button key={i} onClick={() => setRating(i)} type="button"
@@ -402,19 +402,19 @@ export default function BookingDetailPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-1">Detailed Telemetry</label>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-1">Detailed Review</label>
                     <textarea className="input-glass resize-none min-h-[100px]"
-                      placeholder="Physical arrival accuracy, cleanliness, equipment audit..."
+                      placeholder="Punctuality, quality of work, professionalism..."
                       value={comment} onChange={e => setComment(e.target.value)} />
                   </div>
 
                   <div className="flex gap-4 pt-2">
                     <button onClick={() => setShowReviewForm(false)} type="button" className="flex-1 px-4 py-3 rounded-2xl border border-white/10 text-xs font-bold text-slate-400 hover:bg-white/5 transition-colors">
-                      Abort
+                      Cancel
                     </button>
                     <button onClick={handleReview} disabled={submittingReview} type="button"
                       className="btn-primary flex-[2] justify-center py-3 font-black">
-                      {submittingReview ? <Loader2 size={16} className="animate-spin" /> : 'Log Performance'}
+                      {submittingReview ? <Loader2 size={16} className="animate-spin" /> : 'Submit Review'}
                     </button>
                   </div>
                 </div>
@@ -428,8 +428,8 @@ export default function BookingDetailPage() {
 
       <ConfirmModal
         open={showCancelModal}
-        title="Authorize Order Abortion"
-        message="Purging this dispatch index halts all automated matching modules. SLA deposits may be subject to structural deductions."
+        title="Cancel Booking"
+        message="Are you sure you want to cancel this booking? Cancellation fees may apply."
         onConfirm={handleCancel}
         onCancel={() => setShowCancelModal(false)}
         loading={cancelling}

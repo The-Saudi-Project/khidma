@@ -84,11 +84,11 @@ export default function BookingPage() {
         serviceId,
         scheduledDate: selectedDate.toISOString(),
         scheduledTime: selectedTime,
-        notes: urgencyTier === 'express' ? `[EXPRESS DISPATCH] ${notes}` : notes,
+        notes: urgencyTier === 'express' ? `[EXPRESS BOOKING] ${notes}` : notes,
         ...(addressMode === 'saved' ? { addressId: selectedAddressId } : { customAddress: newAddress })
       }
       const { data } = await bookingsAPI.createBooking(payload)
-      toast.success('Booking initialized securely! Upload payment proof to lock dispatch.')
+      toast.success('Booking confirmed! Please upload payment proof to secure your professional.')
       navigate(`/bookings/${data.data.booking._id}`)
     } catch (err) {
       const msg = err.response?.data?.message || 'Booking setup aborted.'
@@ -99,7 +99,7 @@ export default function BookingPage() {
   }
 
   if (serviceLoading) return <InlineLoader />
-  if (!service) return <div className="text-center py-20 text-slate-400">Target service descriptor missing from catalog repository.</div>
+  if (!service) return <div className="text-center py-20 text-slate-400">Service not found.</div>
 
   return (
     <div className="animate-fade-in pb-12">
@@ -176,7 +176,7 @@ export default function BookingPage() {
 
               <div className="pt-4 border-t border-white/5">
                 <h2 className="text-sm font-bold text-white uppercase tracking-wide mb-3 flex items-center gap-2">
-                  <Clock size={16} className="text-[#22C55E]" /> Optimized Dispatch Time
+                  <Clock size={16} className="text-[#22C55E]" /> Choose a Time
                 </h2>
                 <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                   {TIME_SLOTS.map(t => {
@@ -206,10 +206,10 @@ export default function BookingPage() {
                   <div className="text-start flex-1">
                     <span className="text-xs font-bold text-amber-900 flex items-center gap-1.5">
                       <Sparkles size={12} className="text-[#22C55E]" />
-                      Express Priority Dispatch (+50 SAR)
+                      Express Priority (+50 SAR)
                     </span>
                     <p className="text-[11px] text-amber-700 leading-tight mt-0.5">
-                      Bypass normal queues. Technician team targets your coordinates within maximum 90 minutes.
+                      Bypass normal queues. A technician will arrive within 90 minutes.
                     </p>
                   </div>
                 </label>
@@ -217,7 +217,7 @@ export default function BookingPage() {
 
               <button onClick={() => setStep(2)} disabled={!canProceedStep1} type="button"
                 className="btn-primary w-full justify-center bg-[#0B1120] hover:bg-[#1e293b] py-3 text-xs tracking-tight uppercase font-extrabold">
-                Confirm Schedule &amp; Advance <ChevronRight size={16} />
+                Confirm Schedule &amp; Continue <ChevronRight size={16} />
               </button>
             </div>
           )}
@@ -226,7 +226,7 @@ export default function BookingPage() {
           {step === 2 && (
             <div className="glass-card p-6 space-y-5 animate-slide-up">
               <h2 className="text-sm font-bold text-white uppercase tracking-wide flex items-center gap-2">
-                <MapPin size={16} className="text-[#22C55E]" /> Delivery Coordinates
+                <MapPin size={16} className="text-[#22C55E]" /> Service Address
               </h2>
 
               {/* Interactive map preview simulator panel */}
@@ -234,7 +234,7 @@ export default function BookingPage() {
                 <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1">
-                    <Map size={12} /> Target Geofence Sandbox
+                    <Map size={12} /> Map Preview
                   </span>
                   <span className="text-[10px] bg-[#10B981]/10 text-[#10B981] px-1.5 py-0.5 rounded font-bold">
                     GPS Active
@@ -248,7 +248,7 @@ export default function BookingPage() {
                     {addressMode === 'saved' ? 'Saved Pin Selected' : newAddress.city || 'Riyadh Zone'}
                   </p>
                   <p className="text-[9px] text-slate-400">
-                    {addressMode === 'saved' ? 'Static coordinates verified via auth cluster' : 'Ready to pin custom parameters'}
+                    {addressMode === 'saved' ? 'Using your saved address' : 'Ready to pin new address'}
                   </p>
                 </div>
               </div>
@@ -279,7 +279,7 @@ export default function BookingPage() {
                       }`}>
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-[10px] font-extrabold text-white bg-white/5 px-2 py-0.5 rounded tracking-tight uppercase">{addr.label}</span>
-                        {addr.isDefault && <span className="text-[9px] font-bold text-[#10B981]">Default Asset</span>}
+                        {addr.isDefault && <span className="text-[9px] font-bold text-[#10B981]">Default</span>}
                       </div>
                       <p className="text-xs font-bold text-slate-200">{addr.fullAddress}</p>
                       <p className="text-[10px] text-slate-400 mt-0.5">{addr.city}{addr.district ? `, ${addr.district}` : ''}</p>
@@ -289,13 +289,13 @@ export default function BookingPage() {
               ) : (
                 <div className="space-y-3">
                   <div>
-                    <label className="label text-xs">Full Address Descriptor *</label>
+                    <label className="label text-xs">Full Address *</label>
                     <input className="input-glass py-2 text-xs" placeholder="Street, compound number, villa/floor..."
                       value={newAddress.fullAddress} onChange={e => setNewAddress(a => ({ ...a, fullAddress: e.target.value }))} />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="label text-xs">Target Hub City *</label>
+                      <label className="label text-xs">City *</label>
                       <input className="input-glass py-2 text-xs" placeholder="Riyadh"
                         value={newAddress.city} onChange={e => setNewAddress(a => ({ ...a, city: e.target.value }))} />
                     </div>
@@ -314,7 +314,7 @@ export default function BookingPage() {
               )}
 
               <div>
-                <label className="label text-xs">Secure Dispatch Notes <span className="text-slate-400 font-normal">(Optional)</span></label>
+                <label className="label text-xs">Booking Notes <span className="text-slate-400 font-normal">(Optional)</span></label>
                 <textarea className="input-glass resize-none py-2 text-xs" rows={2}
                   placeholder="Provide access security clearance or complex layout info..."
                   value={notes} onChange={e => setNotes(e.target.value)} />
@@ -322,7 +322,7 @@ export default function BookingPage() {
 
               <button onClick={() => setStep(3)} disabled={!canProceedStep2} type="button"
                 className="btn-primary w-full justify-center bg-[#0B1120] hover:bg-[#1e293b] py-3 text-xs tracking-tight uppercase font-extrabold">
-                Lock Address &amp; Review <ChevronRight size={16} />
+                Confirm Address &amp; Review <ChevronRight size={16} />
               </button>
             </div>
           )}
@@ -332,35 +332,35 @@ export default function BookingPage() {
             <div className="glass-card p-6 space-y-5 animate-slide-up">
               <div className="flex items-center gap-2 border-b border-white/5 pb-3">
                 <ShieldCheck className="w-5 h-5 text-[#10B981]" />
-                <h2 className="text-sm font-bold text-white uppercase tracking-wide">Final Pre-Flight Authorization</h2>
+                <h2 className="text-sm font-bold text-white uppercase tracking-wide">Final Review</h2>
               </div>
 
               <div className="space-y-3 bg-white/5 rounded-2xl p-4 border border-white/5">
-                <RowItem label="Selected Tier" value={service.name} bold />
+                <RowItem label="Selected Service" value={service.name} bold />
                 <RowItem label="Scheduled Slot" value={`${selectedDate?.toLocaleDateString('en', { month: 'short', day: 'numeric' })} @ ${selectedTime}`} />
-                <RowItem label="Target Vector" value={
+                <RowItem label="Address" value={
                   addressMode === 'saved'
                     ? savedAddresses.find(a => a._id === selectedAddressId)?.fullAddress
                     : newAddress.fullAddress
                 } />
                 {urgencyTier === 'express' && (
-                  <RowItem label="Dispatch Channel" value="⚡ EXPRESS DISPATCH (Priority Routing)" gold />
+                  <RowItem label="Booking Type" value="⚡ EXPRESS (Priority)" gold />
                 )}
-                {notes && <RowItem label="Attached String" value={notes} />}
+                {notes && <RowItem label="Notes" value={notes} />}
               </div>
 
               <div className="bg-amber-50/80 border border-amber-100 rounded-2xl p-4">
                 <p className="text-xs font-bold text-amber-900 flex items-center gap-1.5 mb-1">
-                  <HelpCircle size={14} className="text-[#22C55E]" /> SLA Transfer Requirements
+                  <HelpCircle size={14} className="text-[#22C55E]" /> Important Payment Info
                 </p>
                 <p className="text-[11px] text-amber-800 leading-relaxed">
-                  Upon secure deployment, the backend sets your booking status to <strong className="font-bold">pending_payment</strong>. Upload wire transfer confirmation inside the generated dispatch details view within 24 hours to secure assignment.
+                  After confirming, your booking status will be <strong className="font-bold">pending payment</strong>. Please upload your wire transfer confirmation on the next page within 24 hours to secure your booking.
                 </p>
               </div>
 
               <button onClick={handleSubmit} disabled={loading} type="button"
                 className="btn-primary w-full justify-center py-3.5 text-xs tracking-widest uppercase font-extrabold text-white">
-                {loading ? <Loader2 size={16} className="animate-spin" /> : 'Authorize &amp; Generate Secure Booking'}
+                {loading ? <Loader2 size={16} className="animate-spin" /> : 'Confirm Booking'}
               </button>
             </div>
           )}
@@ -381,42 +381,42 @@ export default function BookingPage() {
               </div>
               <div>
                 <p className="text-xs font-bold text-white line-clamp-1">{service.name}</p>
-                <p className="text-[10px] text-slate-400">Duration SLA: {service.duration} mins</p>
+                <p className="text-[10px] text-slate-400">Duration: {service.duration} mins</p>
               </div>
             </div>
 
             <div className="space-y-2 py-3 border-y border-white/10 text-xs">
               <div className="flex justify-between text-slate-300">
-                <span>Base Tier Quoted</span>
+                <span>Base Price</span>
                 <span className="font-mono text-white">{formatCurrency(basePrice)}</span>
               </div>
               {urgencyTier === 'express' && (
                 <div className="flex justify-between text-[#22C55E]">
-                  <span>Express Dispatch Surge</span>
+                  <span>Express Priority Fee</span>
                   <span className="font-mono">{formatCurrency(expressFee)}</span>
                 </div>
               )}
               <div className="flex justify-between text-slate-400 text-[10px]">
-                <span>Platform Commission Assurance</span>
+                <span>Platform Fee</span>
                 <span>Included (30%)</span>
               </div>
             </div>
 
             <div className="pt-3 flex justify-between items-baseline">
-              <span className="text-[11px] font-bold uppercase tracking-tight text-slate-400">Total Calculation</span>
+              <span className="text-[11px] font-bold uppercase tracking-tight text-slate-400">Total</span>
               <span className="text-2xl font-extrabold text-[#22C55E] font-mono tracking-tight">{formatCurrency(finalTotal)}</span>
             </div>
 
             {/* Micro layout tracking status bars */}
             <div className="mt-4 pt-4 border-t border-white/5 space-y-2">
               <div className="flex justify-between text-[9px] text-slate-400">
-                <span>Scheduler Matrix</span>
+                <span>Schedule</span>
                 <span className={selectedDate && selectedTime ? "text-[#10B981] font-bold" : "text-amber-400"}>
                   {selectedDate && selectedTime ? "Ready" : "Pending Selection"}
                 </span>
               </div>
               <div className="flex justify-between text-[9px] text-slate-400">
-                <span>Geofence Targeting</span>
+                <span>Address</span>
                 <span className={step > 1 ? "text-[#10B981] font-bold" : "text-slate-500"}>
                   {step > 1 ? "Locked" : "Awaiting Parameters"}
                 </span>

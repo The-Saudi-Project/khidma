@@ -102,7 +102,7 @@ export default function SignupPage() {
           <div className="space-y-4">
             {(form.role === 'customer' 
               ? [
-                  'Direct dispatch to verified professionals',
+                  'Direct booking with verified professionals',
                   'Secure, escrow-backed payments',
                   '24/7 dedicated concierges'
                 ]
