@@ -32,10 +32,10 @@ export default function AdminDashboard() {
 
         <div className="max-w-2xl relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 text-brand-400 font-bold text-[10px] uppercase tracking-widest mb-6 border border-brand-500/20">
-            <Sparkles size={12} /> Root Command Center
+            <Sparkles size={12} /> Admin Dashboard
           </div>
           <h1 className="text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-none">
-            Infrastructure <span className="text-brand-500">Overview.</span>
+            Platform <span className="text-brand-500">Overview.</span>
           </h1>
           <p className="text-sm text-slate-400 mt-4 leading-relaxed font-medium">
             Live status from the service platform is synchronized. Monitor real-time bookings, payments, and professional availability.
@@ -76,8 +76,8 @@ export default function AdminDashboard() {
                 </div>
               )}
             </div>
-            <h3 className="text-lg font-extrabold text-white mb-2">Wire Audit Buffer</h3>
-            <p className="text-xs text-slate-400 font-medium leading-relaxed">Snapshot verification required for escrow release.</p>
+            <h3 className="text-lg font-extrabold text-white mb-2">Payment Reviews</h3>
+            <p className="text-xs text-slate-400 font-medium leading-relaxed">Payment verification required for booking confirmation.</p>
           </button>
 
           <button type="button" onClick={() => navigate('/admin/bookings')}
@@ -94,8 +94,8 @@ export default function AdminDashboard() {
                 </div>
               )}
             </div>
-            <h3 className="text-lg font-extrabold text-white mb-2">Technician Matching</h3>
-            <p className="text-xs text-slate-400 font-medium leading-relaxed">Verified orders awaiting unit allocation.</p>
+            <h3 className="text-lg font-extrabold text-white mb-2">Provider Assignment</h3>
+            <p className="text-xs text-slate-400 font-medium leading-relaxed">Confirmed bookings awaiting provider assignment.</p>
           </button>
 
           <button type="button" onClick={() => navigate('/admin/provider-applications')}
@@ -112,54 +112,54 @@ export default function AdminDashboard() {
                 </div>
               )}
             </div>
-            <h3 className="text-lg font-extrabold text-white mb-2">Talent Onboarding</h3>
-            <p className="text-xs text-slate-400 font-medium leading-relaxed">Service partner credentials awaiting audit.</p>
+            <h3 className="text-lg font-extrabold text-white mb-2">Provider Applications</h3>
+            <p className="text-xs text-slate-400 font-medium leading-relaxed">Provider applications awaiting review.</p>
           </button>
         </div>
       </div>
 
-      {/* Supreme Financial Partition Array */}
+      {/* Financial Overview */}
       <div>
-        <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Real-Time Multi-Tier Clearing Metrics</h2>
+        <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Revenue Summary</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div className="glass rounded-3xl p-5 border border-white/5 shadow-2xl relative overflow-hidden">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide block mb-1">Total System Liquidity</span>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide block mb-1">Total Revenue</span>
             <span className="text-2xl font-extrabold text-white font-mono tracking-tight block">{formatCurrency(metrics?.totalRevenue || 0)}</span>
-            <span className="text-[10px] text-slate-400 block mt-2 pt-2 border-t border-white/[0.05]">Global verified patron charges</span>
+            <span className="text-[10px] text-slate-400 block mt-2 pt-2 border-t border-white/[0.05]">Total amount charged to customers</span>
           </div>
 
           <div className="glass rounded-3xl p-5 border border-white/5 shadow-2xl relative overflow-hidden border-b-4 border-b-[#22C55E]">
-            <span className="text-[10px] font-bold text-[#22C55E] uppercase tracking-wide block mb-1">Khidma Capital Reserve</span>
+            <span className="text-[10px] font-bold text-[#22C55E] uppercase tracking-wide block mb-1">Platform Earnings</span>
             <span className="text-2xl font-extrabold text-[#22C55E] font-mono tracking-tight block">{formatCurrency(metrics?.platformRevenue || 0)}</span>
             <span className="text-[10px] text-slate-400 block mt-2 pt-2 border-t border-white/[0.05]">Retained platform commission pool (30%)</span>
           </div>
 
           <div className="glass rounded-3xl p-5 border border-white/5 shadow-2xl relative overflow-hidden border-b-4 border-b-[#10B981]">
-            <span className="text-[10px] font-bold text-[#10B981] uppercase tracking-wide block mb-1">Distributed Fleet Remittance</span>
+            <span className="text-[10px] font-bold text-[#10B981] uppercase tracking-wide block mb-1">Provider Payouts</span>
             <span className="text-2xl font-extrabold text-[#10B981] font-mono tracking-tight block">{formatCurrency(metrics?.providerPayouts || 0)}</span>
-            <span className="text-[10px] text-slate-400 block mt-2 pt-2 border-t border-white/[0.05]">Direct technical provider settlements (70%)</span>
+            <span className="text-[10px] text-slate-400 block mt-2 pt-2 border-t border-white/[0.05]">Direct provider settlements (70%)</span>
           </div>
         </div>
       </div>
 
       {/* Recent Bookings List */}
       <div className="glass rounded-3xl p-6 border border-white/5 shadow-2xl">
-        <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Network Indices Distribution</h2>
+        <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Booking Statistics</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div className="bg-white/5 rounded-2xl p-4 border border-white/5 text-center">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tight block">Aggregate</span>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tight block">Total</span>
             <span className="text-xl font-extrabold text-white font-mono block mt-1">{(metrics?.totalBookings || 0).toLocaleString()}</span>
           </div>
           <div className="bg-white/5 rounded-2xl p-4 border border-white/5 text-center">
-            <span className="text-[10px] font-bold text-amber-600 uppercase tracking-tight block">Active SLA</span>
+            <span className="text-[10px] font-bold text-amber-600 uppercase tracking-tight block">Active</span>
             <span className="text-xl font-extrabold text-amber-600 font-mono block mt-1">{(metrics?.activeBookings || 0).toLocaleString()}</span>
           </div>
           <div className="bg-white/5 rounded-2xl p-4 border border-white/5 text-center">
-            <span className="text-[10px] font-bold text-[#10B981] uppercase tracking-tight block">Executed</span>
+            <span className="text-[10px] font-bold text-[#10B981] uppercase tracking-tight block">Completed</span>
             <span className="text-xl font-extrabold text-[#10B981] font-mono block mt-1">{(metrics?.completedBookings || 0).toLocaleString()}</span>
           </div>
           <div className="bg-white/5 rounded-2xl p-4 border border-white/5 text-center">
-            <span className="text-[10px] font-bold text-red-500 uppercase tracking-tight block">Aborted</span>
+            <span className="text-[10px] font-bold text-red-500 uppercase tracking-tight block">Cancelled</span>
             <span className="text-xl font-extrabold text-red-500 font-mono block mt-1">{(metrics?.cancelledBookings || 0).toLocaleString()}</span>
           </div>
         </div>
@@ -171,7 +171,7 @@ export default function AdminDashboard() {
           <h2 className="text-sm font-extrabold text-white tracking-tight uppercase">Recent Bookings</h2>
           <button onClick={() => navigate('/admin/bookings')} type="button"
             className="text-xs font-bold text-[#22C55E] hover:underline flex items-center gap-1">
-            Access Full Ledger <ChevronRight size={14} />
+            View All Bookings <ChevronRight size={14} />
           </button>
         </div>
 
@@ -180,11 +180,11 @@ export default function AdminDashboard() {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-white/5 border-b border-white/5 text-[10px] font-bold text-slate-400 uppercase tracking-tight">
-                  <th className="py-3 px-4">Identifier</th>
-                  <th className="py-3 px-4">Service Descriptor</th>
+                  <th className="py-3 px-4">Booking ID</th>
+                  <th className="py-3 px-4">Service</th>
                   <th className="py-3 px-4">City</th>
-                  <th className="py-3 px-4">SLA State</th>
-                  <th className="py-3 px-4 text-right">Escrow Quoted</th>
+                  <th className="py-3 px-4">Status</th>
+                  <th className="py-3 px-4 text-right">Amount</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/[0.05] text-xs">
@@ -198,7 +198,7 @@ export default function AdminDashboard() {
                       {b.serviceName}
                     </td>
                     <td className="py-3.5 px-4 text-slate-400 font-medium truncate max-w-[120px]">
-                      {b.customer?.name || 'Patron Asset'}
+                      {b.customer?.name || 'Customer'}
                     </td>
                     <td className="py-3.5 px-4">
                       <StatusBadge status={b.status} />

@@ -89,7 +89,9 @@ function clearAuth() {
   localStorage.removeItem('accessToken')
   localStorage.removeItem('refreshToken')
   localStorage.removeItem('user')
-  window.location.href = '/login'
+  if (window.location.pathname !== '/login' && window.location.pathname !== '/signup') {
+    window.location.href = '/login'
+  }
 }
 
 export default api

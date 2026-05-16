@@ -49,6 +49,7 @@ export const TIMELINE_LABELS = {
   payment_confirmed: 'Payment Confirmed',
   payment_rejected:  'Payment Rejected',
   provider_assigned: 'Provider Assigned',
+  provider_accepted: 'Provider Accepted',
   rescheduled:       'Booking Rescheduled',
   in_progress:       'Service Started',
   completed:         'Service Completed',
