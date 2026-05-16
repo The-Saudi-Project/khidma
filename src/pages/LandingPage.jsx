@@ -167,7 +167,7 @@ export default function LandingPage() {
             </div>
 
             {/* Right Graphics/Illustration Block */}
-            <div className="lg:col-span-5 relative flex justify-center">
+            <div className="lg:col-span-5 relative flex justify-center lg:-mt-64">
               <div className="relative w-full max-w-md lg:max-w-none">
                 {/* Premium floating glass backplates to anchor illustration */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#22C55E]/10 to-transparent rounded-3xl transform rotate-3 scale-105 border border-white/5" />
@@ -180,7 +180,7 @@ export default function LandingPage() {
                   </div>
                   
                   {/* Visual Artwork Container */}
-                  <div className="w-full aspect-square rounded-2xl bg-gradient-to-br from-[#0B1120] via-[#1e293b] to-[#0B1120] p-4 flex flex-col justify-between border border-white/5 shadow-inner relative overflow-hidden">
+                  <div className="w-full aspect-square rounded-2xl bg-gradient-to-br from-[#0B1120] via-[#1e293b] to-[#0B1120] pt-0 px-4 pb-4 flex flex-col justify-between border border-white/5 shadow-inner relative overflow-hidden">
                     {/* Decorative abstract glowing lines representing automated workflows */}
                     <div className="absolute start-0 top-1/3 w-full h-px bg-gradient-to-r from-transparent via-[#22C55E]/40 to-transparent" />
                     <div className="absolute start-1/4 top-0 w-px h-full bg-gradient-to-b from-transparent via-[#10B981]/20 to-transparent" />
