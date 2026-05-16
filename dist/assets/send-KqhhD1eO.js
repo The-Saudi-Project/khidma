@@ -1,1 +1,0 @@
-import{n as e}from"./loader-2-CetWs5Bh.js";var t=e(`MessageCircle`,[[`path`,{d:`M7.9 20A9 9 0 1 0 4 16.1L2 22Z`,key:`vv11sd`}]]),n=e(`Send`,[[`path`,{d:`m22 2-7 20-4-9-9-4Z`,key:`1q3vgg`}],[`path`,{d:`M22 2 11 13`,key:`nzbqef`}]]);export{t as n,n as t};
