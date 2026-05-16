@@ -48,10 +48,10 @@ export default function BecomeProviderSection() {
 
   if (done) {
     return (
-      <section className="py-24 px-4 bg-white/[0.03] relative overflow-hidden border-t border-white/5">
+      <section className="py-24 px-4 glass relative overflow-hidden border-t border-white/5">
         <div className="absolute inset-0 bg-[radial-gradient(#22C55E_1px,transparent_1px)] [background-size:16px_16px] opacity-[0.15]" />
         
-        <div className="max-w-xl mx-auto text-center relative z-10 bg-white/[0.03] rounded-[2rem] p-12 border border-white/5 shadow-[0_20px_60px_-15px_rgba(8,18,37,0.05)]">
+        <div className="max-w-xl mx-auto text-center relative z-10 glass rounded-[2rem] p-12 border border-white/5 shadow-[0_20px_60px_-15px_rgba(8,18,37,0.05)]">
           <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-emerald-100">
             <CheckCircle className="w-10 h-10 text-brand-400" />
           </div>
@@ -71,13 +71,13 @@ export default function BecomeProviderSection() {
   }
 
   return (
-    <section id="become-provider" className="py-28 px-4 bg-white/[0.03] border-t border-white/5 relative overflow-hidden">
+    <section id="become-provider" className="py-28 px-4 glass border-t border-white/5 relative overflow-hidden">
       {/* Decorative layout anchor */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-slate-50/50 to-transparent pointer-events-none" />
 
       <div className="max-w-3xl mx-auto relative z-10">
         <div className="text-center max-w-xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/5 mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full glass border border-white/5 mb-3">
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#22C55E]">Network Authorization</span>
           </div>
           <h2 className="text-4xl font-extrabold text-white tracking-tight leading-tight">
@@ -88,7 +88,7 @@ export default function BecomeProviderSection() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-white/[0.03] rounded-3xl p-8 sm:p-12 border border-white/5 shadow-[0_20px_80px_-15px_rgba(8,18,37,0.08)] relative overflow-hidden">
+        <form onSubmit={handleSubmit} className="glass rounded-3xl p-8 sm:p-12 border border-white/5 shadow-[0_20px_80px_-15px_rgba(8,18,37,0.08)] relative overflow-hidden">
           {/* Subtle gradient strip top header */}
           <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#0B1120]" />
 
@@ -96,7 +96,7 @@ export default function BecomeProviderSection() {
             <div>
               <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">Full Identity Name</label>
               <input 
-                className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-4 py-3.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all" 
+                className="w-full glass border border-white/5 rounded-2xl px-4 py-3.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all" 
                 placeholder="e.g. Tariq Al-Mansour"
                 required 
                 value={form.name} 
@@ -107,7 +107,7 @@ export default function BecomeProviderSection() {
               <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">Secure Email</label>
               <input 
                 type="email" 
-                className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-4 py-3.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all" 
+                className="w-full glass border border-white/5 rounded-2xl px-4 py-3.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all" 
                 placeholder="tariq@enterprise.sa"
                 required 
                 value={form.email} 
@@ -117,7 +117,7 @@ export default function BecomeProviderSection() {
             <div>
               <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">Terminal Contact (Phone)</label>
               <input 
-                className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-4 py-3.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all" 
+                className="w-full glass border border-white/5 rounded-2xl px-4 py-3.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all" 
                 placeholder="+966 5X XXX XXXX"
                 required 
                 value={form.phone} 
@@ -127,7 +127,7 @@ export default function BecomeProviderSection() {
             <div>
               <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">Primary Grid (City)</label>
               <input 
-                className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-4 py-3.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all" 
+                className="w-full glass border border-white/5 rounded-2xl px-4 py-3.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all" 
                 placeholder="Riyadh, Jeddah, Dammam..."
                 required 
                 value={form.city} 
@@ -147,7 +147,7 @@ export default function BecomeProviderSection() {
                   className={`px-4 py-2 rounded-2xl text-xs font-extrabold tracking-tight uppercase transition-all duration-300 border ${
                     form.skills.includes(s)
                       ? 'bg-[#0B1120] text-white border-[#0B1120] shadow-md'
-                      : 'bg-white/[0.03] text-slate-500 border-white/10 hover:border-[#0B1120]/30 hover:text-white'
+                      : 'glass text-slate-500 border-white/10 hover:border-[#0B1120]/30 hover:text-white'
                   }`}
                 >
                   {s}
@@ -159,7 +159,7 @@ export default function BecomeProviderSection() {
           <div className="mb-8">
             <label className="block text-[10px] font-extrabold uppercase tracking-tight text-white mb-2">Technical Dossier &amp; Certifications</label>
             <textarea 
-              className="w-full bg-white/[0.03] border border-white/5 rounded-2xl p-4 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all min-h-[120px]" 
+              className="w-full glass border border-white/5 rounded-2xl p-4 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0B1120]/10 font-medium transition-all min-h-[120px]" 
               value={form.experience} 
               onChange={(e) => setForm({ ...form, experience: e.target.value })} 
               placeholder="Outline your years of active duty, specialized tools operated, and regional coverage limitations..." 
@@ -169,7 +169,7 @@ export default function BecomeProviderSection() {
           <button 
             type="submit" 
             disabled={submitting} 
-            className="w-full py-4 rounded-2xl bg-[#22C55E] hover:bg-[#b08e4d] text-white font-extrabold uppercase text-xs tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-gold/10"
+            className="btn-primary w-full py-4 text-xs tracking-[0.2em] uppercase font-black"
           >
             {submitting ? <Loader2 className="animate-spin" size={18} /> : 'Transmit Dossier Authorization'}
           </button>

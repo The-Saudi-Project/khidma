@@ -90,7 +90,7 @@ export default function AdminBookingDetailPage() {
 
   if (isLoading) return <InlineLoader />
   if (!booking) return (
-    <div className="bg-white/[0.03] rounded-3xl p-12 text-center text-slate-400 border border-white/5 max-w-2xl mx-auto mt-12">
+    <div className="glass rounded-3xl p-12 text-center text-slate-400 border border-white/5 max-w-2xl mx-auto mt-12">
       <AlertTriangle size={32} className="mx-auto mb-3 text-amber-500 animate-bounce" />
       <p className="text-sm font-bold text-slate-300">Cryptographic Node Unresolved</p>
       <p className="text-xs text-slate-400 mt-1">Requested document index could not be extracted from storage partitions.</p>
@@ -103,12 +103,12 @@ export default function AdminBookingDetailPage() {
     <div className="animate-fade-in max-w-6xl space-y-6 pb-12">
       {/* Structural Back Hook */}
       <button onClick={() => navigate('/admin/bookings')} type="button"
-        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-white/[0.03] border border-white/5 text-xs font-bold text-slate-500 hover:text-white hover:border-white/10 transition-all shadow-2xl">
+        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-2xl glass border border-white/5 text-xs font-bold text-slate-500 hover:text-white hover:border-white/10 transition-all shadow-2xl">
         <ArrowLeft size={14} /> Back to Telemetry Ledgers
       </button>
 
       {/* Dynamic Upper Metadata Panel */}
-      <div className="bg-white/[0.03] rounded-3xl p-6 lg:p-8 border border-white/5 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="glass rounded-3xl p-6 lg:p-8 border border-white/5 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="px-2 py-0.5 rounded bg-white/5 text-slate-400 font-mono text-[10px] font-bold">
@@ -120,7 +120,7 @@ export default function AdminBookingDetailPage() {
           <p className="text-xs text-slate-400 mt-0.5">Origin creation hash logged on {formatDate(booking.createdAt || booking.scheduledDate)}</p>
         </div>
 
-        <div className="flex items-center gap-3 flex-shrink-0 pt-2 md:pt-0 border-t md:border-0 border-slate-50">
+        <div className="flex items-center gap-3 flex-shrink-0 pt-2 md:pt-0 border-t md:border-0 border-white/[0.05]">
           <div className="text-right hidden sm:block">
             <span className="text-[9px] text-slate-400 uppercase tracking-widest block font-bold">SLA Phase</span>
             <span className="text-xs font-bold text-slate-300">Live Handshake</span>
@@ -151,7 +151,7 @@ export default function AdminBookingDetailPage() {
                 Patron generated cryptographic upload detected. Review wire proof validation keys below to transition order state into live technician assignment buffer.
               </p>
 
-              <div className="bg-white/[0.03] rounded-2xl p-4 border border-amber-100/80 space-y-3 mb-5 shadow-2xl">
+              <div className="glass rounded-2xl p-4 border border-amber-100/80 space-y-3 mb-5 shadow-2xl">
                 <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
                   <span className="text-slate-400 font-bold">Payload Pointer:</span>
                   {paymentObj.proofFile ? (
@@ -165,9 +165,9 @@ export default function AdminBookingDetailPage() {
                 </div>
 
                 {paymentObj.transactionReference && (
-                  <div className="flex items-center justify-between text-xs pt-2 border-t border-slate-50">
+                  <div className="flex items-center justify-between text-xs pt-2 border-t border-white/[0.05]">
                     <span className="text-slate-400 font-bold">Bank TRN Reference:</span>
-                    <code className="font-mono font-extrabold text-white bg-white/[0.03] px-2 py-0.5 rounded border border-white/5">
+                    <code className="font-mono font-extrabold text-white glass px-2 py-0.5 rounded border border-white/5">
                       {paymentObj.transactionReference}
                     </code>
                   </div>
@@ -180,7 +180,7 @@ export default function AdminBookingDetailPage() {
                   {confirmingPayment ? <Loader2 size={16} className="animate-spin" /> : <><Check size={16} /> Release Lock (Approve)</>}
                 </button>
                 <button onClick={() => setShowRejectModal(true)} type="button"
-                  className="px-4 py-3 rounded-2xl bg-white/[0.03] hover:bg-red-50 text-red-500 border border-red-100 font-bold text-xs transition-all flex items-center justify-center gap-1.5">
+                  className="px-4 py-3 rounded-2xl glass hover:bg-red-50 text-red-500 border border-red-100 font-bold text-xs transition-all flex items-center justify-center gap-1.5">
                   <XCircle size={15} /> Flag Payload
                 </button>
               </div>
@@ -188,22 +188,22 @@ export default function AdminBookingDetailPage() {
           )}
 
           {/* Capital Allocation & Liquidity Matrix */}
-          <div className="bg-white/[0.03] rounded-3xl p-6 border border-white/5 shadow-2xl space-y-4">
+          <div className="glass rounded-3xl p-6 border border-white/5 shadow-2xl space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Escrow Liquidity Settlement</h3>
               <span className="text-[10px] font-mono text-[#10B981] bg-emerald-50 px-2 py-0.5 rounded font-bold">Guaranteed Clearing</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-              <div className="bg-white/[0.03] rounded-2xl p-3.5 border border-white/5">
+              <div className="glass rounded-2xl p-3.5 border border-white/5">
                 <span className="text-[10px] text-slate-400 uppercase tracking-tight block font-bold">Total Quoted</span>
                 <span className="text-lg font-extrabold text-white font-mono block mt-0.5">{formatCurrency(booking.totalAmount)}</span>
               </div>
-              <div className="bg-white/[0.03] rounded-2xl p-3.5 border border-white/5 border-b-2 border-b-[#22C55E]">
+              <div className="glass rounded-2xl p-3.5 border border-white/5 border-b-2 border-b-[#22C55E]">
                 <span className="text-[10px] text-[#22C55E] uppercase tracking-tight block font-bold">Platform Retained</span>
                 <span className="text-lg font-extrabold text-[#22C55E] font-mono block mt-0.5">{formatCurrency(booking.platformCommission || booking.totalAmount * 0.3)}</span>
               </div>
-              <div className="bg-white/[0.03] rounded-2xl p-3.5 border border-white/5 border-b-2 border-b-[#10B981]">
+              <div className="glass rounded-2xl p-3.5 border border-white/5 border-b-2 border-b-[#10B981]">
                 <span className="text-[10px] text-[#10B981] uppercase tracking-tight block font-bold">Fleet Disbursement</span>
                 <span className="text-lg font-extrabold text-[#10B981] font-mono block mt-0.5">{formatCurrency(booking.providerEarning || booking.totalAmount * 0.7)}</span>
               </div>
@@ -212,7 +212,7 @@ export default function AdminBookingDetailPage() {
 
           {/* Unit Deployment Array (Assign Technician) */}
           {booking.status === 'payment_confirmed' && (
-            <div className="bg-white/[0.03] rounded-3xl p-6 border border-[#10B981]/40 shadow-2xl relative overflow-hidden space-y-4">
+            <div className="glass rounded-3xl p-6 border border-[#10B981]/40 shadow-2xl relative overflow-hidden space-y-4">
               <div className="absolute top-0 end-0 bg-[#10B981]/10 text-white font-mono text-[9px] font-extrabold px-3 py-1 rounded-bl-2xl">
                 Ready For Dispatch
               </div>
@@ -226,7 +226,7 @@ export default function AdminBookingDetailPage() {
               </p>
 
               <div className="space-y-3">
-                <select className="w-full px-4 py-3 rounded-2xl bg-white/[0.03] border border-white/5 text-xs font-bold text-white focus:outline-none focus:ring-2 focus:ring-[#10B981]/30 transition-all"
+                <select className="w-full px-4 py-3 rounded-2xl glass border border-white/5 text-xs font-bold text-white focus:outline-none focus:ring-2 focus:ring-[#10B981]/30 transition-all"
                   value={selectedProvider} onChange={e => setSelectedProvider(e.target.value)}>
                   <option value="">Select target operational profile candidate…</option>
                   {providers?.map(p => (
@@ -246,13 +246,13 @@ export default function AdminBookingDetailPage() {
 
           {/* Reassignment Node Buffer */}
           {booking.status === 'provider_assigned' && (
-            <div className="bg-white/[0.03] rounded-3xl p-6 border border-white/5 shadow-2xl space-y-4">
+            <div className="glass rounded-3xl p-6 border border-white/5 shadow-2xl space-y-4">
               <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
                 <UserCheck size={14} className="text-[#22C55E]" /> Hot-Swap Assigned Asset
               </h3>
               
               <div className="space-y-3">
-                <select className="w-full px-4 py-3 rounded-2xl bg-white/[0.03] border border-white/5 text-xs font-bold text-white focus:outline-none focus:ring-2 focus:ring-[#22C55E]/30 transition-all"
+                <select className="w-full px-4 py-3 rounded-2xl glass border border-white/5 text-xs font-bold text-white focus:outline-none focus:ring-2 focus:ring-[#22C55E]/30 transition-all"
                   value={selectedProvider} onChange={e => setSelectedProvider(e.target.value)}>
                   <option value="">Select fallback candidate node…</option>
                   {providers?.filter(p => p._id.toString() !== booking.provider?._id?.toString()).map(p => (
@@ -269,14 +269,14 @@ export default function AdminBookingDetailPage() {
           )}
 
           {/* Connected Logistics Cryptographic Timeline */}
-          <div className="bg-white/[0.03] rounded-3xl p-6 border border-white/5 shadow-2xl space-y-4">
+          <div className="glass rounded-3xl p-6 border border-white/5 shadow-2xl space-y-4">
             <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">SLA Lifecycle Ledger Audit</h3>
             
             <div className="space-y-4 pt-2 relative before:absolute before:start-1.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-white/5">
               {booking.timeline?.map((e, i) => (
                 <div key={i} className="flex gap-3.5 text-xs relative group">
                   <div className="w-3 h-3 rounded-full bg-[#10B981] ring-4 ring-white mt-1 flex-shrink-0 z-10 transition-transform group-hover:scale-125" />
-                  <div className="bg-white/[0.03] rounded-2xl p-3 flex-1 border border-white/5">
+                  <div className="glass rounded-2xl p-3 flex-1 border border-white/5">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <span className="font-bold text-white">{TIMELINE_LABELS[e.status] || e.status}</span>
                       <span className="text-[10px] font-mono text-slate-400">{formatDateTime(e.timestamp)}</span>
@@ -294,11 +294,11 @@ export default function AdminBookingDetailPage() {
         <div className="space-y-6 sticky top-24">
 
           {/* Execution Coordinates */}
-          <div className="bg-white/[0.03] rounded-3xl p-5 border border-white/5 shadow-2xl space-y-3">
+          <div className="glass rounded-3xl p-5 border border-white/5 shadow-2xl space-y-3">
             <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">Geographic Dispatch Array</h3>
             
             <div className="space-y-2.5 text-xs">
-              <div className="flex items-start gap-2.5 p-2 rounded-2xl bg-white/[0.03]">
+              <div className="flex items-start gap-2.5 p-2 rounded-2xl glass">
                 <Calendar size={14} className="text-[#22C55E] flex-shrink-0 mt-0.5" />
                 <div>
                   <span className="text-[10px] text-slate-400 block font-bold uppercase">Scheduled Horizon</span>
@@ -306,7 +306,7 @@ export default function AdminBookingDetailPage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-2.5 p-2 rounded-2xl bg-white/[0.03]">
+              <div className="flex items-start gap-2.5 p-2 rounded-2xl glass">
                 <MapPin size={14} className="text-[#10B981] flex-shrink-0 mt-0.5" />
                 <div>
                   <span className="text-[10px] text-slate-400 block font-bold uppercase">Patron Node Address</span>
@@ -317,7 +317,7 @@ export default function AdminBookingDetailPage() {
           </div>
 
           {/* Patron Telemetry */}
-          <div className="bg-white/[0.03] rounded-3xl p-5 border border-white/5 shadow-2xl space-y-2 text-xs">
+          <div className="glass rounded-3xl p-5 border border-white/5 shadow-2xl space-y-2 text-xs">
             <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">Patron Origin Hash</h3>
             <p className="font-extrabold text-white text-sm tracking-tight">{booking.customer?.name || 'Encrypted Client'}</p>
             <p className="text-slate-500 font-mono text-[11px] truncate">{booking.customer?.email}</p>
@@ -328,7 +328,7 @@ export default function AdminBookingDetailPage() {
 
           {/* Provider Node Mapping Preview */}
           {booking.provider && (
-            <div className="bg-white/[0.03] rounded-3xl p-5 border border-white/5 shadow-2xl space-y-2 text-xs border-s-4 border-s-[#10B981]">
+            <div className="glass rounded-3xl p-5 border border-white/5 shadow-2xl space-y-2 text-xs border-s-4 border-s-[#10B981]">
               <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">Allocated Provider Unit</h3>
               <p className="font-extrabold text-white text-sm tracking-tight">{booking.provider?.name}</p>
               <p className="text-slate-500 font-mono text-[11px] truncate">{booking.provider?.email}</p>
@@ -341,7 +341,7 @@ export default function AdminBookingDetailPage() {
             <div className="bg-red-50/50 rounded-3xl p-5 border border-red-100 text-center space-y-2">
               <span className="text-[10px] font-bold text-red-500 uppercase tracking-widest block">Absolute Exception Hook</span>
               <button onClick={() => setShowCancelModal(true)} type="button"
-                className="w-full py-2.5 rounded-2xl bg-white/[0.03] hover:bg-red-600 text-red-600 hover:text-white border border-red-200 font-bold text-xs transition-all shadow-2xl flex items-center justify-center gap-1.5">
+                className="w-full py-2.5 rounded-2xl glass hover:bg-red-600 text-red-600 hover:text-white border border-red-200 font-bold text-xs transition-all shadow-2xl flex items-center justify-center gap-1.5">
                 <XCircle size={14} /> Abort Task Execution
               </button>
             </div>
@@ -354,11 +354,11 @@ export default function AdminBookingDetailPage() {
       {/* Exception Reason Capture Shell */}
       {showRejectModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-          <div className="bg-white/[0.03] rounded-3xl p-6 lg:p-8 max-w-md w-full border border-white/5 shadow-2xl animate-scale-in space-y-4">
+          <div className="glass rounded-3xl p-6 lg:p-8 max-w-md w-full border border-white/5 shadow-2xl animate-scale-in space-y-4">
             <h3 className="text-base font-extrabold text-white tracking-tight">Audit Slip Flag Parameters</h3>
             <div>
               <label className="text-xs font-bold text-slate-400 uppercase tracking-tight block mb-1.5">Exception Rationale *</label>
-              <textarea className="w-full p-3.5 rounded-2xl bg-white/[0.03] border border-white/5 text-xs text-white focus:outline-none focus:ring-2 focus:ring-red-400/30 resize-none font-medium" rows={3}
+              <textarea className="w-full p-3.5 rounded-2xl glass border border-white/5 text-xs text-white focus:outline-none focus:ring-2 focus:ring-red-400/30 resize-none font-medium" rows={3}
                 placeholder="Detail non-compliance keys preventing payment acknowledgment…"
                 value={rejectReason} onChange={e => setRejectReason(e.target.value)} />
             </div>

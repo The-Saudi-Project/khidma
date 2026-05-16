@@ -34,7 +34,7 @@ export default function ProfilePage() {
         ].map(t => (
           <button key={t.key} onClick={() => setActiveTab(t.key)}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all
-              ${activeTab === t.key ? 'bg-white/[0.03] text-white shadow-2xl' : 'text-slate-500 hover:text-slate-300'}`}>
+              ${activeTab === t.key ? 'glass text-white shadow-2xl' : 'text-slate-500 hover:text-slate-300'}`}>
             <t.icon size={14} />{t.label}
           </button>
         ))}
@@ -63,7 +63,7 @@ function ProfileTab({ user, onUpdated, updateUser }) {
   }
 
   return (
-    <div className="card p-6 space-y-4">
+    <div className="glass-card p-6 space-y-4">
       <div className="flex items-center gap-4 pb-4 border-b border-white/5">
         <div className="w-16 h-16 rounded-2xl bg-brand-600 text-white flex items-center justify-center text-2xl font-bold">
           {user.name?.split(' ').slice(0,2).map(w => w[0]).join('')}
@@ -84,7 +84,7 @@ function ProfileTab({ user, onUpdated, updateUser }) {
       </div>
       <div>
         <label className="label">Bio</label>
-        <textarea className="input resize-none" rows={3} value={form.bio}
+        <textarea className="input-glass resize-none" rows={3} value={form.bio}
           onChange={e => setForm(f => ({ ...f, bio: e.target.value }))} placeholder="Tell us about yourself…" />
       </div>
       <button onClick={handleSave} disabled={saving} className="btn-primary">
@@ -126,7 +126,7 @@ function AddressesTab({ user, onUpdated }) {
   return (
     <div className="space-y-3">
       {user.addresses?.map(addr => (
-        <div key={addr._id} className="card p-4 flex items-start gap-3">
+        <div key={addr._id} className="glass-card p-4 flex items-start gap-3">
           <div className="w-9 h-9 bg-brand-50 rounded-2xl flex items-center justify-center flex-shrink-0">
             <MapPin size={16} className="text-brand-600" />
           </div>
@@ -151,7 +151,7 @@ function AddressesTab({ user, onUpdated }) {
           <Plus size={16} /> Add new address
         </button>
       ) : (
-        <div className="card p-5 space-y-3">
+        <div className="glass-card p-5 space-y-3">
           <h3 className="font-semibold text-white">New address</h3>
           <div>
             <label className="label">Label</label>
@@ -202,7 +202,7 @@ function SecurityTab() {
   }
 
   return (
-    <div className="card p-6 space-y-4">
+    <div className="glass-card p-6 space-y-4">
       <h3 className="font-semibold text-white">Change password</h3>
       {['currentPassword', 'newPassword', 'confirmPassword'].map((key) => (
         <div key={key}>

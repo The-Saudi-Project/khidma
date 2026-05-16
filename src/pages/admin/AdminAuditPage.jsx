@@ -10,7 +10,7 @@ const ACTION_COLORS = {
   'booking.': 'bg-brand-50 text-brand-700',
   'payment.': 'bg-amber-50 text-amber-700',
   'payout.': 'bg-emerald-50 text-emerald-700',
-  'service.': 'bg-purple-50 text-purple-700',
+  'service.': 'bg-brand-500/10 text-brand-400',
   'user.': 'bg-red-50 text-red-700',
 }
 
@@ -44,7 +44,7 @@ export default function AdminAuditPage() {
 
       <form onSubmit={e => { e.preventDefault(); setAction(actionInput); setPage(1) }} className="relative mb-5 max-w-sm">
         <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-        <input className="input pl-9 py-2.5 text-sm" placeholder="Filter by action (e.g. booking, payment)…"
+        <input className="input-glass pl-9 py-2.5 text-sm" placeholder="Filter by action (e.g. booking, payment)…"
           value={actionInput} onChange={e => setActionInput(e.target.value)} />
       </form>
 

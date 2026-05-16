@@ -44,7 +44,7 @@ export default function AdminBookingsPage() {
       <div className="flex gap-3 mb-4">
         <form onSubmit={e => { e.preventDefault(); setSearch(searchInput); setPage(1) }} className="relative flex-1 max-w-sm">
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-          <input className="input pl-9 py-2.5 text-sm" placeholder="Search by booking # or service…"
+          <input className="input-glass pl-9 py-2.5 text-sm" placeholder="Search by booking # or service…"
             value={searchInput} onChange={e => setSearchInput(e.target.value)} />
         </form>
       </div>
@@ -53,7 +53,7 @@ export default function AdminBookingsPage() {
         {STATUS_FILTERS.map(f => (
           <button key={f.value} onClick={() => { setStatus(f.value); setPage(1) }}
             className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium transition-all
-              ${status === f.value ? 'bg-brand-600 text-white' : 'bg-white/[0.03] border border-white/10 text-slate-400 hover:border-brand-300'}`}>
+              ${status === f.value ? 'bg-brand-600 text-white' : 'glass border border-white/10 text-slate-400 hover:border-brand-300'}`}>
             {f.label}
           </button>
         ))}

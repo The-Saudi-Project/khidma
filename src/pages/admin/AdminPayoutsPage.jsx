@@ -92,7 +92,7 @@ export default function AdminPayoutsPage() {
       <h2 className="text-lg font-bold text-white mb-4">Providers Awaiting Payment</h2>
 
       {providersWithBalance.length === 0 ? (
-        <div className="card p-8 text-center">
+        <div className="glass-card p-8 text-center">
           <CheckCircle size={28} className="text-emerald-400 mx-auto mb-3" />
           <p className="font-semibold text-slate-300">All providers are paid up</p>
           <p className="text-sm text-slate-400 mt-1">No pending payouts at the moment</p>
@@ -105,7 +105,7 @@ export default function AdminPayoutsPage() {
             const state = payoutState[provider._id] || {}
 
             return (
-              <div key={provider._id} className="card overflow-hidden">
+              <div key={provider._id} className="glass-card overflow-hidden">
                 <button onClick={() => setExpandedProvider(isExpanded ? null : provider._id)}
                   className="w-full p-5 flex items-center gap-4 hover:bg-white/5 transition-colors text-left">
                   <Avatar name={provider.name} size="sm" />
@@ -128,7 +128,7 @@ export default function AdminPayoutsPage() {
 
                     <div className="space-y-2 mb-4">
                       {/* In a full implementation, fetch per-provider pending bookings here */}
-                      <div className="text-sm text-slate-400 italic p-3 bg-white/[0.03] rounded-2xl">
+                      <div className="text-sm text-slate-400 italic p-3 glass rounded-2xl">
                         Booking list requires admin/provider earning endpoint — connect to
                         <code className="text-brand-600 ml-1">/api/payouts/admin/balances</code> with booking IDs.
                       </div>
@@ -176,7 +176,7 @@ export default function AdminPayoutsPage() {
       {/* Payout history */}
       <h2 className="text-lg font-bold text-white mb-4">Payout History</h2>
       {!payoutHistory?.length ? (
-        <div className="card p-6 text-center text-slate-400 text-sm">No payouts processed yet</div>
+        <div className="glass-card p-6 text-center text-slate-400 text-sm">No payouts processed yet</div>
       ) : (
         <div className="table-wrapper">
           <table className="table">

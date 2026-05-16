@@ -73,22 +73,22 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-brand-500 rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.3)]">
-              <span className="text-white font-extrabold text-xl tracking-tight">K</span>
+              <span className="text-[#0B1120] font-black text-xl tracking-tight">K</span>
             </div>
             <div className="hidden sm:block">
               <span className="font-extrabold text-2xl tracking-tight text-white block leading-none">{t('appName')}</span>
-              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-brand-400 block mt-1 opacity-80">Premium Services</span>
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-500 block mt-1 opacity-90">Elite Saudi Platform</span>
             </div>
           </div>
 
           <div className="flex items-center gap-2 sm:gap-8">
-            <nav className="hidden lg:flex items-center gap-6">
-              <Link to="/services" className="text-sm font-bold text-slate-400 hover:text-white transition-colors">Catalog</Link>
-              <Link to="/login" className="text-sm font-bold text-slate-400 hover:text-white transition-colors">{t('actions.login')}</Link>
+            <nav className="hidden lg:flex items-center gap-8">
+              <Link to="/services" className="text-sm font-bold text-slate-500 hover:text-white transition-colors">Catalog</Link>
+              <Link to="/login" className="text-sm font-bold text-slate-500 hover:text-white transition-colors">{t('actions.login')}</Link>
             </nav>
             <div className="flex items-center gap-4">
               <LanguageToggle />
-              <Link to="/signup" className="btn-primary text-xs py-2.5 px-6 shadow-none hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] transition-all">
+              <Link to="/signup" className="btn-primary text-xs py-3 px-8 shadow-none hover:shadow-[0_0_20px_rgba(34,197,94,0.4)] transition-all uppercase tracking-widest font-black">
                 {t('actions.signup')}
               </Link>
             </div>
@@ -99,42 +99,42 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-[#0B1120] pt-24 pb-32 lg:pt-40 lg:pb-56 text-white">
         {/* Subtle background mesh gradients */}
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-500/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 text-center lg:text-start">
-          <div className="grid lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-7 space-y-10">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-                <Award size={14} className="text-brand-400" />
-                <span className="text-xs font-bold tracking-wide text-brand-100 uppercase">Saudi Arabia&apos;s Elite Marketplace</span>
+          <div className="grid lg:grid-cols-12 gap-20 items-center">
+            <div className="lg:col-span-7 space-y-12">
+              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-brand-500/10 border border-brand-500/20 backdrop-blur-md">
+                <Award size={16} className="text-brand-500" />
+                <span className="text-[10px] font-black tracking-[0.2em] text-brand-400 uppercase">KSA&apos;s Elite Service Marketplace</span>
               </div>
 
-              <h1 className="text-5xl sm:text-6xl lg:text-8xl font-extrabold tracking-tight leading-[1.05] text-balance">
+              <h1 className="text-6xl sm:text-7xl lg:text-[7rem] font-black tracking-tighter leading-[0.9] text-balance">
                 Home Services. <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-brand-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-brand-500">
                   Perfected.
                 </span>
               </h1>
 
               <p className="text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
-                Experience a new standard of property care. Premium vetted technicians, instant scheduling, and absolute transparent pricing across the Gulf.
+                Experience a new standard of property care. Premium vetted technicians, instant scheduling, and absolute transparent pricing across the Kingdom.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
-                <div className="w-full sm:max-w-md p-1 bg-white/5 rounded-2xl border border-white/10 flex items-center focus-within:ring-2 focus-within:ring-brand-500/50 transition-all">
-                  <Search className="w-5 h-5 text-slate-500 ms-4" />
+              <div className="flex flex-col sm:flex-row items-center gap-4 pt-6">
+                <div className="w-full sm:max-w-md p-1.5 bg-white/[0.03] rounded-[2rem] border border-white/10 flex items-center focus-within:ring-2 focus-within:ring-brand-500/30 transition-all backdrop-blur-md">
+                  <Search className="w-5 h-5 text-slate-500 ms-5" />
                   <input
                     type="text"
                     placeholder="What service do you need?"
-                    className="w-full px-4 py-4 bg-transparent text-white text-sm placeholder:text-slate-500 focus:outline-none"
+                    className="w-full px-5 py-5 bg-transparent text-white text-base placeholder:text-slate-600 focus:outline-none font-medium"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                   <button 
                     type="button"
                     onClick={() => navigate(`/services?search=${encodeURIComponent(searchQuery)}`)}
-                    className="btn-primary py-3 px-6 rounded-xl text-xs font-bold me-1"
+                    className="btn-primary py-4 px-8 rounded-[1.5rem] text-xs font-black uppercase tracking-widest me-1"
                   >
                     Search
                   </button>
@@ -261,10 +261,10 @@ export default function LandingPage() {
       </div>
 
       {/* 3. Core Values (Bento Grid) */}
-      <section className="py-24 px-4 relative overflow-hidden bg-white/[0.03]">
+      <section className="py-24 px-4 relative overflow-hidden glass">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/5 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-white/5 mb-6">
               <Star size={14} className="text-[#22C55E] fill-[#22C55E]" />
               <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#22C55E]">The Khidma Standard</span>
             </div>
@@ -287,9 +287,9 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <div className="bg-white/[0.03] rounded-3xl p-10 border border-white/5 relative group overflow-hidden">
+            <div className="glass rounded-3xl p-10 border border-white/5 relative group overflow-hidden">
               <div className="relative z-10 flex flex-col h-full justify-between">
-                <div className="w-14 h-14 bg-white/[0.03] rounded-2xl flex items-center justify-center shadow-2xl border border-white/5">
+                <div className="w-14 h-14 glass rounded-2xl flex items-center justify-center shadow-2xl border border-white/5">
                   <Clock size={28} className="text-[#22C55E]" />
                 </div>
                 <div>
@@ -299,9 +299,9 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <div className="bg-white/[0.03] rounded-3xl p-10 border border-white/5 relative group overflow-hidden">
+            <div className="glass rounded-3xl p-10 border border-white/5 relative group overflow-hidden">
               <div className="relative z-10 flex flex-col h-full justify-between">
-                <div className="w-14 h-14 bg-white/[0.03] rounded-2xl flex items-center justify-center shadow-2xl border border-white/5">
+                <div className="w-14 h-14 glass rounded-2xl flex items-center justify-center shadow-2xl border border-white/5">
                   <BarChart3 size={28} className="text-[#22C55E]" />
                 </div>
                 <div>
@@ -335,8 +335,8 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 relative">
               <div className="absolute inset-0 bg-gradient-to-tr from-[#22C55E]/10 to-transparent rounded-[3rem] transform -rotate-3 scale-105" />
-              <div className="relative bg-white/[0.03] rounded-[3rem] p-8 border border-white/5 shadow-[0_20px_50px_rgba(8,18,37,0.05)] h-[600px] flex flex-col">
-                <div className="flex items-center justify-between mb-8 pb-6 border-b border-slate-50">
+              <div className="relative glass rounded-[3rem] p-8 border border-white/5 shadow-[0_20px_50px_rgba(8,18,37,0.05)] h-[600px] flex flex-col">
+                <div className="flex items-center justify-between mb-8 pb-6 border-b border-white/[0.05]">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-[#0B1120] rounded-2xl flex items-center justify-center text-[#22C55E] font-extrabold">K</div>
                     <span className="font-extrabold text-lg tracking-tight">Active Dispatch</span>
@@ -345,7 +345,7 @@ export default function LandingPage() {
                 </div>
 
                 <div className="flex-1 overflow-y-auto space-y-4 pr-2">
-                  <div className="bg-white/[0.03] rounded-2xl p-4 border border-white/5">
+                  <div className="glass rounded-2xl p-4 border border-white/5">
                     <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-2">System Notification</p>
                     <p className="text-sm font-bold text-white">Master Plumber dispatched to your coordinates.</p>
                   </div>
@@ -368,7 +368,7 @@ export default function LandingPage() {
                     </div>
                   </div>
 
-                  <div className="bg-white/[0.03] rounded-2xl p-4 border border-white/5 shadow-2xl flex items-center gap-4">
+                  <div className="glass rounded-2xl p-4 border border-white/5 shadow-2xl flex items-center gap-4">
                     <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center">
                       <Search size={20} className="text-slate-400" />
                     </div>
@@ -379,8 +379,8 @@ export default function LandingPage() {
                   </div>
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-slate-50">
-                  <div className="h-12 bg-white/[0.03] rounded-2xl border border-white/5 flex items-center px-4">
+                <div className="mt-6 pt-6 border-t border-white/[0.05]">
+                  <div className="h-12 glass rounded-2xl border border-white/5 flex items-center px-4">
                     <span className="w-2 h-2 rounded-full bg-[#10B981] animate-ping mr-3" />
                     <span className="text-xs font-bold text-slate-400">Tracking telemetry active...</span>
                   </div>
@@ -390,7 +390,7 @@ export default function LandingPage() {
 
             <div className="order-1 lg:order-2 space-y-8">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/10 mb-6 shadow-2xl">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border border-white/10 mb-6 shadow-2xl">
                   <Shield size={14} className="text-white" />
                   <span className="text-xs font-extrabold uppercase tracking-tight text-white">The Premium Edge</span>
                 </div>
@@ -406,7 +406,7 @@ export default function LandingPage() {
                   { title: 'Encrypted Audits', desc: 'Every transaction and interaction is logged in your secure history.' }
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4">
-                    <div className="w-10 h-10 rounded-2xl bg-white/[0.03] border border-white/10 shadow-2xl flex items-center justify-center flex-shrink-0 text-[#22C55E] font-extrabold">
+                    <div className="w-10 h-10 rounded-2xl glass border border-white/10 shadow-2xl flex items-center justify-center flex-shrink-0 text-[#22C55E] font-extrabold">
                       {i + 1}
                     </div>
                     <div>
@@ -427,7 +427,7 @@ export default function LandingPage() {
       </section>
 
       {/* Service Categories Section - High Contrast (Navy Glass on White) */}
-      <section className="py-24 px-4 relative overflow-hidden bg-white/[0.03]">
+      <section className="py-24 px-4 relative overflow-hidden glass">
         {/* Animated Background Lighting (Subtle Blobs) */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-600/5 rounded-full blur-[120px] animate-blob" />
@@ -436,7 +436,7 @@ export default function LandingPage() {
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/5 mb-6 animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-white/5 mb-6 animate-fade-in">
               <Sparkles size={14} className="text-[#22C55E]" />
               <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#22C55E]">Elite Marketplace</span>
             </div>
@@ -529,7 +529,7 @@ export default function LandingPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
-                <button className="w-full sm:w-auto px-8 py-4 bg-white/[0.03] text-white rounded-2xl font-extrabold flex items-center justify-center gap-3 hover:bg-white/5 transition-colors shadow-lg">
+                <button className="w-full sm:w-auto px-8 py-4 glass text-white rounded-2xl font-extrabold flex items-center justify-center gap-3 hover:bg-white/5 transition-colors shadow-lg">
                   <Download size={20} /> Install App
                 </button>
                 <Link to="/signup" className="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 text-white rounded-2xl font-extrabold flex items-center justify-center gap-3 hover:bg-white/5 transition-colors">
@@ -551,7 +551,7 @@ export default function LandingPage() {
                       <p className="text-[10px] font-extrabold uppercase text-[#22C55E] tracking-tight">Good Morning</p>
                       <p className="text-lg font-extrabold text-white">Ahmad</p>
                     </div>
-                    <div className="w-10 h-10 bg-white/[0.03] rounded-2xl shadow-2xl flex justify-center items-center">
+                    <div className="w-10 h-10 glass rounded-2xl shadow-2xl flex justify-center items-center">
                       <div className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
                     </div>
                   </div>
@@ -563,11 +563,11 @@ export default function LandingPage() {
                   </div>
 
                   <div className="grid grid-cols-2 gap-3 flex-1">
-                    <div className="bg-white/[0.03] rounded-2xl shadow-2xl border border-white/5 p-3 flex flex-col justify-center items-center gap-2">
+                    <div className="glass rounded-2xl shadow-2xl border border-white/5 p-3 flex flex-col justify-center items-center gap-2">
                       <Sparkles size={24} className="text-[#22C55E]" />
                       <span className="text-[10px] font-bold text-white">Cleaning</span>
                     </div>
-                    <div className="bg-white/[0.03] rounded-2xl shadow-2xl border border-white/5 p-3 flex flex-col justify-center items-center gap-2">
+                    <div className="glass rounded-2xl shadow-2xl border border-white/5 p-3 flex flex-col justify-center items-center gap-2">
                       <Wrench size={24} className="text-[#22C55E]" />
                       <span className="text-[10px] font-bold text-white">Plumbing</span>
                     </div>
@@ -580,13 +580,13 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works Section - Master Tier UI Elevation */}
-      <section className="py-28 bg-white/[0.03] relative overflow-hidden">
+      <section className="py-28 glass relative overflow-hidden">
         {/* Ambient background watermark/gradient grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-60" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/5 mb-4 animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-white/5 mb-4 animate-fade-in">
               <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]" />
               <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-white">Frictionless Engagement</span>
             </div>
@@ -626,12 +626,12 @@ export default function LandingPage() {
               return (
                 <div 
                   key={item.step} 
-                  className="bg-white/[0.03] rounded-[2rem] p-8 border border-white/5 shadow-[0_12px_40px_-12px_rgba(8,18,37,0.06)] relative z-10 text-center group hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(197,160,89,0.15)] hover:border-[#22C55E]/30 overflow-hidden flex flex-col justify-between"
+                  className="glass rounded-[2rem] p-8 border border-white/5 shadow-[0_12px_40px_-12px_rgba(8,18,37,0.06)] relative z-10 text-center group hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(197,160,89,0.15)] hover:border-[#22C55E]/30 overflow-hidden flex flex-col justify-between"
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-slate-50 to-transparent rounded-bl-full opacity-50 group-hover:from-[#22C55E]/5 transition-colors duration-500 pointer-events-none" />
 
                   <div>
-                    <div className="w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/5 mx-auto flex items-center justify-center relative mb-8 group-hover:bg-[#0B1120] transition-colors duration-500 shadow-inner">
+                    <div className="w-16 h-16 rounded-2xl glass border border-white/5 mx-auto flex items-center justify-center relative mb-8 group-hover:bg-[#0B1120] transition-colors duration-500 shadow-inner">
                       <span className="absolute -top-2.5 bg-[#22C55E] text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full shadow-2xl">
                         STEP {item.step}
                       </span>
@@ -646,7 +646,7 @@ export default function LandingPage() {
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-slate-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="pt-6 mt-6 border-t border-white/[0.05] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-white flex items-center gap-1">
                       System Phase Active <ChevronRight size={12} className="text-[#22C55E]" />
                     </span>
@@ -662,7 +662,7 @@ export default function LandingPage() {
       <section className="py-28 px-4 max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-16 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/5 mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border border-white/5 mb-3">
               <Award size={12} className="text-[#22C55E]" />
               <span className="text-[10px] font-extrabold uppercase tracking-widest text-white">Verified Experts</span>
             </div>
@@ -673,7 +673,7 @@ export default function LandingPage() {
           </div>
           <Link 
             to="/services" 
-            className="group px-6 py-3 rounded-2xl bg-white/[0.03] hover:bg-[#0B1120] border border-white/5 text-xs font-extrabold uppercase tracking-widest text-white hover:text-white transition-all duration-300 flex items-center gap-2 hover:shadow-lg"
+            className="group px-6 py-3 rounded-2xl glass hover:bg-[#0B1120] border border-white/5 text-xs font-extrabold uppercase tracking-widest text-white hover:text-white transition-all duration-300 flex items-center gap-2 hover:shadow-lg"
           >
             <span>Browse Master Profiles</span>
             <ArrowRight size={14} className="text-[#22C55E] transform group-hover:translate-x-1 transition-transform" />
@@ -684,7 +684,7 @@ export default function LandingPage() {
           {FEATURED_PROVIDERS.map((provider, idx) => (
             <div 
               key={provider.name} 
-              className="bg-white/[0.03] rounded-[2rem] p-7 border border-white/5 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-1.5"
+              className="glass rounded-[2rem] p-7 border border-white/5 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-1.5"
             >
               {/* Top ambient tag background strip */}
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#0B1120] via-[#22C55E] to-[#0B1120]" />
@@ -719,7 +719,7 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-slate-50">
+              <div className="flex items-center justify-between pt-4 border-t border-white/[0.05]">
                 <div className="flex items-center gap-1.5">
                   <div className="flex items-center text-amber-400">
                     <Star className="w-4 h-4 fill-amber-400" />
@@ -772,13 +772,13 @@ export default function LandingPage() {
       {/* Testimonials Carousel Section - Premium Executive Look */}
       <section className="py-28 px-4 max-w-5xl mx-auto relative z-10">
         <div className="text-center max-w-xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/5 mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border border-white/5 mb-3">
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#22C55E]">Executive Approval</span>
           </div>
           <h2 className="text-4xl font-extrabold text-white tracking-tight">Patron Attestations</h2>
         </div>
 
-        <div className="relative bg-white/[0.03] rounded-3xl p-10 sm:p-14 border border-white/5 shadow-[0_20px_80px_-15px_rgba(8,18,37,0.08)]">
+        <div className="relative glass rounded-3xl p-10 sm:p-14 border border-white/5 shadow-[0_20px_80px_-15px_rgba(8,18,37,0.08)]">
           <div className="absolute -top-6 left-12 w-12 h-12 rounded-2xl bg-[#22C55E] text-white flex items-center justify-center font-serif text-4xl font-bold shadow-lg select-none">
             &ldquo;
           </div>
@@ -789,13 +789,13 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="mt-10 pt-8 border-t border-slate-50 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
+          <div className="mt-10 pt-8 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
             <div className="text-center sm:text-start">
               <p className="font-extrabold text-base text-white">{TESTIMONIALS[activeTestimonial].name}</p>
               <p className="text-xs text-[#22C55E] font-bold tracking-wide mt-0.5">{TESTIMONIALS[activeTestimonial].role}</p>
             </div>
 
-            <div className="flex items-center gap-1.5 bg-white/[0.03] px-4 py-2 rounded-full border border-white/5">
+            <div className="flex items-center gap-1.5 glass px-4 py-2 rounded-full border border-white/5">
               {[...Array(TESTIMONIALS[activeTestimonial].rating)].map((_, idx) => (
                 <Star key={idx} className="w-4 h-4 fill-amber-400 text-amber-400" />
               ))}
@@ -834,7 +834,7 @@ export default function LandingPage() {
               return (
                 <div 
                   key={index}
-                  className={`bg-white/[0.03] border transition-all duration-300 rounded-2xl overflow-hidden ${
+                  className={`glass border transition-all duration-300 rounded-2xl overflow-hidden ${
                     isOpen ? 'border-[#22C55E] shadow-md' : 'border-white/10 shadow-2xl hover:border-slate-300'
                   }`}
                 >
@@ -940,7 +940,7 @@ export default function LandingPage() {
                 <button 
                   type="button" 
                   onClick={() => alert('Secure node synchronized.')} 
-                  className="bg-[#22C55E] text-white py-3 px-6 text-xs rounded-2xl font-extrabold uppercase tracking-tight hover:bg-white/[0.03] transition-colors flex-shrink-0"
+                  className="bg-[#22C55E] text-white py-3 px-6 text-xs rounded-2xl font-extrabold uppercase tracking-tight hover:glass transition-colors flex-shrink-0"
                 >
                   Sync
                 </button>

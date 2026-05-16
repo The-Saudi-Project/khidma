@@ -67,7 +67,7 @@ export default function CustomerLayout() {
       <div className="flex-1 flex flex-col min-w-0 pb-20 lg:pb-0">
         <header className="hidden lg:flex items-center justify-end gap-4 px-8 py-4 sticky top-0 z-30 bg-[#0B1120]/80 backdrop-blur-md">
           {/* Verified tier indicators preview */}
-          <div className="flex items-center gap-2 px-3 py-1 bg-white/[0.03] rounded-2xl border border-white/5 shadow-2xl text-xs text-slate-500 font-medium me-auto">
+          <div className="flex items-center gap-2 px-3 py-1 glass rounded-2xl border border-white/5 shadow-2xl text-xs text-slate-500 font-medium me-auto">
             <ShieldAlert size={14} className="text-[#10B981]" />
             <span>Encrypted Layer</span>
           </div>
@@ -78,7 +78,7 @@ export default function CustomerLayout() {
             <button
               type="button"
               onClick={() => setNotifOpen((o) => !o)}
-              className="relative p-2.5 bg-white/[0.03] rounded-2xl border border-white/5 shadow-2xl hover:border-white/10 text-slate-300 transition-colors"
+              className="relative p-2.5 glass rounded-2xl border border-white/5 shadow-2xl hover:border-white/10 text-slate-300 transition-colors"
               aria-label="Notifications"
             >
               <Bell size={18} />
@@ -89,14 +89,14 @@ export default function CustomerLayout() {
               )}
             </button>
             {notifOpen && (
-              <div className="absolute end-0 mt-2 w-80 max-h-96 overflow-y-auto rounded-2xl border border-white/5 bg-white/[0.03] shadow-modal z-50 text-start animate-scale-in">
+              <div className="absolute end-0 mt-2 w-80 max-h-96 overflow-y-auto rounded-2xl border border-white/5 glass shadow-modal z-50 text-start animate-scale-in">
                 <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-white/[0.02]/50">
                   <span className="text-xs font-bold text-white uppercase tracking-tight">Notifications</span>
                   <button type="button" className="text-xs text-[#22C55E] font-bold hover:underline" onClick={() => { markAllAsRead(); setNotifOpen(false) }}>
                     {t('actions.markAllRead')}
                   </button>
                 </div>
-                <ul className="divide-y divide-slate-50">
+                <ul className="divide-y divide-white/[0.05]">
                   {notifications.slice(0, 5).map((n) => (
                     <li key={n._id} className="p-3 hover:bg-white/[0.02]/80 transition-colors">
                       <p className="text-xs font-bold text-white">{n.title}</p>
@@ -162,11 +162,11 @@ function SidebarContent({ nav, user, onLogout }) {
       <div className="px-2 mb-10">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-brand-500 rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.3)]">
-            <span className="text-white font-extrabold text-xl tracking-tight">K</span>
+            <span className="text-[#0B1120] font-black text-xl tracking-tight">K</span>
           </div>
           <div>
             <span className="text-white font-extrabold text-xl tracking-tight block leading-none">Khidma</span>
-            <span className="text-[10px] font-bold tracking-[0.1em] uppercase text-brand-400 block mt-1 opacity-80">Patron Shell</span>
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-500 block mt-1 opacity-90">Patron Portal</span>
           </div>
         </div>
       </div>
@@ -177,7 +177,7 @@ function SidebarContent({ nav, user, onLogout }) {
             key={item.to}
             to={item.to}
             className={({ isActive }) =>
-              `sidebar-link flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold transition-all ${isActive ? 'bg-[#22C55E] text-white' : 'text-slate-400 hover:bg-white/5 hover:text-white'}`
+              `sidebar-link flex items-center gap-3 px-4 py-3.5 rounded-2xl text-sm font-bold transition-all duration-200 ${isActive ? 'bg-brand-500 text-[#0B1120] shadow-[0_8px_20px_rgba(34,197,94,0.3)]' : 'text-slate-400 hover:bg-white/5 hover:text-white'}`
             }
           >
             <item.icon size={20} />
@@ -187,7 +187,7 @@ function SidebarContent({ nav, user, onLogout }) {
       </nav>
 
       <div className="mt-auto space-y-4 pt-6 border-t border-white/5">
-        <div className="px-4 py-3 bg-white/[0.03] rounded-2xl border border-white/5 flex items-center gap-3">
+        <div className="px-4 py-3 glass rounded-2xl border border-white/5 flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-brand-500/10 flex items-center justify-center border border-brand-500/20">
             <User size={18} className="text-brand-400" />
           </div>

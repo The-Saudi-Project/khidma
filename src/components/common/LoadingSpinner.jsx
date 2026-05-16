@@ -5,7 +5,7 @@ import { getStatusConfig, PAYMENT_STATUS, TICKET_STATUS } from '../../utils/help
 export default function LoadingSpinner({ fullscreen, size = 24 }) {
   if (fullscreen) {
     return (
-      <div className="fixed inset-0 bg-white/[0.03] flex items-center justify-center z-50">
+      <div className="fixed inset-0 glass flex items-center justify-center z-50">
         <div className="flex flex-col items-center gap-3">
           <Loader2 className="animate-spin text-brand-600" size={32} />
           <p className="text-sm text-slate-500 font-medium">Loading…</p>
@@ -88,7 +88,7 @@ export function StatCard({ label, value, icon: Icon, color = 'blue', trend }) {
     green:  { bg: 'bg-emerald-50', icon: 'text-emerald-600', ring: 'ring-emerald-100' },
     yellow: { bg: 'bg-amber-50',   icon: 'text-amber-600',   ring: 'ring-amber-100' },
     red:    { bg: 'bg-red-50',     icon: 'text-red-500',     ring: 'ring-red-100' },
-    purple: { bg: 'bg-purple-50',  icon: 'text-purple-600',  ring: 'ring-purple-100' },
+    purple: { bg: 'bg-brand-500/10', icon: 'text-brand-500', ring: 'ring-brand-500/20' },
   }
   const c = colors[color] || colors.blue
 

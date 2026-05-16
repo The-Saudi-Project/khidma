@@ -48,7 +48,7 @@ export default function ChangePasswordPage() {
 
   return (
     <div className="min-h-screen bg-[#0B1120] flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white/[0.03] rounded-3xl shadow-modal p-8 border border-white/5">
+      <div className="w-full max-w-md glass rounded-3xl shadow-modal p-8 border border-white/5">
         <h1 className="text-xl font-bold text-white mb-1">Update your password</h1>
         <p className="text-sm text-slate-500 mb-6">You must set a new password before continuing. · يجب تعيين كلمة مرور جديدة.</p>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -57,7 +57,7 @@ export default function ChangePasswordPage() {
             <div className="relative mt-1">
               <input
                 type={show.cur ? 'text' : 'password'}
-                className="input w-full pe-10"
+                className="input-glass w-full pe-10"
                 required
                 value={form.currentPassword}
                 onChange={(e) => setForm({ ...form, currentPassword: e.target.value })}
@@ -72,7 +72,7 @@ export default function ChangePasswordPage() {
             <div className="relative mt-1">
               <input
                 type={show.nw ? 'text' : 'password'}
-                className="input w-full pe-10"
+                className="input-glass w-full pe-10"
                 required
                 value={form.newPassword}
                 onChange={(e) => setForm({ ...form, newPassword: e.target.value })}
@@ -86,7 +86,7 @@ export default function ChangePasswordPage() {
             <label className="text-xs font-semibold text-slate-500">Confirm new password</label>
             <input
               type="password"
-              className="input w-full mt-1"
+              className="input-glass w-full mt-1"
               required
               value={form.confirm}
               onChange={(e) => setForm({ ...form, confirm: e.target.value })}

@@ -41,7 +41,7 @@ export default function AdminSupportPage() {
         {STATUS_FILTERS.map(f => (
           <button key={f.value} onClick={() => { setStatus(f.value); setPage(1) }}
             className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium transition-all
-              ${status === f.value ? 'bg-brand-600 text-white' : 'bg-white/[0.03] border border-white/10 text-slate-400 hover:border-brand-300'}`}>
+              ${status === f.value ? 'bg-brand-600 text-white' : 'glass border border-white/10 text-slate-400 hover:border-brand-300'}`}>
             {f.label}
           </button>
         ))}
@@ -108,7 +108,7 @@ function TicketRow({ ticket, isOpen, onToggle, onUpdated }) {
   }
 
   return (
-    <div className="card overflow-hidden">
+    <div className="glass-card overflow-hidden">
       <button onClick={onToggle}
         className="w-full p-4 flex items-start gap-3 hover:bg-white/5 transition-colors text-left">
         <div className="w-8 h-8 bg-white/5 rounded-2xl flex items-center justify-center flex-shrink-0">
@@ -161,7 +161,7 @@ function TicketRow({ ticket, isOpen, onToggle, onUpdated }) {
                   <button key={s} disabled={updatingStatus || ticket.status === s}
                     onClick={() => handleStatusChange(s)}
                     className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all border
-                      ${ticket.status === s ? 'bg-brand-600 text-white border-brand-600' : 'bg-white/[0.03] border-white/10 text-slate-400 hover:border-brand-300'}`}>
+                      ${ticket.status === s ? 'bg-brand-600 text-white border-brand-600' : 'glass border-white/10 text-slate-400 hover:border-brand-300'}`}>
                     {s.replace('_', ' ')}
                   </button>
                 ))}
@@ -170,7 +170,7 @@ function TicketRow({ ticket, isOpen, onToggle, onUpdated }) {
               {/* Reply */}
               {!['resolved', 'closed'].includes(ticket.status) && (
                 <div className="flex gap-2">
-                  <input className="input flex-1" placeholder="Type your reply…"
+                  <input className="input-glass flex-1" placeholder="Type your reply…"
                     value={reply} onChange={e => setReply(e.target.value)}
                     onKeyDown={e => e.key === 'Enter' && !e.shiftKey && handleReply()} />
                   <button onClick={handleReply} disabled={sending || !reply.trim()} className="btn-primary px-4">

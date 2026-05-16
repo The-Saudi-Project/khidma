@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext'
 import {
   LayoutDashboard, CalendarDays, Settings, Users,
   CreditCard, DollarSign, HeadphonesIcon, LogOut,
-  ShieldCheck, UserPlus, Zap, Crown
+  ShieldCheck, UserPlus, Zap, Crown, User
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import LanguageToggle from './LanguageToggle'
@@ -46,7 +46,7 @@ export default function AdminLayout() {
       <div className="flex-1 flex flex-col min-w-0 pb-20 lg:pb-0">
         <header className="hidden lg:flex items-center justify-end gap-4 px-8 py-4 sticky top-0 z-30 bg-[#0B1120]/80 backdrop-blur-md">
           {/* Signal status verification text */}
-          <div className="flex items-center gap-2 px-3 py-1 bg-white/[0.03] rounded-2xl border border-white/5 shadow-2xl text-xs text-slate-500 font-medium me-auto">
+          <div className="flex items-center gap-2 px-3 py-1 glass rounded-2xl border border-white/5 shadow-2xl text-xs text-slate-500 font-medium me-auto">
             <Zap size={14} className="text-[#8B5CF6]" />
             <span>Encrypted Administration Array Active</span>
           </div>
@@ -98,74 +98,68 @@ function SidebarContent({ user, onLogout }) {
   const NAV = [
     { to: '/admin', label: t('nav.dashboard'), icon: LayoutDashboard, end: true },
     { to: '/admin/bookings', label: t('nav.adminBookings'), icon: CalendarDays },
-    { to: '/admin/payments', label: t('nav.payments'), icon: CreditCard },
-    { to: '/admin/payouts', label: t('nav.payouts'), icon: DollarSign },
     { to: '/admin/services', label: t('nav.adminServices'), icon: Settings },
     { to: '/admin/users', label: t('nav.users'), icon: Users },
     { to: '/admin/provider-applications', label: t('nav.applications'), icon: UserPlus },
-    { to: '/admin/support', label: t('nav.adminSupport'), icon: HeadphonesIcon },
-    { to: '/admin/audit', label: t('nav.audit'), icon: ShieldCheck },
+    { to: '/admin/payments', label: t('nav.payments'), icon: CreditCard },
+    { to: '/admin/payouts', label: t('nav.payouts'), icon: DollarSign },
+    { to: '/admin/support', label: t('nav.support'), icon: HeadphonesIcon },
+    { to: '/admin/audit', label: 'Audit Logs', icon: ShieldCheck },
   ]
 
   return (
-    <div className="flex flex-col h-full">
-      {/* Upper Brand Crown Container */}
-      <div>
-        <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-[#8B5CF6] rounded-2xl flex items-center justify-center text-white font-extrabold text-base shadow-2xl">
-              <Crown size={18} />
-            </div>
-            <div>
-              <span className="font-extrabold text-white text-lg tracking-tight block leading-none">{t('appName')}</span>
-              <span className="text-[9px] font-mono tracking-widest uppercase text-[#8B5CF6] block mt-0.5">Master Node</span>
-            </div>
+    <div className="flex flex-col h-full bg-[#0B1120] border-e border-white/5 p-6 glass">
+      {/* Brand High Tier Header */}
+      <div className="mb-12">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-2xl bg-brand-500/10 flex items-center justify-center border border-brand-500/20">
+            <ShieldCheck className="text-brand-500" size={24} />
+          </div>
+          <div>
+            <h1 className="text-xl font-black text-white tracking-tighter">KHIDMA</h1>
+            <div className="text-[10px] font-bold text-brand-500 uppercase tracking-widest leading-none">ADMIN PORTAL</div>
           </div>
         </div>
-
-        {/* Master Node Cluster Status string */}
-        <div className="mb-5 bg-gradient-to-r from-[#8B5CF6]/10 to-transparent rounded-2xl p-3 border border-[#8B5CF6]/20 flex items-center gap-3">
-          <div className="w-2 h-2 rounded-full bg-[#8B5CF6] animate-pulse flex-shrink-0" />
-          <div className="flex-1 min-w-0">
-            <p className="text-[10px] font-bold text-[#8B5CF6] uppercase tracking-tight">Absolute Authority</p>
-            <p className="text-xs text-slate-300 truncate">Core indices decrypted</p>
-          </div>
-        </div>
-
-        {/* Dense Administration Links Matrix */}
-        <nav className="flex flex-col gap-1 overflow-y-auto max-h-[calc(100vh-320px)] pe-1 custom-scrollbar">
-          {NAV.map(({ to, label, icon: Icon, end }) => (
-            <NavLink key={to} to={to} end={end}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all duration-150 ${
-                  isActive
-                    ? 'bg-[#8B5CF6] text-white shadow-2xl font-extrabold tracking-wide'
-                    : 'text-slate-400 hover:bg-white/5 hover:text-white'
-                }`
-              }>
-              <Icon size={16} />
-              <span>{label}</span>
-            </NavLink>
-          ))}
-        </nav>
       </div>
 
-      {/* Embedded footer operations profile setup */}
-      <div className="pt-4 border-t border-white/10 space-y-2 mt-auto">
-        <div className="bg-white/5 rounded-2xl p-3 flex items-center gap-3 border border-white/5">
-          <Avatar name={user?.name || 'Administrator'} size="sm" />
+      {/* Primary Navigation Array */}
+      <nav className="flex-1 space-y-1.5 overflow-y-auto custom-scrollbar pr-2">
+        {NAV.map(item => (
+          <NavLink
+            key={item.to}
+            to={item.to}
+            end={item.end}
+            className={({ isActive }) => `
+              flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-bold transition-all duration-200
+              ${isActive 
+                ? 'bg-brand-500 text-[#0B1120] shadow-[0_8px_20px_rgba(34,197,94,0.3)]' 
+                : 'text-slate-400 hover:bg-white/5 hover:text-white border border-transparent hover:border-white/5'
+              }
+            `}
+          >
+            <item.icon size={20} />
+            <span>{item.label}</span>
+          </NavLink>
+        ))}
+      </nav>
+
+      {/* Root User Profile Partition */}
+      <div className="mt-auto space-y-4 pt-6 border-t border-white/5">
+        <div className="px-4 py-3 glass rounded-2xl border border-white/5 flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-brand-500/10 flex items-center justify-center border border-brand-500/20">
+            <User size={18} className="text-brand-400" />
+          </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-bold text-white truncate flex items-center gap-1">
-              <span>{user?.name || 'Root Executive'}</span>
-              <ShieldCheck size={12} className="text-[#8B5CF6] flex-shrink-0" />
-            </p>
-            <p className="text-[10px] text-[#10B981] font-mono truncate">Full Escrow Access</p>
+            <div className="text-[11px] font-bold text-white truncate">{user?.name}</div>
+            <div className="text-[10px] text-slate-500 font-medium truncate">{user?.email}</div>
           </div>
         </div>
 
-        <button type="button" onClick={onLogout}
-          className="flex items-center gap-3 w-full px-3.5 py-2.5 rounded-2xl text-xs font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors">
-          <LogOut size={16} />
+        <button
+          onClick={onLogout}
+          className="w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl text-sm font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all"
+        >
+          <LogOut size={20} />
           <span>{t('actions.logout')}</span>
         </button>
       </div>

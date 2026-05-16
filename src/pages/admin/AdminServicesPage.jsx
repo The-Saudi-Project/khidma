@@ -150,7 +150,7 @@ export default function AdminServicesPage() {
               </div>
               <div>
                 <label className="label">Description *</label>
-                <textarea className="input resize-none" rows={3}
+                <textarea className="input-glass resize-none" rows={3}
                   value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} />
               </div>
               <div className="grid grid-cols-2 gap-3">
@@ -180,7 +180,7 @@ export default function AdminServicesPage() {
               </div>
               <div>
                 <label className="label">Service image</label>
-                <input type="file" accept="image/*" className="input py-2" onChange={e => setImageFile(e.target.files[0])} />
+                <input type="file" accept="image/*" className="input-glass py-2" onChange={e => setImageFile(e.target.files[0])} />
               </div>
               <div className="flex items-center gap-2">
                 <input type="checkbox" id="isActive" checked={form.isActive}

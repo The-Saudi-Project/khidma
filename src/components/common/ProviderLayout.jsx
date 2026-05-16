@@ -66,7 +66,7 @@ export default function ProviderLayout() {
       <div className="flex-1 flex flex-col min-w-0 pb-20 lg:pb-0">
         <header className="hidden lg:flex items-center justify-end gap-4 px-8 py-4 sticky top-0 z-30 bg-[#0B1120]/80 backdrop-blur-md">
           {/* Signal active state preview badge */}
-          <div className="flex items-center gap-2 px-3 py-1 bg-white/[0.03] rounded-2xl border border-white/5 shadow-2xl text-xs text-slate-500 font-medium me-auto">
+          <div className="flex items-center gap-2 px-3 py-1 glass rounded-2xl border border-white/5 shadow-2xl text-xs text-slate-500 font-medium me-auto">
             <Zap size={14} className="text-[#10B981]" />
             <span>Telemetry Channel Active</span>
           </div>
@@ -75,7 +75,7 @@ export default function ProviderLayout() {
           
           <div className="relative">
             <button type="button" onClick={() => setNotifOpen((o) => !o)}
-              className="relative p-2.5 bg-white/[0.03] rounded-2xl border border-white/5 shadow-2xl hover:border-white/10 text-slate-300 transition-colors"
+              className="relative p-2.5 glass rounded-2xl border border-white/5 shadow-2xl hover:border-white/10 text-slate-300 transition-colors"
               aria-label="Notifications">
               <Bell size={18} />
               {unreadCount > 0 && (
@@ -85,14 +85,14 @@ export default function ProviderLayout() {
               )}
             </button>
             {notifOpen && (
-              <div className="absolute end-0 mt-2 w-80 max-h-96 overflow-y-auto rounded-2xl border border-white/5 bg-white/[0.03] shadow-modal z-50 text-start animate-scale-in">
+              <div className="absolute end-0 mt-2 w-80 max-h-96 overflow-y-auto rounded-2xl border border-white/5 glass shadow-modal z-50 text-start animate-scale-in">
                 <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-white/[0.02]/50">
                   <span className="text-xs font-bold text-white uppercase tracking-tight">Fleet Tasks</span>
                   <button type="button" className="text-xs text-[#10B981] font-bold hover:underline" onClick={() => { markAllAsRead(); setNotifOpen(false) }}>
                     {t('actions.markAllRead')}
                   </button>
                 </div>
-                <ul className="divide-y divide-slate-50">
+                <ul className="divide-y divide-white/[0.05]">
                   {notifications.slice(0, 5).map((n) => (
                     <li key={n._id} className="p-3 hover:bg-white/[0.02]/80 transition-colors">
                       <p className="text-xs font-bold text-white">{n.title}</p>
@@ -156,6 +156,7 @@ export default function ProviderLayout() {
 // ─────────────────────────────────────────────────────────────────────────────
 function SidebarContent({ user, onLogout, isAvailable, toggleAvailability }) {
   const { t } = useTranslation('common')
+  
   const NAV = [
     { to: '/provider', label: t('nav.dashboard'), icon: LayoutDashboard, end: true },
     { to: '/provider/jobs', label: t('nav.jobs'), icon: Briefcase },
@@ -164,76 +165,72 @@ function SidebarContent({ user, onLogout, isAvailable, toggleAvailability }) {
   ]
 
   return (
-    <div className="flex flex-col h-full">
-      {/* Upper Brand Badge area */}
-      <div>
-        <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-[#10B981] rounded-2xl flex items-center justify-center text-white font-extrabold text-base shadow-2xl">
-              K
-            </div>
-            <div>
-              <span className="font-extrabold text-white text-lg tracking-tight block leading-none">{t('appName')}</span>
-              <span className="text-[9px] font-mono tracking-widest uppercase text-[#10B981] block mt-0.5">Talent Fleet</span>
-            </div>
+    <div className="flex flex-col h-full py-4">
+      <div className="px-2 mb-10">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-brand-500 rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.3)]">
+            <Briefcase size={20} className="text-[#0B1120]" />
+          </div>
+          <div>
+            <span className="text-white font-extrabold text-xl tracking-tight block leading-none">Khidma</span>
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-500 block mt-1 opacity-90">Provider Node</span>
           </div>
         </div>
-
-        {/* Live matching beacon simulator inside workspace shell */}
-        <div className={`mb-6 rounded-2xl p-3 border transition-colors ${isAvailable ? 'bg-gradient-to-r from-[#10B981]/10 to-transparent border-[#10B981]/20' : 'bg-white/5 border-white/10'}`}>
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-[10px] font-bold text-white uppercase tracking-tight">Status</span>
-            <button 
-              onClick={toggleAvailability}
-              className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${isAvailable ? 'bg-[#10B981]' : 'bg-slate-600'}`}
-            >
-              <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white/[0.03] transition-transform ${isAvailable ? 'translate-x-4.5' : 'translate-x-1'}`} />
-            </button>
-          </div>
-          <div className="flex items-center gap-3 mt-1">
-            <div className={`w-2 h-2 rounded-full flex-shrink-0 ${isAvailable ? 'bg-[#10B981] animate-ping' : 'bg-white/[0.02]0'}`} />
-            <div className="flex-1 min-w-0">
-              <p className={`text-xs truncate font-medium ${isAvailable ? 'text-[#10B981]' : 'text-slate-400'}`}>
-                {isAvailable ? 'SLA dispatch active' : 'Offline / Invisible'}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Dynamic navigation matrix */}
-        <nav className="flex flex-col gap-1.5">
-          {NAV.map(({ to, label, icon: Icon, end }) => (
-            <NavLink key={to} to={to} end={end}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-3.5 py-3 rounded-2xl text-xs font-bold transition-all duration-150 ${
-                  isActive
-                    ? 'bg-[#10B981] text-white shadow-2xl font-extrabold tracking-wide'
-                    : 'text-slate-400 hover:bg-white/5 hover:text-white'
-                }`
-              }>
-              <Icon size={18} />
-              <span>{label}</span>
-            </NavLink>
-          ))}
-        </nav>
       </div>
 
-      {/* Embedded footer operations dashboard telemetry */}
-      <div className="pt-4 border-t border-white/10 space-y-2 mt-auto">
-        <div className="bg-white/5 rounded-2xl p-3 flex items-center gap-3 border border-white/5">
-          <Avatar name={user?.name || 'Talent User'} size="sm" />
+      <div className="px-2 mb-8">
+        <button 
+          onClick={toggleAvailability}
+          className={`w-full p-4 rounded-2xl border transition-all flex items-center justify-between group ${
+            isAvailable 
+            ? 'bg-brand-500/10 border-brand-500/30' 
+            : 'bg-white/5 border-white/10 opacity-60'
+          }`}
+        >
+          <div className="flex items-center gap-3">
+            <div className={`w-2 h-2 rounded-full ${isAvailable ? 'bg-brand-500 animate-pulse' : 'glass0'}`} />
+            <span className={`text-xs font-bold uppercase tracking-widest ${isAvailable ? 'text-brand-400' : 'text-slate-400'}`}>
+              {isAvailable ? 'Status: Active' : 'Status: Offline'}
+            </span>
+          </div>
+          <div className={`w-10 h-5 rounded-full relative transition-colors ${isAvailable ? 'bg-brand-500' : 'bg-slate-700'}`}>
+            <div className={`absolute top-1 w-3 h-3 rounded-full bg-white transition-all ${isAvailable ? 'left-6' : 'left-1'}`} />
+          </div>
+        </button>
+      </div>
+
+      <nav className="flex-1 space-y-2">
+        {NAV.map((item) => (
+          <NavLink
+            key={item.to}
+            to={item.to}
+            end={item.end}
+            className={({ isActive }) =>
+              `sidebar-link flex items-center gap-3 px-4 py-3.5 rounded-2xl text-sm font-bold transition-all duration-200 ${isActive ? 'bg-brand-500 text-[#0B1120] shadow-[0_8px_20px_rgba(34,197,94,0.3)]' : 'text-slate-400 hover:bg-white/5 hover:text-white'}`
+            }
+          >
+            <item.icon size={20} />
+            <span className="flex-1">{item.label}</span>
+          </NavLink>
+        ))}
+      </nav>
+
+      <div className="mt-auto space-y-4 pt-6 border-t border-white/5">
+        <div className="px-4 py-3 glass rounded-2xl border border-white/5 flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-brand-500/10 flex items-center justify-center border border-brand-500/20">
+            <User size={18} className="text-brand-400" />
+          </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-bold text-white truncate flex items-center gap-1">
-              <span>{user?.name || 'Verified Tech'}</span>
-              <ShieldCheck size={12} className="text-[#10B981] flex-shrink-0" />
-            </p>
-            <p className="text-[10px] text-[#22C55E] font-mono truncate">Tier-1 Cleared</p>
+            <div className="text-[11px] font-bold text-white truncate">{user?.name}</div>
+            <div className="text-[10px] text-slate-500 font-medium truncate">{user?.email}</div>
           </div>
         </div>
 
-        <button type="button" onClick={onLogout}
-          className="flex items-center gap-3 w-full px-3.5 py-2.5 rounded-2xl text-xs font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors">
-          <LogOut size={16} />
+        <button
+          onClick={onLogout}
+          className="w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl text-sm font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all"
+        >
+          <LogOut size={20} />
           <span>{t('actions.logout')}</span>
         </button>
       </div>

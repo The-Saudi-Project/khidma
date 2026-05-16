@@ -39,7 +39,7 @@ export default function ProviderJobsPage() {
         {FILTERS.map(f => (
           <button key={f.value} onClick={() => { setStatus(f.value); setPage(1) }}
             className={`flex-shrink-0 px-4 py-2 rounded-2xl text-sm font-medium transition-all
-              ${status === f.value ? 'bg-brand-600 text-white' : 'bg-white/[0.03] border border-white/10 text-slate-400 hover:border-brand-300'}`}>
+              ${status === f.value ? 'bg-brand-600 text-white' : 'glass border border-white/10 text-slate-400 hover:border-brand-300'}`}>
             {f.label}
           </button>
         ))}
@@ -49,7 +49,7 @@ export default function ProviderJobsPage() {
         <EmptyState icon={Briefcase} title="No jobs found" description="Jobs assigned to you will appear here" />
       ) : (
         <div className="table-wrapper">
-          <div className="divide-y divide-slate-50">
+          <div className="divide-y divide-white/[0.05]">
             {jobs.map(job => (
               <div key={job._id} onClick={() => navigate(`/provider/jobs/${job._id}`)}
                 className="p-5 hover:bg-white/5 cursor-pointer transition-colors flex items-center gap-4 group">

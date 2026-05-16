@@ -31,7 +31,7 @@ export default function BottomNav() {
   }
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/[0.03] border-t border-white/10 pb-safe z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 glass border-t border-white/10 pb-safe z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
       <div className="flex items-center justify-around px-2 pt-2 pb-1">
         {navItems.map((item) => (
           <NavLink

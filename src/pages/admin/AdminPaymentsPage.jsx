@@ -38,7 +38,7 @@ export default function AdminPaymentsPage() {
         {STATUS_FILTERS.map(f => (
           <button key={f.value} onClick={() => { setStatus(f.value); setPage(1) }}
             className={`px-4 py-2 rounded-2xl text-sm font-medium transition-all
-              ${status === f.value ? 'bg-brand-600 text-white' : 'bg-white/[0.03] border border-white/10 text-slate-400 hover:border-brand-300'}`}>
+              ${status === f.value ? 'bg-brand-600 text-white' : 'glass border border-white/10 text-slate-400 hover:border-brand-300'}`}>
             {f.label}
           </button>
         ))}

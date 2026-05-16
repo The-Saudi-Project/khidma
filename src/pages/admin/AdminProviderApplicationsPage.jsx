@@ -71,7 +71,7 @@ export default function AdminProviderApplicationsPage() {
             type="button"
             onClick={() => { setStatus(s); setPage(1) }}
             className={`px-4 py-2 rounded-2xl text-sm font-semibold capitalize ${
-              status === s ? 'bg-brand-600 text-white' : 'bg-white/[0.03] border border-white/10 text-slate-400'
+              status === s ? 'bg-brand-600 text-white' : 'glass border border-white/10 text-slate-400'
             }`}
           >
             {s}
@@ -84,10 +84,10 @@ export default function AdminProviderApplicationsPage() {
           <p className="text-slate-500 text-center py-12">No applications in this tab.</p>
         )}
         {applications.map((a) => (
-          <div key={a._id} className="rounded-2xl border border-white/5 bg-white/[0.03] overflow-hidden">
+          <div key={a._id} className="rounded-2xl border border-white/5 glass overflow-hidden">
             <button
               type="button"
-              className="w-full flex items-center justify-between p-4 text-left hover:bg-white/[0.03]"
+              className="w-full flex items-center justify-between p-4 text-left hover:glass"
               onClick={() => setOpenId(openId === a._id ? null : a._id)}
             >
               <div>
@@ -109,7 +109,7 @@ export default function AdminProviderApplicationsPage() {
                     <div className="flex-1 flex gap-2">
                       <input
                         type="password"
-                        className="input flex-1 text-sm"
+                        className="input-glass flex-1 text-sm"
                         placeholder="Temp password for new account"
                         value={approvePwd[a._id] || ''}
                         onChange={(e) => setApprovePwd((p) => ({ ...p, [a._id]: e.target.value }))}

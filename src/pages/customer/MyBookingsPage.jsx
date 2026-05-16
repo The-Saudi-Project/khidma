@@ -43,7 +43,7 @@ export default function MyBookingsPage() {
             className={`flex-shrink-0 px-4 py-2 rounded-2xl text-sm font-medium transition-all
               ${status === f.value
                 ? 'bg-brand-600 text-white shadow-2xl'
-                : 'bg-white/[0.03] text-slate-400 border border-white/10 hover:border-brand-300'
+                : 'glass text-slate-400 border border-white/10 hover:border-brand-300'
               }`}>
             {f.label}
           </button>
@@ -61,7 +61,7 @@ export default function MyBookingsPage() {
         />
       ) : (
         <div className="table-wrapper">
-          <div className="divide-y divide-slate-50">
+          <div className="divide-y divide-white/[0.05]">
             {bookings.map(booking => (
               <div key={booking._id}
                 onClick={() => navigate(`/bookings/${booking._id}`)}

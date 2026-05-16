@@ -16,7 +16,7 @@ export default function LanguageToggle({ className = '' }) {
     <button
       type="button"
       onClick={toggle}
-      className={`text-xs font-semibold px-2 py-1 rounded-lg border border-white/10 bg-white/[0.03] hover:bg-white/[0.03] text-slate-300 ${className}`}
+      className={`text-xs font-semibold px-2 py-1 rounded-lg border border-white/10 glass hover:glass text-slate-300 ${className}`}
       aria-label="Toggle language"
     >
       {lang === 'en' ? t('language.ar') : t('language.en')}

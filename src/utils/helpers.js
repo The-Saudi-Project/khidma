@@ -13,7 +13,7 @@ export const formatCurrency = (amount, currency = 'SAR') =>
 // ─── Booking status config ────────────────────────────────────────────────────
 export const BOOKING_STATUS = {
   pending_payment:   { label: 'Pending Payment',   badge: 'badge-yellow', dot: 'bg-amber-400' },
-  payment_uploaded:  { label: 'Payment Uploaded',  badge: 'badge-premium',   dot: 'bg-blue-400' },
+  payment_uploaded:  { label: 'Payment Uploaded',  badge: 'badge-premium',   dot: 'bg-brand-500' },
   payment_confirmed: { label: 'Payment Confirmed', badge: 'badge-premium',   dot: 'bg-brand-500' },
   provider_assigned: { label: 'Provider Assigned', badge: 'badge-purple', dot: 'bg-purple-500' },
   in_progress:       { label: 'In Progress',       badge: 'badge-premium',   dot: 'bg-brand-600' },

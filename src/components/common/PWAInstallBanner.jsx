@@ -94,7 +94,7 @@ export default function PWAInstallBanner() {
           {!isIOS && (
             <button
               onClick={handleInstallClick}
-              className="w-8 h-8 rounded-full bg-[#22C55E] flex items-center justify-center text-white hover:bg-white/[0.03] transition-colors flex-shrink-0"
+              className="w-8 h-8 rounded-full bg-[#22C55E] flex items-center justify-center text-white hover:glass transition-colors flex-shrink-0"
               aria-label="Install App"
             >
               <Download size={16} strokeWidth={2.5} />

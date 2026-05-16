@@ -67,7 +67,7 @@ function NewTicketForm({ onClose, onCreated }) {
   }
 
   return (
-    <div className="card p-5 mb-4 animate-slide-up">
+    <div className="glass-card p-5 mb-4 animate-slide-up">
       <h3 className="font-semibold text-white mb-4">New Support Ticket</h3>
       <div className="space-y-3">
         <div>
@@ -89,7 +89,7 @@ function NewTicketForm({ onClose, onCreated }) {
         </div>
         <div>
           <label className="label">Message *</label>
-          <textarea className="input resize-none" rows={4}
+          <textarea className="input-glass resize-none" rows={4}
             placeholder="Describe your issue in detail…"
             value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} />
         </div>
@@ -129,7 +129,7 @@ function TicketCard({ ticket, isOpen, onToggle, onReply }) {
   }
 
   return (
-    <div className="card overflow-hidden">
+    <div className="glass-card overflow-hidden">
       <button onClick={onToggle} className="w-full p-4 text-left hover:bg-white/5 transition-colors flex items-start gap-3">
         <div className="w-9 h-9 bg-white/5 rounded-2xl flex items-center justify-center flex-shrink-0">
           <MessageCircle size={16} className="text-slate-500" />
@@ -162,7 +162,7 @@ function TicketCard({ ticket, isOpen, onToggle, onReply }) {
               </div>
               {!['resolved', 'closed'].includes(ticket.status) && (
                 <div className="flex gap-2">
-                  <input className="input flex-1" placeholder="Type a reply…"
+                  <input className="input-glass flex-1" placeholder="Type a reply…"
                     value={reply} onChange={e => setReply(e.target.value)}
                     onKeyDown={e => e.key === 'Enter' && handleReply()} />
                   <button onClick={handleReply} disabled={sending || !reply.trim()} className="btn-primary px-3">

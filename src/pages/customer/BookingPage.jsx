@@ -116,7 +116,7 @@ export default function BookingPage() {
         <div className="lg:col-span-7 space-y-6">
           
           {/* Enhanced Wizard Indicator Header */}
-          <div className="bg-white/[0.03] rounded-2xl p-5 border border-white/5 shadow-2xl flex items-center justify-between">
+          <div className="glass rounded-2xl p-5 border border-white/5 shadow-2xl flex items-center justify-between">
             {[
               { num: 1, label: 'Schedule', desc: 'Date & Slot' },
               { num: 2, label: 'Coordinates', desc: 'Address Layer' },
@@ -147,7 +147,7 @@ export default function BookingPage() {
 
           {/* Step 1 — Date & Time Selection */}
           {step === 1 && (
-            <div className="card p-6 space-y-6 animate-slide-up">
+            <div className="glass-card p-6 space-y-6 animate-slide-up">
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <h2 className="text-sm font-bold text-white uppercase tracking-wide flex items-center gap-2">
@@ -185,7 +185,7 @@ export default function BookingPage() {
                       <button key={t} onClick={() => setSelectedTime(t)} type="button"
                         className={`py-2.5 rounded-2xl text-xs font-bold transition-all border ${
                           isSelected ? 'bg-[#22C55E] text-white border-[#22C55E] shadow-2xl font-extrabold' :
-                          'bg-white/[0.03] border-white/10 hover:border-slate-300 text-slate-400'
+                          'glass border-white/10 hover:border-slate-300 text-slate-400'
                         }`}>
                         {t}
                       </button>
@@ -224,13 +224,13 @@ export default function BookingPage() {
 
           {/* Step 2 — Address Input & Real-Time Logistics Simulation */}
           {step === 2 && (
-            <div className="card p-6 space-y-5 animate-slide-up">
+            <div className="glass-card p-6 space-y-5 animate-slide-up">
               <h2 className="text-sm font-bold text-white uppercase tracking-wide flex items-center gap-2">
                 <MapPin size={16} className="text-[#22C55E]" /> Delivery Coordinates
               </h2>
 
               {/* Interactive map preview simulator panel */}
-              <div className="bg-white/[0.03] rounded-2xl p-4 border border-white/10 relative overflow-hidden">
+              <div className="glass rounded-2xl p-4 border border-white/10 relative overflow-hidden">
                 <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1">
@@ -240,7 +240,7 @@ export default function BookingPage() {
                     GPS Active
                   </span>
                 </div>
-                <div className="h-28 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col items-center justify-center text-center p-3 relative">
+                <div className="h-28 rounded-2xl glass border border-white/10 flex flex-col items-center justify-center text-center p-3 relative">
                   <div className="w-8 h-8 rounded-full bg-[#10B981]/20 flex items-center justify-center text-[#10B981] animate-pulse">
                     <MapPin size={16} className="fill-[#10B981] text-white" />
                   </div>
@@ -257,13 +257,13 @@ export default function BookingPage() {
                 <div className="flex gap-2">
                   <button onClick={() => setAddressMode('saved')} type="button"
                     className={`flex-1 py-2 rounded-2xl text-xs font-bold border transition-all ${
-                      addressMode === 'saved' ? 'bg-[#0B1120] text-white border-[#0B1120]' : 'bg-white/[0.03] border-white/10 text-slate-400 hover:bg-white/[0.03]'
+                      addressMode === 'saved' ? 'bg-[#0B1120] text-white border-[#0B1120]' : 'glass border-white/10 text-slate-400 hover:glass'
                     }`}>
                     Saved Profiles
                   </button>
                   <button onClick={() => setAddressMode('new')} type="button"
                     className={`flex-1 py-2 rounded-2xl text-xs font-bold border transition-all ${
-                      addressMode === 'new' ? 'bg-[#0B1120] text-white border-[#0B1120]' : 'bg-white/[0.03] border-white/10 text-slate-400 hover:bg-white/[0.03]'
+                      addressMode === 'new' ? 'bg-[#0B1120] text-white border-[#0B1120]' : 'glass border-white/10 text-slate-400 hover:glass'
                     }`}>
                     New Mapping
                   </button>
@@ -275,7 +275,7 @@ export default function BookingPage() {
                   {savedAddresses.map(addr => (
                     <button key={addr._id} onClick={() => setSelectedAddressId(addr._id)} type="button"
                       className={`w-full p-3.5 rounded-2xl border text-start transition-all ${
-                        selectedAddressId === addr._id ? 'border-[#22C55E] bg-[#22C55E]/5 shadow-2xl' : 'border-white/10 bg-white/[0.03] hover:border-slate-300'
+                        selectedAddressId === addr._id ? 'border-[#22C55E] bg-[#22C55E]/5 shadow-2xl' : 'border-white/10 glass hover:border-slate-300'
                       }`}>
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-[10px] font-extrabold text-white bg-white/5 px-2 py-0.5 rounded tracking-tight uppercase">{addr.label}</span>
@@ -290,24 +290,24 @@ export default function BookingPage() {
                 <div className="space-y-3">
                   <div>
                     <label className="label text-xs">Full Address Descriptor *</label>
-                    <input className="input py-2 text-xs" placeholder="Street, compound number, villa/floor..."
+                    <input className="input-glass py-2 text-xs" placeholder="Street, compound number, villa/floor..."
                       value={newAddress.fullAddress} onChange={e => setNewAddress(a => ({ ...a, fullAddress: e.target.value }))} />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className="label text-xs">Target Hub City *</label>
-                      <input className="input py-2 text-xs" placeholder="Riyadh"
+                      <input className="input-glass py-2 text-xs" placeholder="Riyadh"
                         value={newAddress.city} onChange={e => setNewAddress(a => ({ ...a, city: e.target.value }))} />
                     </div>
                     <div>
                       <label className="label text-xs">District/Area</label>
-                      <input className="input py-2 text-xs" placeholder="Al Olaya"
+                      <input className="input-glass py-2 text-xs" placeholder="Al Olaya"
                         value={newAddress.district} onChange={e => setNewAddress(a => ({ ...a, district: e.target.value }))} />
                     </div>
                   </div>
                   <div>
                     <label className="label text-xs">Access Landmark</label>
-                    <input className="input py-2 text-xs" placeholder="Near Gate 4, adjacent to park..."
+                    <input className="input-glass py-2 text-xs" placeholder="Near Gate 4, adjacent to park..."
                       value={newAddress.landmark} onChange={e => setNewAddress(a => ({ ...a, landmark: e.target.value }))} />
                   </div>
                 </div>
@@ -315,7 +315,7 @@ export default function BookingPage() {
 
               <div>
                 <label className="label text-xs">Secure Dispatch Notes <span className="text-slate-400 font-normal">(Optional)</span></label>
-                <textarea className="input resize-none py-2 text-xs" rows={2}
+                <textarea className="input-glass resize-none py-2 text-xs" rows={2}
                   placeholder="Provide access security clearance or complex layout info..."
                   value={notes} onChange={e => setNotes(e.target.value)} />
               </div>
@@ -329,7 +329,7 @@ export default function BookingPage() {
 
           {/* Step 3 — Secure Summary Review */}
           {step === 3 && (
-            <div className="card p-6 space-y-5 animate-slide-up">
+            <div className="glass-card p-6 space-y-5 animate-slide-up">
               <div className="flex items-center gap-2 border-b border-white/5 pb-3">
                 <ShieldCheck className="w-5 h-5 text-[#10B981]" />
                 <h2 className="text-sm font-bold text-white uppercase tracking-wide">Final Pre-Flight Authorization</h2>
@@ -425,7 +425,7 @@ export default function BookingPage() {
           </div>
 
           {/* Assurance info footer card */}
-          <div className="card p-4 bg-white/5 text-[10px] text-slate-500 space-y-1">
+          <div className="glass-card p-4 bg-white/5 text-[10px] text-slate-500 space-y-1">
             <p className="font-bold text-slate-300">🔒 Zero Fraud Guarantee</p>
             <p>Payments route strictly through escrow accounts with full manual backstop controls.</p>
           </div>

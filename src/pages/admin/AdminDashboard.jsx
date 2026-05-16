@@ -26,97 +26,95 @@ export default function AdminDashboard() {
   return (
     <div className="animate-fade-in pb-12 space-y-8">
       {/* Executive Supreme Master Heading */}
-      <div className="bg-gradient-to-r from-[#0B1120] via-[#162B4E] to-[#0B1120] rounded-3xl p-6 lg:p-8 text-white relative overflow-hidden shadow-2xl border border-white/5">
-        <div className="absolute top-0 end-0 w-72 h-72 bg-[#22C55E]/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
+      <div className="bg-[#0B1120] rounded-[2rem] p-8 lg:p-12 text-white relative overflow-hidden border border-white/5 shadow-2xl">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
 
-        <div className="max-w-xl relative z-10">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#22C55E]/20 text-[#22C55E] font-mono text-[9px] font-extrabold uppercase tracking-widest mb-3 border border-[#22C55E]/30">
-            <Sparkles size={11} /> Root Vault Command
+        <div className="max-w-2xl relative z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 text-brand-400 font-bold text-[10px] uppercase tracking-widest mb-6 border border-brand-500/20">
+            <Sparkles size={12} /> Root Command Center
           </div>
-          <h1 className="text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-none">
-            Master Node Overview
+          <h1 className="text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-none">
+            Infrastructure <span className="text-brand-500">Overview.</span>
           </h1>
-          <p className="text-xs text-slate-300 mt-2 leading-relaxed">
-            Live cryptographic dispatch network streams are unthrottled. Direct administrative triggers for clearing user wire uploads and allocating specialized KSA technician units are arrayed below.
+          <p className="text-sm text-slate-400 mt-4 leading-relaxed font-medium">
+            Live telemetry from the Gulf service cluster is synchronized. Monitor real-time dispatch state, financial clearing, and technician availability modules.
           </p>
         </div>
 
-        {/* Global operational indicators */}
-        <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-            <span className="text-slate-400">Escrow Core System: <strong className="text-white font-bold">Encrypted &amp; Online</strong></span>
+        <div className="mt-10 pt-8 border-t border-white/5 flex flex-wrap items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <div className="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse" />
+            <span className="text-xs font-bold text-slate-300">System Integrity: <span className="text-brand-400">Verified</span></span>
           </div>
-          <span className="text-[10px] text-[#22C55E] font-mono font-bold tracking-widest uppercase">SAR Escrow Vault Base</span>
+          <div className="flex items-center gap-4">
+            <div className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+              Region: KSA Central
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Critical Operational Attention Task widgets */}
-      <div>
-        <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Priority Action Pipelines</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between px-1">
+          <h2 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Priority Dispatch Queues</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           <button type="button" onClick={() => navigate('/admin/payments')}
-            className={`p-5 rounded-3xl border text-start transition-all duration-200 relative overflow-hidden group ${
-              (metrics?.pendingPaymentReview || 0) > 0
-                ? 'bg-red-50/90 border-red-200 shadow-2xl hover:bg-red-50'
-                : 'bg-white/[0.03] border-white/5 hover:border-white/10 shadow-2xl'
+            className={`glass-card !p-8 text-start group relative overflow-hidden ${
+              (metrics?.pendingPaymentReview || 0) > 0 ? 'border-red-500/30 bg-red-500/5' : ''
             }`}>
-            <div className="absolute top-0 end-0 bg-red-500/10 text-red-600 p-2 rounded-bl-2xl">
-              <AlertTriangle size={16} />
-            </div>
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="text-xs font-bold text-white group-hover:text-white">Wire Audit Buffer</span>
+            <div className="flex items-center justify-between mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-red-500/10 transition-colors">
+                <AlertTriangle size={20} className="text-slate-400 group-hover:text-red-400" />
+              </div>
               {(metrics?.pendingPaymentReview || 0) > 0 && (
-                <span className="bg-red-600 text-white font-mono text-[11px] font-extrabold px-2 py-0.5 rounded-full shadow-2xl animate-pulse">
-                  {metrics.pendingPaymentReview}
-                </span>
+                <div className="px-3 py-1 bg-red-500 text-white text-[10px] font-black rounded-full shadow-[0_0_15px_rgba(239,68,68,0.4)]">
+                  {metrics.pendingPaymentReview} Pending
+                </div>
               )}
             </div>
-            <p className="text-[11px] text-slate-500 line-clamp-2">Receipt snapshots awaiting root administrative clearance to transition SLA.</p>
+            <h3 className="text-lg font-extrabold text-white mb-2">Wire Audit Buffer</h3>
+            <p className="text-xs text-slate-400 font-medium leading-relaxed">Snapshot verification required for escrow release.</p>
           </button>
 
           <button type="button" onClick={() => navigate('/admin/bookings')}
-            className={`p-5 rounded-3xl border text-start transition-all duration-200 relative overflow-hidden group ${
-              (metrics?.pendingProviderAssignment || 0) > 0
-                ? 'bg-amber-50/90 border-amber-200 shadow-2xl hover:bg-amber-50'
-                : 'bg-white/[0.03] border-white/5 hover:border-white/10 shadow-2xl'
+            className={`glass-card !p-8 text-start group relative overflow-hidden ${
+              (metrics?.pendingProviderAssignment || 0) > 0 ? 'border-amber-500/30 bg-amber-500/5' : ''
             }`}>
-            <div className="absolute top-0 end-0 bg-amber-500/10 text-amber-600 p-2 rounded-bl-2xl">
-              <Layers size={16} />
-            </div>
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="text-xs font-bold text-white group-hover:text-white">Assign Units</span>
+            <div className="flex items-center justify-between mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-amber-500/10 transition-colors">
+                <Layers size={20} className="text-slate-400 group-hover:text-amber-400" />
+              </div>
               {(metrics?.pendingProviderAssignment || 0) > 0 && (
-                <span className="bg-amber-500 text-white font-mono text-[11px] font-extrabold px-2 py-0.5 rounded-full shadow-2xl animate-pulse">
-                  {metrics.pendingProviderAssignment}
-                </span>
+                <div className="px-3 py-1 bg-amber-500 text-white text-[10px] font-black rounded-full shadow-[0_0_15px_rgba(245,158,11,0.4)]">
+                  {metrics.pendingProviderAssignment} Pending
+                </div>
               )}
             </div>
-            <p className="text-[11px] text-slate-500 line-clamp-2">Paid orders cleared by escrow locked in technician matching queues.</p>
+            <h3 className="text-lg font-extrabold text-white mb-2">Technician Matching</h3>
+            <p className="text-xs text-slate-400 font-medium leading-relaxed">Verified orders awaiting unit allocation.</p>
           </button>
 
           <button type="button" onClick={() => navigate('/admin/provider-applications')}
-            className={`p-5 rounded-3xl border text-start transition-all duration-200 relative overflow-hidden group ${
-              (metrics?.pendingApplications || 0) > 0
-                ? 'bg-blue-50/90 border-blue-200 shadow-2xl hover:bg-blue-50'
-                : 'bg-white/[0.03] border-white/5 hover:border-white/10 shadow-2xl'
+            className={`glass-card !p-8 text-start group relative overflow-hidden ${
+              (metrics?.pendingApplications || 0) > 0 ? 'border-brand-500/30 bg-brand-500/5' : ''
             }`}>
-            <div className="absolute top-0 end-0 bg-blue-500/10 text-blue-600 p-2 rounded-bl-2xl">
-              <UserCheck size={16} />
-            </div>
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="text-xs font-bold text-white group-hover:text-white">Onboarding Nodes</span>
+            <div className="flex items-center justify-between mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-brand-500/10 transition-colors">
+                <UserCheck size={20} className="text-slate-400 group-hover:text-brand-400" />
+              </div>
               {(metrics?.pendingApplications || 0) > 0 && (
-                <span className="bg-blue-600 text-white font-mono text-[11px] font-extrabold px-2 py-0.5 rounded-full shadow-2xl animate-pulse">
-                  {metrics.pendingApplications}
-                </span>
+                <div className="px-3 py-1 bg-brand-500 text-[#0B1120] text-[10px] font-black rounded-full shadow-[0_0_15px_rgba(34,197,94,0.4)]">
+                  {metrics.pendingApplications} Pending
+                </div>
               )}
             </div>
-            <p className="text-[11px] text-slate-500 line-clamp-2">Talent applicants awaiting manual qualification checks.</p>
+            <h3 className="text-lg font-extrabold text-white mb-2">Talent Onboarding</h3>
+            <p className="text-xs text-slate-400 font-medium leading-relaxed">Service partner credentials awaiting audit.</p>
           </button>
-
         </div>
       </div>
 
@@ -124,28 +122,28 @@ export default function AdminDashboard() {
       <div>
         <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Real-Time Multi-Tier Clearing Metrics</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div className="bg-white/[0.03] rounded-3xl p-5 border border-white/5 shadow-2xl relative overflow-hidden">
+          <div className="glass rounded-3xl p-5 border border-white/5 shadow-2xl relative overflow-hidden">
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide block mb-1">Total System Liquidity</span>
             <span className="text-2xl font-extrabold text-white font-mono tracking-tight block">{formatCurrency(metrics?.totalRevenue || 0)}</span>
-            <span className="text-[10px] text-slate-400 block mt-2 pt-2 border-t border-slate-50">Global verified patron charges</span>
+            <span className="text-[10px] text-slate-400 block mt-2 pt-2 border-t border-white/[0.05]">Global verified patron charges</span>
           </div>
 
-          <div className="bg-white/[0.03] rounded-3xl p-5 border border-white/5 shadow-2xl relative overflow-hidden border-b-4 border-b-[#22C55E]">
+          <div className="glass rounded-3xl p-5 border border-white/5 shadow-2xl relative overflow-hidden border-b-4 border-b-[#22C55E]">
             <span className="text-[10px] font-bold text-[#22C55E] uppercase tracking-wide block mb-1">Khidma Capital Reserve</span>
             <span className="text-2xl font-extrabold text-[#22C55E] font-mono tracking-tight block">{formatCurrency(metrics?.platformRevenue || 0)}</span>
-            <span className="text-[10px] text-slate-400 block mt-2 pt-2 border-t border-slate-50">Retained platform commission pool (30%)</span>
+            <span className="text-[10px] text-slate-400 block mt-2 pt-2 border-t border-white/[0.05]">Retained platform commission pool (30%)</span>
           </div>
 
-          <div className="bg-white/[0.03] rounded-3xl p-5 border border-white/5 shadow-2xl relative overflow-hidden border-b-4 border-b-[#10B981]">
+          <div className="glass rounded-3xl p-5 border border-white/5 shadow-2xl relative overflow-hidden border-b-4 border-b-[#10B981]">
             <span className="text-[10px] font-bold text-[#10B981] uppercase tracking-wide block mb-1">Distributed Fleet Remittance</span>
             <span className="text-2xl font-extrabold text-[#10B981] font-mono tracking-tight block">{formatCurrency(metrics?.providerPayouts || 0)}</span>
-            <span className="text-[10px] text-slate-400 block mt-2 pt-2 border-t border-slate-50">Direct technical provider settlements (70%)</span>
+            <span className="text-[10px] text-slate-400 block mt-2 pt-2 border-t border-white/[0.05]">Direct technical provider settlements (70%)</span>
           </div>
         </div>
       </div>
 
       {/* Aggregate Network Dispatch Status Array */}
-      <div className="bg-white/[0.03] rounded-3xl p-6 border border-white/5 shadow-2xl">
+      <div className="glass rounded-3xl p-6 border border-white/5 shadow-2xl">
         <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Network Indices Distribution</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div className="bg-white/5 rounded-2xl p-4 border border-white/5 text-center">
@@ -177,7 +175,7 @@ export default function AdminDashboard() {
           </button>
         </div>
 
-        <div className="bg-white/[0.03] rounded-3xl border border-white/5 shadow-2xl overflow-hidden">
+        <div className="glass rounded-3xl border border-white/5 shadow-2xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
@@ -189,7 +187,7 @@ export default function AdminDashboard() {
                   <th className="py-3 px-4 text-right">Escrow Quoted</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-50 text-xs">
+              <tbody className="divide-y divide-white/[0.05] text-xs">
                 {recentBookings?.map(b => (
                   <tr key={b._id} onClick={() => navigate(`/admin/bookings/${b._id}`)}
                     className="hover:bg-white/5 cursor-pointer transition-colors group">

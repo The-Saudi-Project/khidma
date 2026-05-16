@@ -60,7 +60,7 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white/[0.03] flex flex-row-reverse">
+    <div className="min-h-screen glass flex flex-row-reverse">
       {/* ───────────────────────────────────────────────────────────────────────────── */}
       {/* RIGHT PANEL: Value Prop & Branding (Hidden on mobile) */}
       {/* ───────────────────────────────────────────────────────────────────────────── */}
@@ -158,7 +158,7 @@ export default function SignupPage() {
               onClick={() => setRole('customer')}
               className={`flex-1 py-2.5 text-sm font-bold rounded-lg transition-all ${
                 form.role === 'customer' 
-                  ? 'bg-white/[0.03] text-white shadow-[0_2px_8px_rgba(8,18,37,0.08)]' 
+                  ? 'glass text-white shadow-[0_2px_8px_rgba(8,18,37,0.08)]' 
                   : 'text-slate-500 hover:text-slate-300'
               }`}
             >
@@ -168,7 +168,7 @@ export default function SignupPage() {
               onClick={() => setRole('provider')}
               className={`flex-1 py-2.5 text-sm font-bold rounded-lg transition-all ${
                 form.role === 'provider' 
-                  ? 'bg-white/[0.03] text-white shadow-[0_2px_8px_rgba(8,18,37,0.08)]' 
+                  ? 'glass text-white shadow-[0_2px_8px_rgba(8,18,37,0.08)]' 
                   : 'text-slate-500 hover:text-slate-300'
               }`}
             >
@@ -180,7 +180,7 @@ export default function SignupPage() {
             <div>
               <label className="block text-sm font-bold text-slate-300 mb-1.5">Full name</label>
               <input 
-                className={`w-full px-4 py-3 rounded-2xl border bg-white/[0.03] border-white/10 text-white focus:bg-white/[0.03] focus:ring-2 focus:ring-[#22C55E] focus:border-[#22C55E] transition-all font-medium placeholder:font-normal ${errors.name ? 'border-red-400 focus:ring-red-400 focus:border-red-400' : ''}`}
+                className={`w-full px-4 py-3 rounded-2xl border glass border-white/10 text-white focus:glass focus:ring-2 focus:ring-[#22C55E] focus:border-[#22C55E] transition-all font-medium placeholder:font-normal ${errors.name ? 'border-red-400 focus:ring-red-400 focus:border-red-400' : ''}`}
                 placeholder="Ahmed Al-Rashid"
                 value={form.name} onChange={set('name')} autoComplete="name" 
               />
@@ -190,7 +190,7 @@ export default function SignupPage() {
             <div>
               <label className="block text-sm font-bold text-slate-300 mb-1.5">Email address</label>
               <input type="email" 
-                className={`w-full px-4 py-3 rounded-2xl border bg-white/[0.03] border-white/10 text-white focus:bg-white/[0.03] focus:ring-2 focus:ring-[#22C55E] focus:border-[#22C55E] transition-all font-medium placeholder:font-normal ${errors.email ? 'border-red-400 focus:ring-red-400 focus:border-red-400' : ''}`}
+                className={`w-full px-4 py-3 rounded-2xl border glass border-white/10 text-white focus:glass focus:ring-2 focus:ring-[#22C55E] focus:border-[#22C55E] transition-all font-medium placeholder:font-normal ${errors.email ? 'border-red-400 focus:ring-red-400 focus:border-red-400' : ''}`}
                 placeholder="you@example.com" value={form.email} onChange={set('email')} autoComplete="email" 
               />
               {errors.email && <p className="text-xs text-red-500 font-bold mt-1.5">{errors.email}</p>}
@@ -199,7 +199,7 @@ export default function SignupPage() {
             <div>
               <label className="block text-sm font-bold text-slate-300 mb-1.5">Phone number <span className="text-slate-400 font-normal">(optional)</span></label>
               <input type="tel" 
-                className="w-full px-4 py-3 rounded-2xl border bg-white/[0.03] border-white/10 text-white focus:bg-white/[0.03] focus:ring-2 focus:ring-[#22C55E] focus:border-[#22C55E] transition-all font-medium placeholder:font-normal"
+                className="w-full px-4 py-3 rounded-2xl border glass border-white/10 text-white focus:glass focus:ring-2 focus:ring-[#22C55E] focus:border-[#22C55E] transition-all font-medium placeholder:font-normal"
                 placeholder="+966 5X XXX XXXX" value={form.phone} onChange={set('phone')} autoComplete="tel" 
               />
             </div>
@@ -208,7 +208,7 @@ export default function SignupPage() {
               <label className="block text-sm font-bold text-slate-300 mb-1.5">Password</label>
               <div className="relative">
                 <input type={showPass ? 'text' : 'password'}
-                  className={`w-full px-4 py-3 rounded-2xl border bg-white/[0.03] border-white/10 text-white focus:bg-white/[0.03] focus:ring-2 focus:ring-[#22C55E] focus:border-[#22C55E] transition-all font-medium placeholder:font-normal pr-12 ${errors.password ? 'border-red-400 focus:ring-red-400 focus:border-red-400' : ''}`}
+                  className={`w-full px-4 py-3 rounded-2xl border glass border-white/10 text-white focus:glass focus:ring-2 focus:ring-[#22C55E] focus:border-[#22C55E] transition-all font-medium placeholder:font-normal pr-12 ${errors.password ? 'border-red-400 focus:ring-red-400 focus:border-red-400' : ''}`}
                   placeholder="Min. 8 characters" value={form.password} onChange={set('password')} />
                 <button type="button" onClick={() => setShowPass(!showPass)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-400 transition-colors">
@@ -226,7 +226,7 @@ export default function SignupPage() {
           <div className="mt-8 text-center">
             <p className="text-sm text-slate-500 font-medium">
               Already have an account?{' '}
-              <Link to="/login" className="text-[#22C55E] font-bold hover:text-[#b08e4d] transition-colors">
+              <Link to="/login" className="text-brand-500 font-bold hover:text-brand-400 transition-colors">
                 Sign in
               </Link>
             </p>

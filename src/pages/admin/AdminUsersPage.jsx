@@ -60,14 +60,14 @@ export default function AdminUsersPage() {
       <div className="flex gap-3 mb-4 flex-wrap">
         <form onSubmit={e => { e.preventDefault(); setSearch(searchInput); setPage(1) }} className="relative">
           <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-          <input className="input pl-9 py-2 text-sm w-60" placeholder="Search by name or email…"
+          <input className="input-glass pl-9 py-2 text-sm w-60" placeholder="Search by name or email…"
             value={searchInput} onChange={e => setSearchInput(e.target.value)} />
         </form>
         <div className="flex gap-2">
           {['', 'customer', 'provider', 'admin'].map(r => (
             <button key={r} onClick={() => { setRole(r); setPage(1) }}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all capitalize
-                ${role === r ? 'bg-brand-600 text-white' : 'bg-white/[0.03] border border-white/10 text-slate-400 hover:border-brand-300'}`}>
+                ${role === r ? 'bg-brand-600 text-white' : 'glass border border-white/10 text-slate-400 hover:border-brand-300'}`}>
               {r || 'All'}
             </button>
           ))}

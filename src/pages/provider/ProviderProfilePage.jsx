@@ -55,7 +55,7 @@ export default function ProviderProfilePage() {
       </div>
 
       {/* Availability toggle */}
-      <div className="card p-5 mb-4 flex items-center gap-4">
+      <div className="glass-card p-5 mb-4 flex items-center gap-4">
         <div className={`w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0 ${isAvailable ? 'bg-emerald-50' : 'bg-white/5'}`}>
           {isAvailable
             ? <ToggleRight size={20} className="text-emerald-600" />
@@ -78,7 +78,7 @@ export default function ProviderProfilePage() {
           { label: 'Reviews', value: user.providerProfile?.totalReviews || 0 },
           { label: 'Completed', value: user.providerProfile?.completedJobs || 0 },
         ].map(s => (
-          <div key={s.label} className="card p-3 text-center">
+          <div key={s.label} className="glass-card p-3 text-center">
             <p className="text-lg font-bold text-white">{s.value}</p>
             <p className="text-xs text-slate-400">{s.label}</p>
           </div>
@@ -86,7 +86,7 @@ export default function ProviderProfilePage() {
       </div>
 
       {/* Edit form */}
-      <div className="card p-5 space-y-4">
+      <div className="glass-card p-5 space-y-4">
         <h3 className="font-semibold text-white">Personal Information</h3>
         <div>
           <label className="label">Full name</label>
@@ -100,7 +100,7 @@ export default function ProviderProfilePage() {
         </div>
         <div>
           <label className="label">Bio</label>
-          <textarea className="input resize-none" rows={3} value={profileForm.bio}
+          <textarea className="input-glass resize-none" rows={3} value={profileForm.bio}
             onChange={e => setForm(f => ({ ...(f || profileForm), bio: e.target.value }))}
             placeholder="Describe your experience and skills…" />
         </div>

@@ -67,7 +67,7 @@ export default function ServiceDetailPage() {
 
       {/* Features */}
       {service.features?.length > 0 && (
-        <div className="card p-5 mb-6">
+        <div className="glass-card p-5 mb-6">
           <h3 className="font-semibold text-slate-200 mb-3">What's included</h3>
           <ul className="space-y-2">
             {service.features.map((f, i) => (

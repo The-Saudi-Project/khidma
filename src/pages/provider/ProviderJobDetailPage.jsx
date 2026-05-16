@@ -111,7 +111,7 @@ export default function ProviderJobDetailPage() {
       )}
 
       {/* Earnings card */}
-      <div className="card p-5 mb-4 bg-emerald-50 border-emerald-100">
+      <div className="glass-card p-5 mb-4 bg-emerald-50 border-emerald-100">
         <p className="text-sm text-emerald-700 font-medium mb-1">Your Earnings</p>
         <p className="text-3xl font-bold text-emerald-700">{formatCurrency(booking.providerEarning)}</p>
         <p className="text-xs text-emerald-600 mt-1">
@@ -123,7 +123,7 @@ export default function ProviderJobDetailPage() {
       </div>
 
       {/* Job details */}
-      <div className="card p-5 mb-4 space-y-3">
+      <div className="glass-card p-5 mb-4 space-y-3">
         <h3 className="section-title">Job Details</h3>
         <DetailRow icon={Calendar} label="Date" value={formatDate(booking.scheduledDate)} />
         <DetailRow icon={Clock} label="Time" value={booking.scheduledTime} />
@@ -136,7 +136,7 @@ export default function ProviderJobDetailPage() {
       </div>
 
       {/* Customer info */}
-      <div className="card p-5 mb-4 space-y-3">
+      <div className="glass-card p-5 mb-4 space-y-3">
         <h3 className="section-title">Customer</h3>
         <DetailRow icon={User} label="Name" value={booking.customer?.name} />
         {booking.customer?.phone && (
@@ -145,7 +145,7 @@ export default function ProviderJobDetailPage() {
       </div>
 
       {/* Timeline */}
-      <div className="card p-5">
+      <div className="glass-card p-5">
         <h3 className="section-title">Timeline</h3>
         <div className="space-y-3">
           {booking.timeline?.map((e, i) => (

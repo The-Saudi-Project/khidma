@@ -31,69 +31,69 @@ export default function ProviderDashboard() {
   return (
     <div className="animate-fade-in pb-12 space-y-8">
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-[#0B1120] via-[#122442] to-[#0B1120] rounded-3xl p-6 lg:p-8 text-white relative overflow-hidden shadow-2xl">
-        {/* Subtle radial light backstop */}
-        <div className="absolute -top-20 -end-20 w-64 h-64 bg-[#22C55E]/10 rounded-full blur-3xl" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
+      {/* Welcome Banner */}
+      <div className="bg-[#0B1120] rounded-[2rem] p-8 lg:p-12 text-white relative overflow-hidden border border-white/5 shadow-2xl">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-xl relative z-10">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-[#22C55E] uppercase tracking-widest mb-3">
-            <Sparkles size={12} /> Live Gulf Operations
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 text-brand-400 font-bold text-[10px] uppercase tracking-widest mb-6 border border-brand-500/20">
+            <Sparkles size={12} /> Live Operations Center
           </div>
-          <h1 className="text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-none">
-            Welcome back, {user?.name?.split(' ')[0] || 'Technician'} 👋
+          <h1 className="text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-none">
+            Welcome back, <span className="text-brand-500">{user?.name?.split(' ')[0] || 'Partner'}.</span>
           </h1>
-          <p className="text-xs lg:text-sm text-slate-300 mt-2 leading-relaxed">
-            Your automated assignment matrices are synchronized. Monitor your custom regional dispatch coordinates and instantaneous clearing splits below.
+          <p className="text-sm text-slate-400 mt-4 leading-relaxed font-medium">
+            Your automated dispatch matrices are synchronized. Monitor your custom regional coordinates and instantaneous clearing splits.
           </p>
         </div>
 
-        {/* Real-time readiness gauge footer element */}
-        <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#10B981] ring-4 ring-[#10B981]/20" />
-            <span>Escrow Buffer: <strong className="text-white font-bold">100% Guaranteed</strong></span>
+        <div className="mt-10 pt-8 border-t border-white/5 flex flex-wrap items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <div className="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse" />
+            <span className="text-xs font-bold text-slate-300">Escrow Buffer: <span className="text-brand-400">100% Guaranteed</span></span>
           </div>
-          <span className="font-mono text-[11px] text-[#22C55E]">KSA Hub Standard Routing</span>
+          <div className="flex items-center gap-4">
+            <div className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+              Region: KSA Hub Standard
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Luxury KPI Metric Gauge Container */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white/[0.03] rounded-3xl p-5 border border-white/5 shadow-2xl relative overflow-hidden group hover:border-[#22C55E]/40 transition-colors">
-          <div className="absolute top-0 end-0 bg-white/[0.03] p-2 rounded-bl-2xl text-slate-400 group-hover:bg-[#22C55E]/10 group-hover:text-[#22C55E] transition-colors">
-            <TrendingUp size={16} />
+        <div className="glass-card !p-8 group">
+          <div className="flex items-center justify-between mb-6">
+            <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-brand-500/10 transition-colors">
+              <TrendingUp size={20} className="text-slate-400 group-hover:text-brand-400" />
+            </div>
+            <span className="text-[10px] font-black text-brand-400 uppercase tracking-widest px-2 py-1 bg-brand-500/10 rounded-lg">Cleared</span>
           </div>
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tight block mb-1">Total Cleared Earnings</p>
-          <p className="text-2xl font-extrabold text-white font-mono tracking-tight">{formatCurrency(earnings.totalEarned || 0)}</p>
-          <div className="mt-3 flex items-center justify-between text-[10px] text-slate-400 pt-2 border-t border-slate-50">
-            <span>Direct Payout Flow</span>
-            <span className="text-[#10B981] font-bold">Cleared</span>
-          </div>
+          <p className="text-[11px] font-bold text-slate-500 uppercase tracking-tight block mb-1">Total Cleared Earnings</p>
+          <p className="text-3xl font-extrabold text-white font-mono tracking-tight">{formatCurrency(earnings.totalEarned || 0)}</p>
         </div>
 
-        <div className="bg-white/[0.03] rounded-3xl p-5 border border-white/5 shadow-2xl relative overflow-hidden group hover:border-[#22C55E]/40 transition-colors">
-          <div className="absolute top-0 end-0 bg-white/[0.03] p-2 rounded-bl-2xl text-slate-400 group-hover:bg-amber-50 group-hover:text-amber-500 transition-colors">
-            <Clock size={16} />
+        <div className="glass-card !p-8 group border-amber-500/20 bg-amber-500/[0.02]">
+          <div className="flex items-center justify-between mb-6">
+            <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-amber-500/10 transition-colors">
+              <Clock size={20} className="text-slate-400 group-hover:text-amber-400" />
+            </div>
+            <span className="text-[10px] font-black text-amber-400 uppercase tracking-widest px-2 py-1 bg-amber-500/10 rounded-lg">Pending</span>
           </div>
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tight block mb-1">Escrow Awaiting Handshake</p>
-          <p className="text-2xl font-extrabold text-amber-600 font-mono tracking-tight">{formatCurrency(earnings.pendingEarnings || 0)}</p>
-          <div className="mt-3 flex items-center justify-between text-[10px] text-slate-400 pt-2 border-t border-slate-50">
-            <span>SLA Delivery Backstop</span>
-            <span className="text-amber-500 font-bold">Pending Execution</span>
-          </div>
+          <p className="text-[11px] font-bold text-slate-500 uppercase tracking-tight block mb-1">Escrow Awaiting Handshake</p>
+          <p className="text-3xl font-extrabold text-amber-500 font-mono tracking-tight">{formatCurrency(earnings.pendingEarnings || 0)}</p>
         </div>
 
-        <div className="bg-white/[0.03] rounded-3xl p-5 border border-white/5 shadow-2xl relative overflow-hidden group hover:border-[#22C55E]/40 transition-colors">
-          <div className="absolute top-0 end-0 bg-white/[0.03] p-2 rounded-bl-2xl text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-500 transition-colors">
-            <DollarSign size={16} />
+        <div className="glass-card !p-8 group border-brand-400/20 bg-brand-400/[0.02]">
+          <div className="flex items-center justify-between mb-6">
+            <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-brand-400/10 transition-colors">
+              <DollarSign size={20} className="text-slate-400 group-hover:text-brand-300" />
+            </div>
+            <span className="text-[10px] font-black text-brand-300 uppercase tracking-widest px-2 py-1 bg-brand-400/10 rounded-lg">Deposited</span>
           </div>
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tight block mb-1">Total Vault Deposits</p>
-          <p className="text-2xl font-extrabold text-blue-600 font-mono tracking-tight">{formatCurrency(earnings.totalPaidOut || 0)}</p>
-          <div className="mt-3 flex items-center justify-between text-[10px] text-slate-400 pt-2 border-t border-slate-50">
-            <span>Transferred to Account</span>
-            <span className="text-blue-500 font-bold">Locked</span>
-          </div>
+          <p className="text-[11px] font-bold text-slate-500 uppercase tracking-tight block mb-1">Total Vault Deposits</p>
+          <p className="text-3xl font-extrabold text-brand-300 font-mono tracking-tight">{formatCurrency(earnings.totalPaidOut || 0)}</p>
         </div>
       </div>
 
@@ -113,8 +113,8 @@ export default function ProviderDashboard() {
         {jobsLoading ? (
           <InlineLoader />
         ) : activeJobs.length === 0 ? (
-          <div className="bg-white/[0.03] rounded-3xl p-10 border border-white/5 text-center space-y-3 shadow-2xl">
-            <div className="w-12 h-12 rounded-2xl bg-white/[0.03] flex items-center justify-center mx-auto text-slate-400">
+          <div className="glass rounded-3xl p-10 border border-white/5 text-center space-y-3 shadow-2xl">
+            <div className="w-12 h-12 rounded-2xl glass flex items-center justify-center mx-auto text-slate-400">
               <Compass size={24} />
             </div>
             <div>
@@ -126,10 +126,10 @@ export default function ProviderDashboard() {
           <div className="space-y-3">
             {activeJobs.map(job => (
               <div key={job._id} onClick={() => navigate(`/provider/jobs/${job._id}`)}
-                className="bg-white/[0.03] rounded-2xl p-4 border border-white/5 hover:border-[#22C55E]/40 cursor-pointer transition-all shadow-2xl hover:shadow-md group flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                className="glass rounded-2xl p-4 border border-white/5 hover:border-[#22C55E]/40 cursor-pointer transition-all shadow-2xl hover:shadow-md group flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 
                 <div className="flex items-start gap-3.5 min-w-0">
-                  <div className="w-10 h-10 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center flex-shrink-0 text-slate-400 group-hover:bg-[#0B1120] group-hover:text-[#22C55E] transition-colors">
+                  <div className="w-10 h-10 rounded-2xl glass border border-white/5 flex items-center justify-center flex-shrink-0 text-slate-400 group-hover:bg-[#0B1120] group-hover:text-[#22C55E] transition-colors">
                     <Briefcase size={18} />
                   </div>
                   <div className="min-w-0">
@@ -156,7 +156,7 @@ export default function ProviderDashboard() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between sm:justify-end gap-6 pt-3 sm:pt-0 border-t sm:border-0 border-slate-50 flex-shrink-0">
+                <div className="flex items-center justify-between sm:justify-end gap-6 pt-3 sm:pt-0 border-t sm:border-0 border-white/[0.05] flex-shrink-0">
                   <div className="text-start sm:text-right">
                     <p className="text-xs font-mono font-extrabold text-[#10B981]">
                       {formatCurrency(job.providerEarning || (job.totalAmount ? job.totalAmount * 0.7 : 0))}
@@ -164,7 +164,7 @@ export default function ProviderDashboard() {
                     <p className="text-[9px] text-slate-400 uppercase tracking-widest font-bold">Guaranteed Split</p>
                   </div>
                   
-                  <div className="w-7 h-7 rounded-2xl bg-white/[0.03] group-hover:bg-[#22C55E]/10 flex items-center justify-center text-slate-400 group-hover:text-[#22C55E] transition-colors">
+                  <div className="w-7 h-7 rounded-2xl glass group-hover:bg-[#22C55E]/10 flex items-center justify-center text-slate-400 group-hover:text-[#22C55E] transition-colors">
                     <ChevronRight size={14} />
                   </div>
                 </div>

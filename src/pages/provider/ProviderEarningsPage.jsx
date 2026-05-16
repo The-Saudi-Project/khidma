@@ -42,7 +42,7 @@ export default function ProviderEarningsPage() {
       <div className="mb-8">
         <h2 className="text-lg font-bold text-white mb-4">Pending Payments ({pendingBookings.length})</h2>
         {pendingBookings.length === 0 ? (
-          <div className="card p-6 text-center text-slate-400 text-sm">No pending payments</div>
+          <div className="glass-card p-6 text-center text-slate-400 text-sm">No pending payments</div>
         ) : (
           <div className="table-wrapper">
             <table className="table">
@@ -73,7 +73,7 @@ export default function ProviderEarningsPage() {
       <div>
         <h2 className="text-lg font-bold text-white mb-4">Payout History</h2>
         {!payoutHistory || payoutHistory.length === 0 ? (
-          <div className="card p-6 text-center text-slate-400 text-sm">No payouts yet</div>
+          <div className="glass-card p-6 text-center text-slate-400 text-sm">No payouts yet</div>
         ) : (
           <div className="table-wrapper">
             <table className="table">
