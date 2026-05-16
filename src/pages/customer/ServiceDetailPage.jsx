@@ -22,7 +22,7 @@ export default function ServiceDetailPage() {
 
   return (
     <div className="animate-fade-in max-w-2xl">
-      <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 mb-6">
+      <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-300 mb-6">
         <ArrowLeft size={16} /> Back to services
       </button>
 
@@ -40,11 +40,11 @@ export default function ServiceDetailPage() {
       {/* Info */}
       <div className="flex items-start justify-between gap-4 mb-4">
         <div>
-          <span className="badge-blue mb-2">{service.category}</span>
-          <h1 className="text-2xl font-bold text-slate-900 mt-2">{service.name}</h1>
+          <span className="badge-premium mb-2">{service.category}</span>
+          <h1 className="text-2xl font-bold text-white mt-2">{service.name}</h1>
         </div>
         <div className="text-right flex-shrink-0">
-          <p className="text-2xl font-bold text-slate-900">{formatCurrency(service.price)}</p>
+          <p className="text-2xl font-bold text-white">{formatCurrency(service.price)}</p>
           <p className="text-xs text-slate-400">
             {service.priceType === 'starting_from' ? 'starting from' :
              service.priceType === 'hourly' ? 'per hour' : 'fixed price'}
@@ -63,16 +63,16 @@ export default function ServiceDetailPage() {
         <span>{service.totalBookings} bookings</span>
       </div>
 
-      <p className="text-slate-600 leading-relaxed mb-6">{service.description}</p>
+      <p className="text-slate-400 leading-relaxed mb-6">{service.description}</p>
 
       {/* Features */}
       {service.features?.length > 0 && (
         <div className="card p-5 mb-6">
-          <h3 className="font-semibold text-slate-800 mb-3">What's included</h3>
+          <h3 className="font-semibold text-slate-200 mb-3">What's included</h3>
           <ul className="space-y-2">
             {service.features.map((f, i) => (
-              <li key={i} className="flex items-center gap-2.5 text-sm text-slate-600">
-                <CheckCircle size={15} className="text-emerald-500 flex-shrink-0" />
+              <li key={i} className="flex items-center gap-2.5 text-sm text-slate-400">
+                <CheckCircle size={15} className="text-brand-400 flex-shrink-0" />
                 {f}
               </li>
             ))}

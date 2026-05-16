@@ -30,10 +30,10 @@ export default function AdminLayout() {
   }
 
   return (
-    <div className="min-h-screen bg-surface-50 flex">
+    <div className="min-h-screen bg-[#0B1120] flex">
       {/* Floating Navy shell wrapper tailored for supreme administrative presence */}
       <aside className="hidden lg:flex flex-col w-72 p-4 sticky top-0 h-screen flex-shrink-0">
-        <div className="flex-1 bg-[#081225] rounded-3xl p-5 flex flex-col justify-between border border-white/10 shadow-glass text-white relative overflow-hidden">
+        <div className="flex-1 bg-[#0B1120] rounded-3xl p-5 flex flex-col justify-between border border-white/10 shadow-2xl text-white relative overflow-hidden">
           {/* Subtle purple/gold backstop bloom */}
           <div className="absolute top-0 end-0 w-32 h-32 bg-[#8B5CF6]/10 rounded-full blur-2xl pointer-events-none" />
 
@@ -44,9 +44,9 @@ export default function AdminLayout() {
       {/* Principal workspace viewport */}
       {/* Added pb-20 to ensure content isn't hidden behind the BottomNav on mobile */}
       <div className="flex-1 flex flex-col min-w-0 pb-20 lg:pb-0">
-        <header className="hidden lg:flex items-center justify-end gap-4 px-8 py-4 sticky top-0 z-30 bg-surface-50/80 backdrop-blur-md">
+        <header className="hidden lg:flex items-center justify-end gap-4 px-8 py-4 sticky top-0 z-30 bg-[#0B1120]/80 backdrop-blur-md">
           {/* Signal status verification text */}
-          <div className="flex items-center gap-2 px-3 py-1 bg-white rounded-xl border border-slate-100 shadow-sm text-xs text-slate-500 font-medium me-auto">
+          <div className="flex items-center gap-2 px-3 py-1 bg-white/[0.03] rounded-2xl border border-white/5 shadow-2xl text-xs text-slate-500 font-medium me-auto">
             <Zap size={14} className="text-[#8B5CF6]" />
             <span>Encrypted Administration Array Active</span>
           </div>
@@ -55,16 +55,24 @@ export default function AdminLayout() {
         </header>
 
         {/* Mobile top structural header - Minimalist */}
-        <header className="lg:hidden sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-100 px-4 py-3 flex items-center justify-between">
+        <header className="lg:hidden sticky top-0 z-30 bg-white/5 backdrop-blur-md border-b border-white/5 px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#8B5CF6] rounded-lg flex items-center justify-center font-black text-white">
+            <div className="w-8 h-8 bg-[#8B5CF6] rounded-lg flex items-center justify-center font-extrabold text-white">
               <Crown size={16} />
             </div>
-            <span className="font-extrabold text-[#081225] text-lg tracking-tight">Khidma Node</span>
+            <span className="font-extrabold text-white text-lg tracking-tight">Khidma Node</span>
           </div>
           
           <div className="flex items-center gap-3">
             <LanguageToggle />
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="p-2 text-red-500 hover:text-red-600 transition-colors"
+              aria-label="Logout"
+            >
+              <LogOut size={20} />
+            </button>
           </div>
         </header>
 
@@ -105,7 +113,7 @@ function SidebarContent({ user, onLogout }) {
       <div>
         <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-[#8B5CF6] rounded-xl flex items-center justify-center text-white font-black text-base shadow-sm">
+            <div className="w-9 h-9 bg-[#8B5CF6] rounded-2xl flex items-center justify-center text-white font-extrabold text-base shadow-2xl">
               <Crown size={18} />
             </div>
             <div>
@@ -116,10 +124,10 @@ function SidebarContent({ user, onLogout }) {
         </div>
 
         {/* Master Node Cluster Status string */}
-        <div className="mb-5 bg-gradient-to-r from-[#8B5CF6]/10 to-transparent rounded-xl p-3 border border-[#8B5CF6]/20 flex items-center gap-3">
+        <div className="mb-5 bg-gradient-to-r from-[#8B5CF6]/10 to-transparent rounded-2xl p-3 border border-[#8B5CF6]/20 flex items-center gap-3">
           <div className="w-2 h-2 rounded-full bg-[#8B5CF6] animate-pulse flex-shrink-0" />
           <div className="flex-1 min-w-0">
-            <p className="text-[10px] font-bold text-[#8B5CF6] uppercase tracking-wider">Absolute Authority</p>
+            <p className="text-[10px] font-bold text-[#8B5CF6] uppercase tracking-tight">Absolute Authority</p>
             <p className="text-xs text-slate-300 truncate">Core indices decrypted</p>
           </div>
         </div>
@@ -129,9 +137,9 @@ function SidebarContent({ user, onLogout }) {
           {NAV.map(({ to, label, icon: Icon, end }) => (
             <NavLink key={to} to={to} end={end}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-150 ${
+                `flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all duration-150 ${
                   isActive
-                    ? 'bg-[#8B5CF6] text-white shadow-sm font-black tracking-wide'
+                    ? 'bg-[#8B5CF6] text-white shadow-2xl font-extrabold tracking-wide'
                     : 'text-slate-400 hover:bg-white/5 hover:text-white'
                 }`
               }>
@@ -144,7 +152,7 @@ function SidebarContent({ user, onLogout }) {
 
       {/* Embedded footer operations profile setup */}
       <div className="pt-4 border-t border-white/10 space-y-2 mt-auto">
-        <div className="bg-white/5 rounded-xl p-3 flex items-center gap-3 border border-white/5">
+        <div className="bg-white/5 rounded-2xl p-3 flex items-center gap-3 border border-white/5">
           <Avatar name={user?.name || 'Administrator'} size="sm" />
           <div className="flex-1 min-w-0">
             <p className="text-xs font-bold text-white truncate flex items-center gap-1">
@@ -156,7 +164,7 @@ function SidebarContent({ user, onLogout }) {
         </div>
 
         <button type="button" onClick={onLogout}
-          className="flex items-center gap-3 w-full px-3.5 py-2.5 rounded-xl text-xs font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors">
+          className="flex items-center gap-3 w-full px-3.5 py-2.5 rounded-2xl text-xs font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors">
           <LogOut size={16} />
           <span>{t('actions.logout')}</span>
         </button>

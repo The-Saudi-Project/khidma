@@ -70,8 +70,8 @@ export default function AdminProviderApplicationsPage() {
             key={s}
             type="button"
             onClick={() => { setStatus(s); setPage(1) }}
-            className={`px-4 py-2 rounded-xl text-sm font-semibold capitalize ${
-              status === s ? 'bg-brand-600 text-white' : 'bg-white border border-slate-200 text-slate-600'
+            className={`px-4 py-2 rounded-2xl text-sm font-semibold capitalize ${
+              status === s ? 'bg-brand-600 text-white' : 'bg-white/[0.03] border border-white/10 text-slate-400'
             }`}
           >
             {s}
@@ -84,14 +84,14 @@ export default function AdminProviderApplicationsPage() {
           <p className="text-slate-500 text-center py-12">No applications in this tab.</p>
         )}
         {applications.map((a) => (
-          <div key={a._id} className="rounded-2xl border border-slate-100 bg-white overflow-hidden">
+          <div key={a._id} className="rounded-2xl border border-white/5 bg-white/[0.03] overflow-hidden">
             <button
               type="button"
-              className="w-full flex items-center justify-between p-4 text-left hover:bg-slate-50"
+              className="w-full flex items-center justify-between p-4 text-left hover:bg-white/[0.03]"
               onClick={() => setOpenId(openId === a._id ? null : a._id)}
             >
               <div>
-                <p className="font-semibold text-slate-900">{a.name}</p>
+                <p className="font-semibold text-white">{a.name}</p>
                 <p className="text-xs text-slate-500">{a.email} · {a.city}</p>
               </div>
               <span className="flex items-center gap-2 text-xs font-medium uppercase text-slate-500">
@@ -100,10 +100,10 @@ export default function AdminProviderApplicationsPage() {
               </span>
             </button>
             {openId === a._id && (
-              <div className="px-4 pb-4 border-t border-slate-100 pt-3 space-y-3 text-sm">
+              <div className="px-4 pb-4 border-t border-white/5 pt-3 space-y-3 text-sm">
                 <p><span className="text-slate-500">Phone:</span> {a.phone}</p>
                 <p><span className="text-slate-500">Skills:</span> {(a.skills || []).join(', ') || '—'}</p>
-                <p className="text-slate-600 whitespace-pre-wrap">{a.experience || '—'}</p>
+                <p className="text-slate-400 whitespace-pre-wrap">{a.experience || '—'}</p>
                 {a.status === 'pending' && (
                   <div className="flex flex-col sm:flex-row gap-3 pt-2">
                     <div className="flex-1 flex gap-2">

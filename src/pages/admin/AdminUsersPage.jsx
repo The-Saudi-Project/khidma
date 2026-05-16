@@ -67,7 +67,7 @@ export default function AdminUsersPage() {
           {['', 'customer', 'provider', 'admin'].map(r => (
             <button key={r} onClick={() => { setRole(r); setPage(1) }}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all capitalize
-                ${role === r ? 'bg-brand-600 text-white' : 'bg-white border border-slate-200 text-slate-600 hover:border-brand-300'}`}>
+                ${role === r ? 'bg-brand-600 text-white' : 'bg-white/[0.03] border border-white/10 text-slate-400 hover:border-brand-300'}`}>
               {r || 'All'}
             </button>
           ))}
@@ -85,7 +85,7 @@ export default function AdminUsersPage() {
                     <div className="flex items-center gap-3">
                       <Avatar name={u.name} size="sm" />
                       <div>
-                        <p className="font-medium text-slate-900">{u.name}</p>
+                        <p className="font-medium text-white">{u.name}</p>
                         <p className="text-xs text-slate-400">{u.email}</p>
                       </div>
                     </div>
@@ -98,7 +98,7 @@ export default function AdminUsersPage() {
                       <button onClick={() => handleToggle(u._id)} disabled={toggling === u._id}
                         className="btn-ghost btn-sm gap-1.5">
                         {toggling === u._id ? <Loader2 size={13} className="animate-spin" /> :
-                          u.isActive ? <><ToggleRight size={16} className="text-emerald-500" /> Deactivate</> :
+                          u.isActive ? <><ToggleRight size={16} className="text-brand-400" /> Deactivate</> :
                                        <><ToggleLeft size={16} className="text-slate-400" /> Activate</>}
                       </button>
                     )}
@@ -114,7 +114,7 @@ export default function AdminUsersPage() {
       {showCreateProvider && (
         <div className="modal-overlay" onClick={() => setShowCreateProvider(false)}>
           <div className="modal-box p-6 max-w-md" onClick={e => e.stopPropagation()}>
-            <h2 className="text-lg font-bold text-slate-900 mb-5">Create Provider Account</h2>
+            <h2 className="text-lg font-bold text-white mb-5">Create Provider Account</h2>
             <div className="space-y-3">
               {[['name', 'Full name *', 'text'], ['email', 'Email *', 'email'], ['password', 'Password *', 'password'], ['phone', 'Phone', 'tel']].map(([k, l, t]) => (
                 <div key={k}>

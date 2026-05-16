@@ -49,47 +49,51 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex">
+    <div className="min-h-screen bg-[#0B1120] flex selection:bg-brand-500/30">
       {/* ───────────────────────────────────────────────────────────────────────────── */}
       {/* LEFT PANEL: Value Prop & Branding (Hidden on mobile) */}
       {/* ───────────────────────────────────────────────────────────────────────────── */}
-      <div className="hidden lg:flex w-1/2 bg-[#081225] relative flex-col justify-between p-12 overflow-hidden">
+      <div className="hidden lg:flex w-1/2 bg-[#0B1120] relative flex-col justify-between p-16 overflow-hidden">
         {/* Abstract Lighting Elements */}
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#C5A059]/10 rounded-full blur-[100px] pointer-events-none -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#C5A059]/5 rounded-full blur-[120px] pointer-events-none translate-x-1/3 translate-y-1/3" />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50" />
+        <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none translate-x-1/3 translate-y-1/3" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMikiLz48L3N2Zz4=')] opacity-30" />
 
         {/* Top: Logo & Back Link */}
         <div className="relative z-10 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-[#C5A059] rounded-xl flex items-center justify-center font-black text-xl text-[#081225] shadow-[0_0_20px_rgba(197,160,89,0.3)] transition-transform group-hover:scale-105">
+          <Link to="/" className="flex items-center gap-4 group">
+            <div className="w-12 h-12 bg-brand-500 rounded-2xl flex items-center justify-center font-extrabold text-2xl text-white shadow-[0_0_30px_rgba(34,197,94,0.3)] transition-transform group-hover:scale-110 duration-500">
               K
             </div>
-            <span className="text-white font-bold text-2xl tracking-tight">Khidma</span>
+            <div>
+              <span className="text-white font-extrabold text-2xl tracking-tight block leading-none">Khidma</span>
+              <span className="text-[10px] font-bold tracking-widest uppercase text-brand-400 block mt-1">Premium Platform</span>
+            </div>
           </Link>
-          <Link to="/" className="text-sm font-medium text-slate-400 hover:text-white transition-colors flex items-center gap-2">
-            <ArrowLeft size={16} />
-            Return to site
+          <Link to="/" className="text-sm font-bold text-slate-400 hover:text-white transition-all flex items-center gap-2 group">
+            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+            Back to site
           </Link>
         </div>
 
         {/* Center: Hero Copy */}
-        <div className="relative z-10 max-w-md mt-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
-            <Star size={14} className="text-[#C5A059] fill-[#C5A059]" />
-            <span className="text-xs font-bold text-white uppercase tracking-wider">Premium Service Layer</span>
+        <div className="relative z-10 max-w-lg mt-24">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-md">
+            <Star size={14} className="text-brand-400 fill-brand-400" />
+            <span className="text-[10px] font-bold text-white uppercase tracking-[0.1em]">Master Layer Security</span>
           </div>
-          <h1 className="text-5xl font-extrabold text-white leading-[1.1] tracking-tight mb-6">
-            Log in to your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C5A059] to-[#E2C78D]">Khidma</span> dashboard.
+          <h1 className="text-6xl font-extrabold text-white leading-[1.05] tracking-tight mb-8">
+            Access your <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-brand-200 to-brand-500">
+              Service Portal.
+            </span>
           </h1>
-          <p className="text-lg text-slate-400 font-medium leading-relaxed mb-10">
-            Access your secure portal to manage bookings, track service professionals, and maintain your property with absolute precision.
+          <p className="text-lg text-slate-400 font-medium leading-relaxed mb-12">
+            Secure authentication for property owners and professional service partners across the Gulf region.
           </p>
 
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 gap-6">
             {[
-              'Bank-grade encrypted transactions',
-              'Vetted, tier-1 service professionals',
               'Real-time SLA tracking'
             ].map((text, i) => (
               <div key={i} className="flex items-center gap-3 text-slate-300 font-medium">
@@ -102,11 +106,11 @@ export default function LoginPage() {
 
         {/* Bottom: Minimalist footer/testimonial placeholder */}
         <div className="relative z-10 mt-auto pt-20">
-          <div className="border-l-2 border-[#C5A059] pl-6">
+          <div className="border-l-2 border-[#22C55E] pl-6">
             <p className="text-white font-medium italic mb-2">
               "Khidma completely redefined how we manage our facilities. The interface is flawless."
             </p>
-            <p className="text-sm text-slate-400 font-bold uppercase tracking-wider">
+            <p className="text-sm text-slate-400 font-bold uppercase tracking-tight">
               — Director of Operations, Riyadh
             </p>
           </div>
@@ -121,26 +125,26 @@ export default function LoginPage() {
         {/* Mobile Header (Only visible on small screens) */}
         <div className="absolute top-6 left-6 right-6 flex justify-between items-center lg:hidden">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#081225] rounded-lg flex items-center justify-center font-black text-[#C5A059]">K</div>
-            <span className="font-extrabold text-[#081225] text-lg">Khidma</span>
+            <div className="w-8 h-8 bg-[#0B1120] rounded-lg flex items-center justify-center font-extrabold text-[#22C55E]">K</div>
+            <span className="font-extrabold text-white text-lg">Khidma</span>
           </Link>
-          <Link to="/" className="text-sm text-slate-500 font-medium hover:text-slate-900">
+          <Link to="/" className="text-sm text-slate-500 font-medium hover:text-white">
             Cancel
           </Link>
         </div>
 
         <div className="w-full max-w-md">
           <div className="mb-10 text-center lg:text-left">
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">Welcome back</h2>
+            <h2 className="text-3xl font-extrabold text-white mb-2 tracking-tight">Welcome back</h2>
             <p className="text-slate-500 font-medium">Please enter your details to sign in.</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-bold text-slate-700 mb-2">Email address</label>
+              <label className="block text-sm font-bold text-slate-300 mb-2">Email address</label>
               <input
                 type="email"
-                className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 border-slate-200 text-slate-900 focus:bg-white focus:ring-2 focus:ring-[#C5A059] focus:border-[#C5A059] transition-all font-medium placeholder:font-normal ${errors.email ? 'border-red-400 focus:ring-red-400 focus:border-red-400' : ''}`}
+                className={`w-full px-4 py-3.5 rounded-2xl border bg-white/[0.03] border-white/10 text-white focus:bg-white/[0.03] focus:ring-2 focus:ring-[#22C55E] focus:border-[#22C55E] transition-all font-medium placeholder:font-normal ${errors.email ? 'border-red-400 focus:ring-red-400 focus:border-red-400' : ''}`}
                 placeholder="you@example.com"
                 value={form.email}
                 onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
@@ -151,29 +155,29 @@ export default function LoginPage() {
 
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="block text-sm font-bold text-slate-700">Password</label>
-                <Link to="/forgot-password" className="text-sm text-[#C5A059] hover:text-[#b08e4d] font-bold transition-colors">
+                <label className="block text-sm font-bold text-slate-300">Password</label>
+                <Link to="/forgot-password" className="text-sm text-[#22C55E] hover:text-[#b08e4d] font-bold transition-colors">
                   Forgot password?
                 </Link>
               </div>
               <div className="relative">
                 <input
                   type={showPass ? 'text' : 'password'}
-                  className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 border-slate-200 text-slate-900 focus:bg-white focus:ring-2 focus:ring-[#C5A059] focus:border-[#C5A059] transition-all font-medium placeholder:font-normal pr-12 ${errors.password ? 'border-red-400 focus:ring-red-400 focus:border-red-400' : ''}`}
+                  className={`w-full px-4 py-3.5 rounded-2xl border bg-white/[0.03] border-white/10 text-white focus:bg-white/[0.03] focus:ring-2 focus:ring-[#22C55E] focus:border-[#22C55E] transition-all font-medium placeholder:font-normal pr-12 ${errors.password ? 'border-red-400 focus:ring-red-400 focus:border-red-400' : ''}`}
                   placeholder="Enter your password"
                   value={form.password}
                   onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
                   autoComplete="current-password"
                 />
                 <button type="button" onClick={() => setShowPass(!showPass)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-400 transition-colors">
                   {showPass ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
               {errors.password && <p className="text-xs text-red-500 font-bold mt-1.5">{errors.password}</p>}
             </div>
 
-            <button type="submit" disabled={loading} className="w-full bg-[#081225] text-white py-4 rounded-xl font-bold text-sm hover:bg-[#112240] active:bg-[#060d1a] transition-all flex justify-center items-center gap-2 mt-4 shadow-[0_4px_14px_0_rgba(8,18,37,0.15)] disabled:opacity-70 disabled:cursor-not-allowed">
+            <button type="submit" disabled={loading} className="w-full bg-[#0B1120] text-white py-4 rounded-2xl font-bold text-sm hover:bg-[#112240] active:bg-[#060d1a] transition-all flex justify-center items-center gap-2 mt-4 shadow-[0_4px_14px_0_rgba(8,18,37,0.15)] disabled:opacity-70 disabled:cursor-not-allowed">
               {loading ? <Loader2 size={20} className="animate-spin" /> : 'Sign In'}
             </button>
           </form>
@@ -181,7 +185,7 @@ export default function LoginPage() {
           <div className="mt-8 text-center">
             <p className="text-sm text-slate-500 font-medium">
               Don't have an account?{' '}
-              <Link to="/signup" className="text-[#C5A059] font-bold hover:text-[#b08e4d] transition-colors">
+              <Link to="/signup" className="text-[#22C55E] font-bold hover:text-[#b08e4d] transition-colors">
                 Create an account
               </Link>
             </p>

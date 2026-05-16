@@ -77,13 +77,13 @@ export default function ProviderJobDetailPage() {
   return (
     <div className="animate-fade-in max-w-xl">
       <button onClick={() => navigate('/provider/jobs')}
-        className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 mb-6">
+        className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-300 mb-6">
         <ArrowLeft size={16} /> Back to jobs
       </button>
 
       <div className="flex items-start justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">{booking.serviceName}</h1>
+          <h1 className="text-2xl font-bold text-white">{booking.serviceName}</h1>
           <p className="text-sm text-slate-400 mt-1">#{booking.bookingNumber}</p>
         </div>
         <StatusBadge status={booking.status} />
@@ -105,7 +105,7 @@ export default function ProviderJobDetailPage() {
 
       {booking.status === 'in_progress' && (
         <button onClick={handleComplete} disabled={actionLoading}
-          className="w-full mb-4 py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-base flex items-center justify-center gap-3 transition-colors shadow-sm">
+          className="w-full mb-4 py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-base flex items-center justify-center gap-3 transition-colors shadow-2xl">
           {actionLoading ? <Loader2 size={18} className="animate-spin" /> : <><CheckCircle size={18} /> Mark as Complete</>}
         </button>
       )}
@@ -152,7 +152,7 @@ export default function ProviderJobDetailPage() {
             <div key={i} className="flex gap-3 text-sm">
               <div className="w-2 h-2 rounded-full bg-brand-400 mt-1.5 flex-shrink-0" />
               <div>
-                <p className="font-medium text-slate-800">{TIMELINE_LABELS[e.status] || e.status}</p>
+                <p className="font-medium text-slate-200">{TIMELINE_LABELS[e.status] || e.status}</p>
                 <p className="text-xs text-slate-400">{formatDateTime(e.timestamp)}</p>
               </div>
             </div>
@@ -168,7 +168,7 @@ function DetailRow({ icon: Icon, label, value }) {
     <div className="flex items-start gap-2.5 text-sm">
       {Icon && <Icon size={14} className="text-slate-400 mt-0.5 flex-shrink-0" />}
       <span className="text-slate-500 flex-shrink-0">{label}:</span>
-      <span className="text-slate-800 font-medium">{value}</span>
+      <span className="text-slate-200 font-medium">{value}</span>
     </div>
   )
 }

@@ -45,10 +45,10 @@ export default function ProviderLayout() {
   }
 
   return (
-    <div className="min-h-screen bg-surface-50 flex">
+    <div className="min-h-screen bg-[#0B1120] flex">
       {/* Floating Navy shell wrapper tailored for premium feel (Desktop) */}
       <aside className="hidden lg:flex flex-col w-72 p-4 sticky top-0 h-screen flex-shrink-0">
-        <div className="flex-1 bg-[#081225] rounded-3xl p-5 flex flex-col justify-between border border-white/10 shadow-glass text-white relative overflow-hidden">
+        <div className="flex-1 bg-[#0B1120] rounded-3xl p-5 flex flex-col justify-between border border-white/10 shadow-2xl text-white relative overflow-hidden">
           {/* Green highlight abstract lighting bloom */}
           <div className="absolute top-0 end-0 w-32 h-32 bg-[#10B981]/10 rounded-full blur-2xl pointer-events-none" />
 
@@ -64,9 +64,9 @@ export default function ProviderLayout() {
       {/* Principal layout pipeline */}
       {/* Added pb-20 to ensure content isn't hidden behind the BottomNav on mobile */}
       <div className="flex-1 flex flex-col min-w-0 pb-20 lg:pb-0">
-        <header className="hidden lg:flex items-center justify-end gap-4 px-8 py-4 sticky top-0 z-30 bg-surface-50/80 backdrop-blur-md">
+        <header className="hidden lg:flex items-center justify-end gap-4 px-8 py-4 sticky top-0 z-30 bg-[#0B1120]/80 backdrop-blur-md">
           {/* Signal active state preview badge */}
-          <div className="flex items-center gap-2 px-3 py-1 bg-white rounded-xl border border-slate-100 shadow-sm text-xs text-slate-500 font-medium me-auto">
+          <div className="flex items-center gap-2 px-3 py-1 bg-white/[0.03] rounded-2xl border border-white/5 shadow-2xl text-xs text-slate-500 font-medium me-auto">
             <Zap size={14} className="text-[#10B981]" />
             <span>Telemetry Channel Active</span>
           </div>
@@ -75,27 +75,27 @@ export default function ProviderLayout() {
           
           <div className="relative">
             <button type="button" onClick={() => setNotifOpen((o) => !o)}
-              className="relative p-2.5 bg-white rounded-xl border border-slate-100 shadow-sm hover:border-slate-200 text-slate-700 transition-colors"
+              className="relative p-2.5 bg-white/[0.03] rounded-2xl border border-white/5 shadow-2xl hover:border-white/10 text-slate-300 transition-colors"
               aria-label="Notifications">
               <Bell size={18} />
               {unreadCount > 0 && (
-                <span className="absolute -top-1 -end-1 min-w-[1.25rem] h-[1.25rem] px-1 bg-[#10B981] text-[#081225] text-[10px] font-black rounded-full flex items-center justify-center shadow-sm">
+                <span className="absolute -top-1 -end-1 min-w-[1.25rem] h-[1.25rem] px-1 bg-[#10B981] text-white text-[10px] font-extrabold rounded-full flex items-center justify-center shadow-2xl">
                   {unreadCount > 9 ? '9+' : unreadCount}
                 </span>
               )}
             </button>
             {notifOpen && (
-              <div className="absolute end-0 mt-2 w-80 max-h-96 overflow-y-auto rounded-2xl border border-slate-100 bg-white shadow-modal z-50 text-start animate-scale-in">
-                <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 bg-slate-50/50">
-                  <span className="text-xs font-bold text-slate-900 uppercase tracking-wider">Fleet Tasks</span>
+              <div className="absolute end-0 mt-2 w-80 max-h-96 overflow-y-auto rounded-2xl border border-white/5 bg-white/[0.03] shadow-modal z-50 text-start animate-scale-in">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-white/[0.02]/50">
+                  <span className="text-xs font-bold text-white uppercase tracking-tight">Fleet Tasks</span>
                   <button type="button" className="text-xs text-[#10B981] font-bold hover:underline" onClick={() => { markAllAsRead(); setNotifOpen(false) }}>
                     {t('actions.markAllRead')}
                   </button>
                 </div>
                 <ul className="divide-y divide-slate-50">
                   {notifications.slice(0, 5).map((n) => (
-                    <li key={n._id} className="p-3 hover:bg-slate-50/80 transition-colors">
-                      <p className="text-xs font-bold text-slate-900">{n.title}</p>
+                    <li key={n._id} className="p-3 hover:bg-white/[0.02]/80 transition-colors">
+                      <p className="text-xs font-bold text-white">{n.title}</p>
                       <p className="text-xs text-slate-500 mt-0.5 line-clamp-2">{n.message}</p>
                     </li>
                   ))}
@@ -109,17 +109,17 @@ export default function ProviderLayout() {
         </header>
 
         {/* Mobile top structural header - Minimalist */}
-        <header className="lg:hidden sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-100 px-4 py-3 flex items-center justify-between">
+        <header className="lg:hidden sticky top-0 z-30 bg-white/5 backdrop-blur-md border-b border-white/5 px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#10B981] rounded-lg flex items-center justify-center font-black text-[#081225]">K</div>
-            <span className="font-extrabold text-[#081225] text-lg tracking-tight">Khidma Fleet</span>
+            <div className="w-8 h-8 bg-[#10B981] rounded-lg flex items-center justify-center font-extrabold text-white">K</div>
+            <span className="font-extrabold text-white text-lg tracking-tight">Khidma Fleet</span>
           </div>
           
           <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={() => navigate('/provider/profile')} // Map bell to profile on mobile
-              className="relative p-2 text-slate-700"
+              className="relative p-2 text-slate-300"
             >
               <Bell size={20} />
               {unreadCount > 0 && (
@@ -127,6 +127,14 @@ export default function ProviderLayout() {
               )}
             </button>
             <LanguageToggle />
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="p-2 text-red-500 hover:text-red-600 transition-colors"
+              aria-label="Logout"
+            >
+              <LogOut size={20} />
+            </button>
           </div>
         </header>
 
@@ -161,7 +169,7 @@ function SidebarContent({ user, onLogout, isAvailable, toggleAvailability }) {
       <div>
         <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-[#10B981] rounded-xl flex items-center justify-center text-[#081225] font-black text-base shadow-sm">
+            <div className="w-9 h-9 bg-[#10B981] rounded-2xl flex items-center justify-center text-white font-extrabold text-base shadow-2xl">
               K
             </div>
             <div>
@@ -172,18 +180,18 @@ function SidebarContent({ user, onLogout, isAvailable, toggleAvailability }) {
         </div>
 
         {/* Live matching beacon simulator inside workspace shell */}
-        <div className={`mb-6 rounded-xl p-3 border transition-colors ${isAvailable ? 'bg-gradient-to-r from-[#10B981]/10 to-transparent border-[#10B981]/20' : 'bg-white/5 border-white/10'}`}>
+        <div className={`mb-6 rounded-2xl p-3 border transition-colors ${isAvailable ? 'bg-gradient-to-r from-[#10B981]/10 to-transparent border-[#10B981]/20' : 'bg-white/5 border-white/10'}`}>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[10px] font-bold text-white uppercase tracking-wider">Status</span>
+            <span className="text-[10px] font-bold text-white uppercase tracking-tight">Status</span>
             <button 
               onClick={toggleAvailability}
               className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${isAvailable ? 'bg-[#10B981]' : 'bg-slate-600'}`}
             >
-              <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${isAvailable ? 'translate-x-4.5' : 'translate-x-1'}`} />
+              <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white/[0.03] transition-transform ${isAvailable ? 'translate-x-4.5' : 'translate-x-1'}`} />
             </button>
           </div>
           <div className="flex items-center gap-3 mt-1">
-            <div className={`w-2 h-2 rounded-full flex-shrink-0 ${isAvailable ? 'bg-[#10B981] animate-ping' : 'bg-slate-500'}`} />
+            <div className={`w-2 h-2 rounded-full flex-shrink-0 ${isAvailable ? 'bg-[#10B981] animate-ping' : 'bg-white/[0.02]0'}`} />
             <div className="flex-1 min-w-0">
               <p className={`text-xs truncate font-medium ${isAvailable ? 'text-[#10B981]' : 'text-slate-400'}`}>
                 {isAvailable ? 'SLA dispatch active' : 'Offline / Invisible'}
@@ -197,9 +205,9 @@ function SidebarContent({ user, onLogout, isAvailable, toggleAvailability }) {
           {NAV.map(({ to, label, icon: Icon, end }) => (
             <NavLink key={to} to={to} end={end}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-bold transition-all duration-150 ${
+                `flex items-center gap-3 px-3.5 py-3 rounded-2xl text-xs font-bold transition-all duration-150 ${
                   isActive
-                    ? 'bg-[#10B981] text-[#081225] shadow-sm font-black tracking-wide'
+                    ? 'bg-[#10B981] text-white shadow-2xl font-extrabold tracking-wide'
                     : 'text-slate-400 hover:bg-white/5 hover:text-white'
                 }`
               }>
@@ -212,19 +220,19 @@ function SidebarContent({ user, onLogout, isAvailable, toggleAvailability }) {
 
       {/* Embedded footer operations dashboard telemetry */}
       <div className="pt-4 border-t border-white/10 space-y-2 mt-auto">
-        <div className="bg-white/5 rounded-xl p-3 flex items-center gap-3 border border-white/5">
+        <div className="bg-white/5 rounded-2xl p-3 flex items-center gap-3 border border-white/5">
           <Avatar name={user?.name || 'Talent User'} size="sm" />
           <div className="flex-1 min-w-0">
             <p className="text-xs font-bold text-white truncate flex items-center gap-1">
               <span>{user?.name || 'Verified Tech'}</span>
               <ShieldCheck size={12} className="text-[#10B981] flex-shrink-0" />
             </p>
-            <p className="text-[10px] text-[#C5A059] font-mono truncate">Tier-1 Cleared</p>
+            <p className="text-[10px] text-[#22C55E] font-mono truncate">Tier-1 Cleared</p>
           </div>
         </div>
 
         <button type="button" onClick={onLogout}
-          className="flex items-center gap-3 w-full px-3.5 py-2.5 rounded-xl text-xs font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors">
+          className="flex items-center gap-3 w-full px-3.5 py-2.5 rounded-2xl text-xs font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors">
           <LogOut size={16} />
           <span>{t('actions.logout')}</span>
         </button>

@@ -5,7 +5,7 @@ import { getStatusConfig, PAYMENT_STATUS, TICKET_STATUS } from '../../utils/help
 export default function LoadingSpinner({ fullscreen, size = 24 }) {
   if (fullscreen) {
     return (
-      <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
+      <div className="fixed inset-0 bg-white/[0.03] flex items-center justify-center z-50">
         <div className="flex flex-col items-center gap-3">
           <Loader2 className="animate-spin text-brand-600" size={32} />
           <p className="text-sm text-slate-500 font-medium">Loading…</p>
@@ -40,11 +40,11 @@ export function EmptyState({ icon: Icon, title, description, action }) {
   return (
     <div className="flex flex-col items-center justify-center py-20 text-center">
       {Icon && (
-        <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center mb-4">
+        <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-4">
           <Icon size={28} className="text-slate-400" />
         </div>
       )}
-      <h3 className="text-base font-semibold text-slate-700">{title}</h3>
+      <h3 className="text-base font-semibold text-slate-300">{title}</h3>
       {description && <p className="text-sm text-slate-400 mt-1 max-w-xs">{description}</p>}
       {action && <div className="mt-5">{action}</div>}
     </div>
@@ -57,7 +57,7 @@ export function Pagination({ meta, onPageChange }) {
   const { page, pages } = meta
 
   return (
-    <div className="flex items-center justify-between px-5 py-4 border-t border-slate-100">
+    <div className="flex items-center justify-between px-5 py-4 border-t border-white/5">
       <p className="text-sm text-slate-500">
         Page {page} of {pages} · {meta.total} total
       </p>
@@ -97,7 +97,7 @@ export function StatCard({ label, value, icon: Icon, color = 'blue', trend }) {
       <div className="flex items-start justify-between">
         <p className="stat-label">{label}</p>
         {Icon && (
-          <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${c.bg} ring-1 ${c.ring}`}>
+          <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${c.bg} ring-1 ${c.ring}`}>
             <Icon size={18} className={c.icon} />
           </div>
         )}
@@ -114,7 +114,7 @@ export function ConfirmModal({ open, title, message, onConfirm, onCancel, loadin
   return (
     <div className="modal-overlay" onClick={onCancel}>
       <div className="modal-box p-6 max-w-sm" onClick={e => e.stopPropagation()}>
-        <h3 className="text-lg font-bold text-slate-900">{title}</h3>
+        <h3 className="text-lg font-bold text-white">{title}</h3>
         <p className="text-sm text-slate-500 mt-2">{message}</p>
         <div className="flex gap-3 mt-6">
           <button onClick={onCancel} className="btn-secondary flex-1">Cancel</button>

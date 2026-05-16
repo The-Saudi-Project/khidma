@@ -37,8 +37,8 @@ export default function AdminPaymentsPage() {
       <div className="flex gap-2 mb-5">
         {STATUS_FILTERS.map(f => (
           <button key={f.value} onClick={() => { setStatus(f.value); setPage(1) }}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all
-              ${status === f.value ? 'bg-brand-600 text-white' : 'bg-white border border-slate-200 text-slate-600 hover:border-brand-300'}`}>
+            className={`px-4 py-2 rounded-2xl text-sm font-medium transition-all
+              ${status === f.value ? 'bg-brand-600 text-white' : 'bg-white/[0.03] border border-white/10 text-slate-400 hover:border-brand-300'}`}>
             {f.label}
           </button>
         ))}
@@ -72,10 +72,10 @@ export default function AdminPaymentsPage() {
                     <p className="text-xs text-slate-400 mt-0.5">{p.booking?.serviceName}</p>
                   </td>
                   <td>
-                    <p className="font-medium text-slate-900 text-sm">{p.customer?.name}</p>
+                    <p className="font-medium text-white text-sm">{p.customer?.name}</p>
                     <p className="text-xs text-slate-400">{p.customer?.email}</p>
                   </td>
-                  <td className="font-bold text-slate-900">{formatCurrency(p.amount)}</td>
+                  <td className="font-bold text-white">{formatCurrency(p.amount)}</td>
                   <td className="text-slate-500 text-sm">{formatDate(p.createdAt)}</td>
                   <td><StatusBadge status={p.status} type="payment" /></td>
                   <td>

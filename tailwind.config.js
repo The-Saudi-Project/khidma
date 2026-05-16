@@ -7,26 +7,24 @@ export default {
     extend: {
       colors: {
         brand: {
-          50:  '#f0f6fc',
-          100: '#e1ecf8',
-          200: '#c3d8f1',
-          300: '#95bde6',
-          400: '#5f9bd7',
-          500: '#387dc4',
-          600: '#2563ab',
-          700: '#1e4f8a',
-          800: '#1a4371',
-          900: '#18385d',
-          950: '#081225', // Deep Navy root requested
-          gold: '#C5A059',
-          'gold-light': '#E6D5B8',
-          emerald: '#10B981',
+          50:  '#f0fdf4',
+          100: '#dcfce7',
+          200: '#bbf7d0',
+          300: '#86efac',
+          400: '#4ade80',
+          500: '#22c55e', // Flyajwa Green 500
+          600: '#16a34a',
+          700: '#15803d',
+          800: '#166534',
+          900: '#14532d',
+          950: '#064e3b',
+          emerald: '#10B981', // The "Flyajwa" tint
         },
         surface: {
-          DEFAULT: '#ffffff',
-          50:  '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
+          DEFAULT: '#0B1120',
+          50:  '#0f172a',
+          100: '#1e293b',
+          200: '#334155',
         }
       },
       fontFamily: {
@@ -34,12 +32,12 @@ export default {
         display: ['"Outfit"', '"Plus Jakarta Sans"', 'sans-serif'],
       },
       boxShadow: {
-        'card': '0 2px 8px -2px rgb(8 18 37 / 0.05), 0 1px 2px -1px rgb(8 18 37 / 0.03)',
-        'card-hover': '0 12px 32px -4px rgb(8 18 37 / 0.12), 0 4px 12px -2px rgb(8 18 37 / 0.06)',
-        'glass': '0 8px 32px 0 rgb(8 18 37 / 0.08)',
-        'glass-hover': '0 16px 40px 0 rgb(8 18 37 / 0.16)',
+        'card': '0 2px 8px -2px rgb(11 15 26 / 0.05), 0 1px 2px -1px rgb(11 15 26 / 0.03)',
+        'card-hover': '0 12px 32px -4px rgb(11 15 26 / 0.12), 0 4px 12px -2px rgb(11 15 26 / 0.06)',
+        'glass': '0 8px 32px 0 rgb(11 15 26 / 0.08)',
+        'glass-hover': '0 16px 40px 0 rgb(11 15 26 / 0.16)',
         'gold': '0 4px 20px -2px rgb(197 160 89 / 0.25)',
-        'modal': '0 24px 80px -12px rgb(8 18 37 / 0.35)',
+        'modal': '0 24px 80px -12px rgb(11 15 26 / 0.35)',
       },
       borderRadius: {
         'xl': '0.75rem',

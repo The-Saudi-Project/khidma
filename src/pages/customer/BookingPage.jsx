@@ -105,7 +105,7 @@ export default function BookingPage() {
     <div className="animate-fade-in pb-12">
       {/* Top control stripe */}
       <button onClick={() => step > 1 ? setStep(s => s - 1) : navigate(-1)}
-        className="flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-[#081225] mb-6 transition-colors">
+        className="flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-white mb-6 transition-colors">
         <ArrowLeft size={16} /> {step > 1 ? 'Return to Previous Parameter' : 'Back to Service Profile'}
       </button>
 
@@ -116,7 +116,7 @@ export default function BookingPage() {
         <div className="lg:col-span-7 space-y-6">
           
           {/* Enhanced Wizard Indicator Header */}
-          <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm flex items-center justify-between">
+          <div className="bg-white/[0.03] rounded-2xl p-5 border border-white/5 shadow-2xl flex items-center justify-between">
             {[
               { num: 1, label: 'Schedule', desc: 'Date & Slot' },
               { num: 2, label: 'Coordinates', desc: 'Address Layer' },
@@ -126,20 +126,20 @@ export default function BookingPage() {
               const isCurr = step === st.num
               return (
                 <div key={st.num} className="flex items-center gap-3">
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center font-black text-xs transition-all ${
-                    isDone ? 'bg-[#10B981] text-white shadow-sm' :
-                    isCurr ? 'bg-[#081225] text-[#C5A059] shadow-md scale-105' :
-                    'bg-slate-100 text-slate-400'
+                  <div className={`w-9 h-9 rounded-2xl flex items-center justify-center font-extrabold text-xs transition-all ${
+                    isDone ? 'bg-[#10B981] text-white shadow-2xl' :
+                    isCurr ? 'bg-[#0B1120] text-[#22C55E] shadow-md scale-105' :
+                    'bg-white/5 text-slate-400'
                   }`}>
                     {isDone ? <CheckCircle2 size={16} /> : st.num}
                   </div>
                   <div className="hidden sm:block">
-                    <p className={`text-xs font-bold leading-tight ${isCurr ? 'text-[#081225]' : 'text-slate-400'}`}>
+                    <p className={`text-xs font-bold leading-tight ${isCurr ? 'text-white' : 'text-slate-400'}`}>
                       {st.label}
                     </p>
                     <p className="text-[10px] text-slate-400">{st.desc}</p>
                   </div>
-                  {i < 2 && <div className="w-4 sm:w-8 h-px bg-slate-100 mx-1 sm:mx-2" />}
+                  {i < 2 && <div className="w-4 sm:w-8 h-px bg-white/5 mx-1 sm:mx-2" />}
                 </div>
               )
             })}
@@ -150,8 +150,8 @@ export default function BookingPage() {
             <div className="card p-6 space-y-6 animate-slide-up">
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wide flex items-center gap-2">
-                    <Calendar size={16} className="text-[#C5A059]" /> Select Active Date
+                  <h2 className="text-sm font-bold text-white uppercase tracking-wide flex items-center gap-2">
+                    <Calendar size={16} className="text-[#22C55E]" /> Select Active Date
                   </h2>
                   <span className="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-bold">No Friday Slots (KSA)</span>
                 </div>
@@ -161,31 +161,31 @@ export default function BookingPage() {
                     const isSelected = selectedDate?.toDateString() === date.toDateString()
                     return (
                       <button key={i} onClick={() => setSelectedDate(date)} type="button"
-                        className={`p-2.5 rounded-xl text-center transition-all border ${
-                          isSelected ? 'bg-[#081225] text-white border-[#081225] shadow-glass scale-105' :
-                          'bg-slate-50/60 border-slate-100 hover:border-[#C5A059]/40 text-slate-700'
+                        className={`p-2.5 rounded-2xl text-center transition-all border ${
+                          isSelected ? 'bg-[#0B1120] text-white border-[#0B1120] shadow-2xl scale-105' :
+                          'bg-white/5 border-white/5 hover:border-[#22C55E]/40 text-slate-300'
                         }`}>
                         <div className="text-[10px] opacity-70 font-bold">{date.toLocaleDateString('en', { weekday: 'short' })}</div>
-                        <div className="text-base font-black mt-0.5 tracking-tight">{date.getDate()}</div>
-                        <div className="text-[9px] opacity-70 uppercase tracking-wider">{date.toLocaleDateString('en', { month: 'short' })}</div>
+                        <div className="text-base font-extrabold mt-0.5 tracking-tight">{date.getDate()}</div>
+                        <div className="text-[9px] opacity-70 uppercase tracking-tight">{date.toLocaleDateString('en', { month: 'short' })}</div>
                       </button>
                     )
                   })}
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-100">
-                <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-3 flex items-center gap-2">
-                  <Clock size={16} className="text-[#C5A059]" /> Optimized Dispatch Time
+              <div className="pt-4 border-t border-white/5">
+                <h2 className="text-sm font-bold text-white uppercase tracking-wide mb-3 flex items-center gap-2">
+                  <Clock size={16} className="text-[#22C55E]" /> Optimized Dispatch Time
                 </h2>
                 <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                   {TIME_SLOTS.map(t => {
                     const isSelected = selectedTime === t
                     return (
                       <button key={t} onClick={() => setSelectedTime(t)} type="button"
-                        className={`py-2.5 rounded-xl text-xs font-bold transition-all border ${
-                          isSelected ? 'bg-[#C5A059] text-[#081225] border-[#C5A059] shadow-sm font-black' :
-                          'bg-white border-slate-200 hover:border-slate-300 text-slate-600'
+                        className={`py-2.5 rounded-2xl text-xs font-bold transition-all border ${
+                          isSelected ? 'bg-[#22C55E] text-white border-[#22C55E] shadow-2xl font-extrabold' :
+                          'bg-white/[0.03] border-white/10 hover:border-slate-300 text-slate-400'
                         }`}>
                         {t}
                       </button>
@@ -195,17 +195,17 @@ export default function BookingPage() {
               </div>
 
               {/* Priority VIP Up-sell wrapper */}
-              <div className="pt-4 border-t border-slate-100">
-                <label className="flex items-start gap-3 p-3 rounded-xl bg-amber-50/50 border border-amber-100/60 cursor-pointer">
+              <div className="pt-4 border-t border-white/5">
+                <label className="flex items-start gap-3 p-3 rounded-2xl bg-amber-50/50 border border-amber-100/60 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={urgencyTier === 'express'}
                     onChange={(e) => setUrgencyTier(e.target.checked ? 'express' : 'standard')}
-                    className="mt-1 rounded text-[#C5A059] focus:ring-[#C5A059] w-4 h-4"
+                    className="mt-1 rounded text-[#22C55E] focus:ring-[#22C55E] w-4 h-4"
                   />
                   <div className="text-start flex-1">
                     <span className="text-xs font-bold text-amber-900 flex items-center gap-1.5">
-                      <Sparkles size={12} className="text-[#C5A059]" />
+                      <Sparkles size={12} className="text-[#22C55E]" />
                       Express Priority Dispatch (+50 SAR)
                     </span>
                     <p className="text-[11px] text-amber-700 leading-tight mt-0.5">
@@ -216,7 +216,7 @@ export default function BookingPage() {
               </div>
 
               <button onClick={() => setStep(2)} disabled={!canProceedStep1} type="button"
-                className="btn-primary w-full justify-center bg-[#081225] hover:bg-[#1a4371] py-3 text-xs tracking-wider uppercase font-black">
+                className="btn-primary w-full justify-center bg-[#0B1120] hover:bg-[#1e293b] py-3 text-xs tracking-tight uppercase font-extrabold">
                 Confirm Schedule &amp; Advance <ChevronRight size={16} />
               </button>
             </div>
@@ -225,12 +225,12 @@ export default function BookingPage() {
           {/* Step 2 — Address Input & Real-Time Logistics Simulation */}
           {step === 2 && (
             <div className="card p-6 space-y-5 animate-slide-up">
-              <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wide flex items-center gap-2">
-                <MapPin size={16} className="text-[#C5A059]" /> Delivery Coordinates
+              <h2 className="text-sm font-bold text-white uppercase tracking-wide flex items-center gap-2">
+                <MapPin size={16} className="text-[#22C55E]" /> Delivery Coordinates
               </h2>
 
               {/* Interactive map preview simulator panel */}
-              <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200 relative overflow-hidden">
+              <div className="bg-white/[0.03] rounded-2xl p-4 border border-white/10 relative overflow-hidden">
                 <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1">
@@ -240,11 +240,11 @@ export default function BookingPage() {
                     GPS Active
                   </span>
                 </div>
-                <div className="h-28 rounded-xl bg-white border border-slate-200 flex flex-col items-center justify-center text-center p-3 relative">
+                <div className="h-28 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col items-center justify-center text-center p-3 relative">
                   <div className="w-8 h-8 rounded-full bg-[#10B981]/20 flex items-center justify-center text-[#10B981] animate-pulse">
                     <MapPin size={16} className="fill-[#10B981] text-white" />
                   </div>
-                  <p className="text-[11px] font-bold text-slate-700 mt-1">
+                  <p className="text-[11px] font-bold text-slate-300 mt-1">
                     {addressMode === 'saved' ? 'Saved Pin Selected' : newAddress.city || 'Riyadh Zone'}
                   </p>
                   <p className="text-[9px] text-slate-400">
@@ -256,14 +256,14 @@ export default function BookingPage() {
               {savedAddresses.length > 0 && (
                 <div className="flex gap-2">
                   <button onClick={() => setAddressMode('saved')} type="button"
-                    className={`flex-1 py-2 rounded-xl text-xs font-bold border transition-all ${
-                      addressMode === 'saved' ? 'bg-[#081225] text-white border-[#081225]' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
+                    className={`flex-1 py-2 rounded-2xl text-xs font-bold border transition-all ${
+                      addressMode === 'saved' ? 'bg-[#0B1120] text-white border-[#0B1120]' : 'bg-white/[0.03] border-white/10 text-slate-400 hover:bg-white/[0.03]'
                     }`}>
                     Saved Profiles
                   </button>
                   <button onClick={() => setAddressMode('new')} type="button"
-                    className={`flex-1 py-2 rounded-xl text-xs font-bold border transition-all ${
-                      addressMode === 'new' ? 'bg-[#081225] text-white border-[#081225]' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
+                    className={`flex-1 py-2 rounded-2xl text-xs font-bold border transition-all ${
+                      addressMode === 'new' ? 'bg-[#0B1120] text-white border-[#0B1120]' : 'bg-white/[0.03] border-white/10 text-slate-400 hover:bg-white/[0.03]'
                     }`}>
                     New Mapping
                   </button>
@@ -274,14 +274,14 @@ export default function BookingPage() {
                 <div className="space-y-2">
                   {savedAddresses.map(addr => (
                     <button key={addr._id} onClick={() => setSelectedAddressId(addr._id)} type="button"
-                      className={`w-full p-3.5 rounded-xl border text-start transition-all ${
-                        selectedAddressId === addr._id ? 'border-[#C5A059] bg-[#C5A059]/5 shadow-sm' : 'border-slate-200 bg-white hover:border-slate-300'
+                      className={`w-full p-3.5 rounded-2xl border text-start transition-all ${
+                        selectedAddressId === addr._id ? 'border-[#22C55E] bg-[#22C55E]/5 shadow-2xl' : 'border-white/10 bg-white/[0.03] hover:border-slate-300'
                       }`}>
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-[10px] font-black text-[#081225] bg-slate-100 px-2 py-0.5 rounded tracking-wider uppercase">{addr.label}</span>
+                        <span className="text-[10px] font-extrabold text-white bg-white/5 px-2 py-0.5 rounded tracking-tight uppercase">{addr.label}</span>
                         {addr.isDefault && <span className="text-[9px] font-bold text-[#10B981]">Default Asset</span>}
                       </div>
-                      <p className="text-xs font-bold text-slate-800">{addr.fullAddress}</p>
+                      <p className="text-xs font-bold text-slate-200">{addr.fullAddress}</p>
                       <p className="text-[10px] text-slate-400 mt-0.5">{addr.city}{addr.district ? `, ${addr.district}` : ''}</p>
                     </button>
                   ))}
@@ -321,7 +321,7 @@ export default function BookingPage() {
               </div>
 
               <button onClick={() => setStep(3)} disabled={!canProceedStep2} type="button"
-                className="btn-primary w-full justify-center bg-[#081225] hover:bg-[#1a4371] py-3 text-xs tracking-wider uppercase font-black">
+                className="btn-primary w-full justify-center bg-[#0B1120] hover:bg-[#1e293b] py-3 text-xs tracking-tight uppercase font-extrabold">
                 Lock Address &amp; Review <ChevronRight size={16} />
               </button>
             </div>
@@ -330,12 +330,12 @@ export default function BookingPage() {
           {/* Step 3 — Secure Summary Review */}
           {step === 3 && (
             <div className="card p-6 space-y-5 animate-slide-up">
-              <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
+              <div className="flex items-center gap-2 border-b border-white/5 pb-3">
                 <ShieldCheck className="w-5 h-5 text-[#10B981]" />
-                <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wide">Final Pre-Flight Authorization</h2>
+                <h2 className="text-sm font-bold text-white uppercase tracking-wide">Final Pre-Flight Authorization</h2>
               </div>
 
-              <div className="space-y-3 bg-slate-50/50 rounded-xl p-4 border border-slate-100">
+              <div className="space-y-3 bg-white/5 rounded-2xl p-4 border border-white/5">
                 <RowItem label="Selected Tier" value={service.name} bold />
                 <RowItem label="Scheduled Slot" value={`${selectedDate?.toLocaleDateString('en', { month: 'short', day: 'numeric' })} @ ${selectedTime}`} />
                 <RowItem label="Target Vector" value={
@@ -349,9 +349,9 @@ export default function BookingPage() {
                 {notes && <RowItem label="Attached String" value={notes} />}
               </div>
 
-              <div className="bg-amber-50/80 border border-amber-100 rounded-xl p-4">
+              <div className="bg-amber-50/80 border border-amber-100 rounded-2xl p-4">
                 <p className="text-xs font-bold text-amber-900 flex items-center gap-1.5 mb-1">
-                  <HelpCircle size={14} className="text-[#C5A059]" /> SLA Transfer Requirements
+                  <HelpCircle size={14} className="text-[#22C55E]" /> SLA Transfer Requirements
                 </p>
                 <p className="text-[11px] text-amber-800 leading-relaxed">
                   Upon secure deployment, the backend sets your booking status to <strong className="font-bold">pending_payment</strong>. Upload wire transfer confirmation inside the generated dispatch details view within 24 hours to secure assignment.
@@ -359,7 +359,7 @@ export default function BookingPage() {
               </div>
 
               <button onClick={handleSubmit} disabled={loading} type="button"
-                className="btn-gold w-full justify-center py-3.5 text-xs tracking-widest uppercase font-black text-[#081225]">
+                className="btn-primary w-full justify-center py-3.5 text-xs tracking-widest uppercase font-extrabold text-white">
                 {loading ? <Loader2 size={16} className="animate-spin" /> : 'Authorize &amp; Generate Secure Booking'}
               </button>
             </div>
@@ -369,14 +369,14 @@ export default function BookingPage() {
 
         {/* Right Sticky Live Summary Block */}
         <div className="lg:col-span-5 sticky top-28 space-y-4">
-          <div className="bg-[#081225] rounded-3xl p-5 text-white border border-white/10 shadow-glass overflow-hidden relative">
+          <div className="bg-[#0B1120] rounded-3xl p-5 text-white border border-white/10 shadow-2xl overflow-hidden relative">
             {/* Elegant light highlights */}
-            <div className="absolute top-0 end-0 bg-gradient-to-l from-white/5 to-transparent px-3 py-1 text-[9px] font-black tracking-widest uppercase text-[#C5A059] rounded-bl-xl">
+            <div className="absolute top-0 end-0 bg-gradient-to-l from-white/5 to-transparent px-3 py-1 text-[9px] font-extrabold tracking-widest uppercase text-[#22C55E] rounded-bl-xl">
               Live Total
             </div>
 
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-[#C5A059] font-bold text-lg border border-white/10">
+              <div className="w-10 h-10 rounded-2xl bg-white/5 flex items-center justify-center text-[#22C55E] font-bold text-lg border border-white/10">
                 ₪
               </div>
               <div>
@@ -391,7 +391,7 @@ export default function BookingPage() {
                 <span className="font-mono text-white">{formatCurrency(basePrice)}</span>
               </div>
               {urgencyTier === 'express' && (
-                <div className="flex justify-between text-[#C5A059]">
+                <div className="flex justify-between text-[#22C55E]">
                   <span>Express Dispatch Surge</span>
                   <span className="font-mono">{formatCurrency(expressFee)}</span>
                 </div>
@@ -403,8 +403,8 @@ export default function BookingPage() {
             </div>
 
             <div className="pt-3 flex justify-between items-baseline">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Total Calculation</span>
-              <span className="text-2xl font-black text-[#C5A059] font-mono tracking-tight">{formatCurrency(finalTotal)}</span>
+              <span className="text-[11px] font-bold uppercase tracking-tight text-slate-400">Total Calculation</span>
+              <span className="text-2xl font-extrabold text-[#22C55E] font-mono tracking-tight">{formatCurrency(finalTotal)}</span>
             </div>
 
             {/* Micro layout tracking status bars */}
@@ -425,8 +425,8 @@ export default function BookingPage() {
           </div>
 
           {/* Assurance info footer card */}
-          <div className="card p-4 bg-white/60 text-[10px] text-slate-500 space-y-1">
-            <p className="font-bold text-slate-700">🔒 Zero Fraud Guarantee</p>
+          <div className="card p-4 bg-white/5 text-[10px] text-slate-500 space-y-1">
+            <p className="font-bold text-slate-300">🔒 Zero Fraud Guarantee</p>
             <p>Payments route strictly through escrow accounts with full manual backstop controls.</p>
           </div>
         </div>
@@ -441,9 +441,9 @@ function RowItem({ label, value, bold, gold }) {
     <div className="flex justify-between gap-4 text-xs">
       <span className="text-slate-400">{label}</span>
       <span className={`text-right ${
-        gold ? 'text-[#C5A059] font-black tracking-wide' :
-        bold ? 'text-[#081225] font-bold' :
-        'text-slate-700 font-medium'
+        gold ? 'text-[#22C55E] font-extrabold tracking-wide' :
+        bold ? 'text-white font-bold' :
+        'text-slate-300 font-medium'
       }`}>{value}</span>
     </div>
   )

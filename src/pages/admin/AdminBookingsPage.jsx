@@ -53,7 +53,7 @@ export default function AdminBookingsPage() {
         {STATUS_FILTERS.map(f => (
           <button key={f.value} onClick={() => { setStatus(f.value); setPage(1) }}
             className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium transition-all
-              ${status === f.value ? 'bg-brand-600 text-white' : 'bg-white border border-slate-200 text-slate-600 hover:border-brand-300'}`}>
+              ${status === f.value ? 'bg-brand-600 text-white' : 'bg-white/[0.03] border border-white/10 text-slate-400 hover:border-brand-300'}`}>
             {f.label}
           </button>
         ))}
@@ -80,8 +80,8 @@ export default function AdminBookingsPage() {
               {bookings.map(b => (
                 <tr key={b._id} onClick={() => navigate(`/admin/bookings/${b._id}`)} className="cursor-pointer">
                   <td className="font-mono text-xs text-slate-500">#{b.bookingNumber}</td>
-                  <td className="font-medium text-slate-900">{b.serviceName}</td>
-                  <td className="text-slate-600">{b.customer?.name}</td>
+                  <td className="font-medium text-white">{b.serviceName}</td>
+                  <td className="text-slate-400">{b.customer?.name}</td>
                   <td className="text-slate-500">{b.provider?.name || <span className="text-slate-300 italic">Unassigned</span>}</td>
                   <td className="text-slate-500 text-xs">{formatDate(b.scheduledDate)}</td>
                   <td className="font-semibold">{formatCurrency(b.totalAmount)}</td>

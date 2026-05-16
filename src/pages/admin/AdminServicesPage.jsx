@@ -97,7 +97,7 @@ export default function AdminServicesPage() {
                           ? <img src={s.image} className="w-8 h-8 rounded-lg object-cover" alt="" />
                           : <span className="text-sm">🏠</span>}
                       </div>
-                      <span className="font-medium text-slate-900">{s.name}</span>
+                      <span className="font-medium text-white">{s.name}</span>
                     </div>
                   </td>
                   <td className="text-slate-500">{s.category}</td>
@@ -129,8 +129,8 @@ export default function AdminServicesPage() {
       {showForm && (
         <div className="modal-overlay" onClick={() => setShowForm(false)}>
           <div className="modal-box max-w-lg w-full overflow-y-auto max-h-[90vh]" onClick={e => e.stopPropagation()}>
-            <div className="p-6 border-b border-slate-100">
-              <h2 className="text-lg font-bold text-slate-900">
+            <div className="p-6 border-b border-white/5">
+              <h2 className="text-lg font-bold text-white">
                 {editingService ? 'Edit Service' : 'New Service'}
               </h2>
             </div>
@@ -185,10 +185,10 @@ export default function AdminServicesPage() {
               <div className="flex items-center gap-2">
                 <input type="checkbox" id="isActive" checked={form.isActive}
                   onChange={e => setForm(f => ({ ...f, isActive: e.target.checked }))} />
-                <label htmlFor="isActive" className="text-sm text-slate-700 font-medium cursor-pointer">Active (visible to customers)</label>
+                <label htmlFor="isActive" className="text-sm text-slate-300 font-medium cursor-pointer">Active (visible to customers)</label>
               </div>
             </div>
-            <div className="p-6 border-t border-slate-100 flex gap-3">
+            <div className="p-6 border-t border-white/5 flex gap-3">
               <button onClick={() => setShowForm(false)} className="btn-secondary flex-1">Cancel</button>
               <button onClick={handleSave} disabled={saving} className="btn-primary flex-1 justify-center">
                 {saving ? <Loader2 size={15} className="animate-spin" /> : editingService ? 'Update' : 'Create'}

@@ -6,8 +6,8 @@ function ErrorFallback({ error, onReset }) {
       <div className="w-14 h-14 bg-brand-600 rounded-2xl flex items-center justify-center mb-4">
         <span className="text-white font-bold text-xl">K</span>
       </div>
-      <h1 className="text-lg font-bold text-slate-900 mb-1">Something went wrong</h1>
-      <p className="text-slate-600 text-sm mb-1">حدث خطأ ما</p>
+      <h1 className="text-lg font-bold text-white mb-1">Something went wrong</h1>
+      <p className="text-slate-400 text-sm mb-1">حدث خطأ ما</p>
       {error?.message && (
         <p className="text-xs text-slate-400 mb-4 max-w-md break-words">{error.message}</p>
       )}

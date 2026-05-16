@@ -47,9 +47,9 @@ export default function ChangePasswordPage() {
   }
 
   return (
-    <div className="min-h-screen bg-surface-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-modal p-8 border border-slate-100">
-        <h1 className="text-xl font-bold text-slate-900 mb-1">Update your password</h1>
+    <div className="min-h-screen bg-[#0B1120] flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white/[0.03] rounded-3xl shadow-modal p-8 border border-white/5">
+        <h1 className="text-xl font-bold text-white mb-1">Update your password</h1>
         <p className="text-sm text-slate-500 mb-6">You must set a new password before continuing. · يجب تعيين كلمة مرور جديدة.</p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

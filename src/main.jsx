@@ -36,7 +36,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             fontSize: '14px',
             fontWeight: '500',
           },
-          success: { iconTheme: { primary: '#10b981', secondary: '#fff' } },
+          success: { iconTheme: { primary: '#10B981', secondary: '#fff' } },
           error: { iconTheme: { primary: '#ef4444', secondary: '#fff' } },
         }}
       />

@@ -89,12 +89,12 @@ export default function AdminPayoutsPage() {
       </div>
 
       {/* Providers with pending earnings */}
-      <h2 className="text-lg font-bold text-slate-900 mb-4">Providers Awaiting Payment</h2>
+      <h2 className="text-lg font-bold text-white mb-4">Providers Awaiting Payment</h2>
 
       {providersWithBalance.length === 0 ? (
         <div className="card p-8 text-center">
           <CheckCircle size={28} className="text-emerald-400 mx-auto mb-3" />
-          <p className="font-semibold text-slate-700">All providers are paid up</p>
+          <p className="font-semibold text-slate-300">All providers are paid up</p>
           <p className="text-sm text-slate-400 mt-1">No pending payouts at the moment</p>
         </div>
       ) : (
@@ -107,10 +107,10 @@ export default function AdminPayoutsPage() {
             return (
               <div key={provider._id} className="card overflow-hidden">
                 <button onClick={() => setExpandedProvider(isExpanded ? null : provider._id)}
-                  className="w-full p-5 flex items-center gap-4 hover:bg-slate-50/60 transition-colors text-left">
+                  className="w-full p-5 flex items-center gap-4 hover:bg-white/5 transition-colors text-left">
                   <Avatar name={provider.name} size="sm" />
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-slate-900">{provider.name}</p>
+                    <p className="font-semibold text-white">{provider.name}</p>
                     <p className="text-xs text-slate-400">{provider.email}</p>
                   </div>
                   <div className="text-right flex-shrink-0">
@@ -121,14 +121,14 @@ export default function AdminPayoutsPage() {
                 </button>
 
                 {isExpanded && (
-                  <div className="border-t border-slate-100 p-5 animate-slide-up">
+                  <div className="border-t border-white/5 p-5 animate-slide-up">
                     <p className="text-sm text-slate-500 mb-4">
                       Select completed bookings to include in this payout:
                     </p>
 
                     <div className="space-y-2 mb-4">
                       {/* In a full implementation, fetch per-provider pending bookings here */}
-                      <div className="text-sm text-slate-400 italic p-3 bg-slate-50 rounded-xl">
+                      <div className="text-sm text-slate-400 italic p-3 bg-white/[0.03] rounded-2xl">
                         Booking list requires admin/provider earning endpoint — connect to
                         <code className="text-brand-600 ml-1">/api/payouts/admin/balances</code> with booking IDs.
                       </div>
@@ -153,7 +153,7 @@ export default function AdminPayoutsPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between p-3 bg-emerald-50 rounded-xl mb-4">
+                    <div className="flex items-center justify-between p-3 bg-emerald-50 rounded-2xl mb-4">
                       <span className="text-sm font-medium text-emerald-700">Payout amount</span>
                       <span className="font-bold text-emerald-700">{formatCurrency(pending)}</span>
                     </div>
@@ -174,7 +174,7 @@ export default function AdminPayoutsPage() {
       )}
 
       {/* Payout history */}
-      <h2 className="text-lg font-bold text-slate-900 mb-4">Payout History</h2>
+      <h2 className="text-lg font-bold text-white mb-4">Payout History</h2>
       {!payoutHistory?.length ? (
         <div className="card p-6 text-center text-slate-400 text-sm">No payouts processed yet</div>
       ) : (
@@ -188,10 +188,10 @@ export default function AdminPayoutsPage() {
                 <tr key={p._id}>
                   <td className="text-slate-500 text-sm">{formatDate(p.createdAt)}</td>
                   <td>
-                    <p className="font-medium text-slate-900">{p.provider?.name}</p>
+                    <p className="font-medium text-white">{p.provider?.name}</p>
                     <p className="text-xs text-slate-400">{p.provider?.email}</p>
                   </td>
-                  <td className="capitalize text-slate-600">{p.method?.replace('_', ' ')}</td>
+                  <td className="capitalize text-slate-400">{p.method?.replace('_', ' ')}</td>
                   <td className="font-bold text-emerald-600">{formatCurrency(p.amount)}</td>
                   <td className="text-slate-400 font-mono text-xs">{p.transactionReference || '—'}</td>
                   <td className="text-slate-500 text-sm">{p.processedBy?.name}</td>

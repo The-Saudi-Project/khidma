@@ -68,7 +68,7 @@ function NewTicketForm({ onClose, onCreated }) {
 
   return (
     <div className="card p-5 mb-4 animate-slide-up">
-      <h3 className="font-semibold text-slate-900 mb-4">New Support Ticket</h3>
+      <h3 className="font-semibold text-white mb-4">New Support Ticket</h3>
       <div className="space-y-3">
         <div>
           <label className="label">Subject *</label>
@@ -130,13 +130,13 @@ function TicketCard({ ticket, isOpen, onToggle, onReply }) {
 
   return (
     <div className="card overflow-hidden">
-      <button onClick={onToggle} className="w-full p-4 text-left hover:bg-slate-50/60 transition-colors flex items-start gap-3">
-        <div className="w-9 h-9 bg-slate-100 rounded-xl flex items-center justify-center flex-shrink-0">
+      <button onClick={onToggle} className="w-full p-4 text-left hover:bg-white/5 transition-colors flex items-start gap-3">
+        <div className="w-9 h-9 bg-white/5 rounded-2xl flex items-center justify-center flex-shrink-0">
           <MessageCircle size={16} className="text-slate-500" />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <p className="font-semibold text-slate-900 text-sm truncate">{ticket.subject}</p>
+            <p className="font-semibold text-white text-sm truncate">{ticket.subject}</p>
             <StatusBadge status={ticket.status} type="ticket" />
           </div>
           <p className="text-xs text-slate-400 mt-0.5">#{ticket.ticketNumber} · {formatDateTime(ticket.createdAt)}</p>
@@ -145,16 +145,16 @@ function TicketCard({ ticket, isOpen, onToggle, onReply }) {
       </button>
 
       {isOpen && (
-        <div className="border-t border-slate-100 p-4">
+        <div className="border-t border-white/5 p-4">
           {fullTicket ? (
             <>
               <div className="space-y-3 mb-4 max-h-72 overflow-y-auto">
                 {fullTicket.messages?.map((msg, i) => (
                   <div key={i} className={`flex gap-2 ${msg.senderRole === 'admin' ? '' : 'flex-row-reverse'}`}>
-                    <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${msg.senderRole === 'admin' ? 'bg-brand-600 text-white' : 'bg-slate-200 text-slate-600'}`}>
+                    <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${msg.senderRole === 'admin' ? 'bg-brand-600 text-white' : 'bg-slate-200 text-slate-400'}`}>
                       {msg.senderRole === 'admin' ? 'A' : 'Y'}
                     </div>
-                    <div className={`max-w-xs px-3 py-2 rounded-xl text-sm ${msg.senderRole === 'admin' ? 'bg-slate-100 text-slate-800' : 'bg-brand-600 text-white'}`}>
+                    <div className={`max-w-xs px-3 py-2 rounded-2xl text-sm ${msg.senderRole === 'admin' ? 'bg-white/5 text-slate-200' : 'bg-brand-600 text-white'}`}>
                       {msg.content}
                     </div>
                   </div>

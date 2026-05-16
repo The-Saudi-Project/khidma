@@ -41,7 +41,7 @@ export default function AdminSupportPage() {
         {STATUS_FILTERS.map(f => (
           <button key={f.value} onClick={() => { setStatus(f.value); setPage(1) }}
             className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium transition-all
-              ${status === f.value ? 'bg-brand-600 text-white' : 'bg-white border border-slate-200 text-slate-600 hover:border-brand-300'}`}>
+              ${status === f.value ? 'bg-brand-600 text-white' : 'bg-white/[0.03] border border-white/10 text-slate-400 hover:border-brand-300'}`}>
             {f.label}
           </button>
         ))}
@@ -110,15 +110,15 @@ function TicketRow({ ticket, isOpen, onToggle, onUpdated }) {
   return (
     <div className="card overflow-hidden">
       <button onClick={onToggle}
-        className="w-full p-4 flex items-start gap-3 hover:bg-slate-50/60 transition-colors text-left">
-        <div className="w-8 h-8 bg-slate-100 rounded-xl flex items-center justify-center flex-shrink-0">
+        className="w-full p-4 flex items-start gap-3 hover:bg-white/5 transition-colors text-left">
+        <div className="w-8 h-8 bg-white/5 rounded-2xl flex items-center justify-center flex-shrink-0">
           <MessageCircle size={15} className="text-slate-500" />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <p className="font-semibold text-slate-900 text-sm">{ticket.subject}</p>
+            <p className="font-semibold text-white text-sm">{ticket.subject}</p>
             <StatusBadge status={ticket.status} type="ticket" />
-            <span className={`badge text-xs ${ticket.submittedByRole === 'provider' ? 'badge-purple' : 'badge-blue'}`}>
+            <span className={`badge text-xs ${ticket.submittedByRole === 'provider' ? 'badge-purple' : 'badge-premium'}`}>
               {ticket.submittedByRole}
             </span>
           </div>
@@ -132,7 +132,7 @@ function TicketRow({ ticket, isOpen, onToggle, onUpdated }) {
       </button>
 
       {isOpen && (
-        <div className="border-t border-slate-100 p-4 animate-slide-up">
+        <div className="border-t border-white/5 p-4 animate-slide-up">
           {fullTicket ? (
             <>
               {/* Messages */}
@@ -144,8 +144,8 @@ function TicketRow({ ticket, isOpen, onToggle, onUpdated }) {
                     }`}>
                       {msg.senderRole === 'admin' ? 'A' : msg.sender?.name?.[0] || 'U'}
                     </div>
-                    <div className={`max-w-sm px-3 py-2 rounded-xl text-sm ${
-                      msg.senderRole === 'admin' ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-800'
+                    <div className={`max-w-sm px-3 py-2 rounded-2xl text-sm ${
+                      msg.senderRole === 'admin' ? 'bg-slate-900 text-white' : 'bg-white/5 text-slate-200'
                     }`}>
                       <p className="text-xs opacity-60 mb-0.5">{msg.sender?.name} · {formatDateTime(msg.createdAt)}</p>
                       {msg.content}
@@ -161,7 +161,7 @@ function TicketRow({ ticket, isOpen, onToggle, onUpdated }) {
                   <button key={s} disabled={updatingStatus || ticket.status === s}
                     onClick={() => handleStatusChange(s)}
                     className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all border
-                      ${ticket.status === s ? 'bg-brand-600 text-white border-brand-600' : 'bg-white border-slate-200 text-slate-600 hover:border-brand-300'}`}>
+                      ${ticket.status === s ? 'bg-brand-600 text-white border-brand-600' : 'bg-white/[0.03] border-white/10 text-slate-400 hover:border-brand-300'}`}>
                     {s.replace('_', ' ')}
                   </button>
                 ))}

@@ -26,7 +26,7 @@ export default function ProfilePage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 bg-slate-100 p-1 rounded-xl mb-6 w-fit">
+      <div className="flex gap-1 bg-white/5 p-1 rounded-2xl mb-6 w-fit">
         {[
           { key: 'profile', label: 'Profile', icon: User },
           { key: 'addresses', label: 'Addresses', icon: MapPin },
@@ -34,7 +34,7 @@ export default function ProfilePage() {
         ].map(t => (
           <button key={t.key} onClick={() => setActiveTab(t.key)}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all
-              ${activeTab === t.key ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
+              ${activeTab === t.key ? 'bg-white/[0.03] text-white shadow-2xl' : 'text-slate-500 hover:text-slate-300'}`}>
             <t.icon size={14} />{t.label}
           </button>
         ))}
@@ -64,12 +64,12 @@ function ProfileTab({ user, onUpdated, updateUser }) {
 
   return (
     <div className="card p-6 space-y-4">
-      <div className="flex items-center gap-4 pb-4 border-b border-slate-100">
+      <div className="flex items-center gap-4 pb-4 border-b border-white/5">
         <div className="w-16 h-16 rounded-2xl bg-brand-600 text-white flex items-center justify-center text-2xl font-bold">
           {user.name?.split(' ').slice(0,2).map(w => w[0]).join('')}
         </div>
         <div>
-          <p className="font-bold text-slate-900 text-lg">{user.name}</p>
+          <p className="font-bold text-white text-lg">{user.name}</p>
           <p className="text-sm text-slate-400">{user.email}</p>
         </div>
       </div>
@@ -127,7 +127,7 @@ function AddressesTab({ user, onUpdated }) {
     <div className="space-y-3">
       {user.addresses?.map(addr => (
         <div key={addr._id} className="card p-4 flex items-start gap-3">
-          <div className="w-9 h-9 bg-brand-50 rounded-xl flex items-center justify-center flex-shrink-0">
+          <div className="w-9 h-9 bg-brand-50 rounded-2xl flex items-center justify-center flex-shrink-0">
             <MapPin size={16} className="text-brand-600" />
           </div>
           <div className="flex-1 min-w-0">
@@ -135,7 +135,7 @@ function AddressesTab({ user, onUpdated }) {
               <span className="text-xs font-semibold text-brand-700 bg-brand-50 px-2 py-0.5 rounded">{addr.label}</span>
               {addr.isDefault && <span className="text-xs text-slate-400">Default</span>}
             </div>
-            <p className="text-sm text-slate-700">{addr.fullAddress}</p>
+            <p className="text-sm text-slate-300">{addr.fullAddress}</p>
             <p className="text-xs text-slate-400 mt-0.5">{addr.city}{addr.district ? `, ${addr.district}` : ''}</p>
           </div>
           <button onClick={() => handleDelete(addr._id)} disabled={deleting === addr._id}
@@ -147,12 +147,12 @@ function AddressesTab({ user, onUpdated }) {
 
       {!showForm ? (
         <button onClick={() => setShowForm(true)}
-          className="w-full border-2 border-dashed border-slate-200 rounded-xl p-4 text-sm text-slate-500 hover:border-brand-300 hover:text-brand-600 transition-colors flex items-center justify-center gap-2">
+          className="w-full border-2 border-dashed border-white/10 rounded-2xl p-4 text-sm text-slate-500 hover:border-brand-300 hover:text-brand-600 transition-colors flex items-center justify-center gap-2">
           <Plus size={16} /> Add new address
         </button>
       ) : (
         <div className="card p-5 space-y-3">
-          <h3 className="font-semibold text-slate-900">New address</h3>
+          <h3 className="font-semibold text-white">New address</h3>
           <div>
             <label className="label">Label</label>
             <select className="input" value={form.label} onChange={e => setForm(f => ({ ...f, label: e.target.value }))}>
@@ -203,7 +203,7 @@ function SecurityTab() {
 
   return (
     <div className="card p-6 space-y-4">
-      <h3 className="font-semibold text-slate-900">Change password</h3>
+      <h3 className="font-semibold text-white">Change password</h3>
       {['currentPassword', 'newPassword', 'confirmPassword'].map((key) => (
         <div key={key}>
           <label className="label capitalize">{key.replace(/([A-Z])/g, ' $1').toLowerCase()}</label>

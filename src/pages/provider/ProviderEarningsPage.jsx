@@ -40,7 +40,7 @@ export default function ProviderEarningsPage() {
 
       {/* Pending bookings */}
       <div className="mb-8">
-        <h2 className="text-lg font-bold text-slate-900 mb-4">Pending Payments ({pendingBookings.length})</h2>
+        <h2 className="text-lg font-bold text-white mb-4">Pending Payments ({pendingBookings.length})</h2>
         {pendingBookings.length === 0 ? (
           <div className="card p-6 text-center text-slate-400 text-sm">No pending payments</div>
         ) : (
@@ -58,7 +58,7 @@ export default function ProviderEarningsPage() {
                 {pendingBookings.map(b => (
                   <tr key={b._id}>
                     <td className="font-mono text-xs text-slate-500">#{b.bookingNumber}</td>
-                    <td className="font-medium text-slate-900">{b.serviceName}</td>
+                    <td className="font-medium text-white">{b.serviceName}</td>
                     <td className="text-slate-500">{formatDate(b.scheduledDate)}</td>
                     <td className="font-bold text-emerald-600">{formatCurrency(b.providerEarning)}</td>
                   </tr>
@@ -71,7 +71,7 @@ export default function ProviderEarningsPage() {
 
       {/* Payout history */}
       <div>
-        <h2 className="text-lg font-bold text-slate-900 mb-4">Payout History</h2>
+        <h2 className="text-lg font-bold text-white mb-4">Payout History</h2>
         {!payoutHistory || payoutHistory.length === 0 ? (
           <div className="card p-6 text-center text-slate-400 text-sm">No payouts yet</div>
         ) : (
@@ -84,7 +84,7 @@ export default function ProviderEarningsPage() {
                 {payoutHistory.map(p => (
                   <tr key={p._id}>
                     <td className="text-slate-500">{formatDate(p.createdAt)}</td>
-                    <td className="capitalize text-slate-700">{p.method?.replace('_', ' ')}</td>
+                    <td className="capitalize text-slate-300">{p.method?.replace('_', ' ')}</td>
                     <td className="text-slate-500">{p.bookings?.length || 0} jobs</td>
                     <td className="font-bold text-emerald-600">{formatCurrency(p.amount)}</td>
                     <td><StatusBadge status={p.status} type="payment" /></td>

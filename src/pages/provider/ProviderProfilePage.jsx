@@ -56,13 +56,13 @@ export default function ProviderProfilePage() {
 
       {/* Availability toggle */}
       <div className="card p-5 mb-4 flex items-center gap-4">
-        <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${isAvailable ? 'bg-emerald-50' : 'bg-slate-100'}`}>
+        <div className={`w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0 ${isAvailable ? 'bg-emerald-50' : 'bg-white/5'}`}>
           {isAvailable
             ? <ToggleRight size={20} className="text-emerald-600" />
             : <ToggleLeft size={20} className="text-slate-400" />}
         </div>
         <div className="flex-1">
-          <p className="font-semibold text-slate-900">Availability</p>
+          <p className="font-semibold text-white">Availability</p>
           <p className="text-sm text-slate-500">{isAvailable ? 'You are accepting new jobs' : 'You are not accepting jobs'}</p>
         </div>
         <button onClick={handleToggleAvailability} disabled={toggling}
@@ -79,7 +79,7 @@ export default function ProviderProfilePage() {
           { label: 'Completed', value: user.providerProfile?.completedJobs || 0 },
         ].map(s => (
           <div key={s.label} className="card p-3 text-center">
-            <p className="text-lg font-bold text-slate-900">{s.value}</p>
+            <p className="text-lg font-bold text-white">{s.value}</p>
             <p className="text-xs text-slate-400">{s.label}</p>
           </div>
         ))}
@@ -87,7 +87,7 @@ export default function ProviderProfilePage() {
 
       {/* Edit form */}
       <div className="card p-5 space-y-4">
-        <h3 className="font-semibold text-slate-900">Personal Information</h3>
+        <h3 className="font-semibold text-white">Personal Information</h3>
         <div>
           <label className="label">Full name</label>
           <input className="input" value={profileForm.name}
@@ -110,7 +110,7 @@ export default function ProviderProfilePage() {
             <label className="label">Skills</label>
             <div className="flex flex-wrap gap-2">
               {user.providerProfile.skills.map((s, i) => (
-                <span key={i} className="badge-blue">{s}</span>
+                <span key={i} className="badge-premium">{s}</span>
               ))}
             </div>
           </div>

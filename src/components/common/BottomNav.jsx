@@ -31,7 +31,7 @@ export default function BottomNav() {
   }
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 pb-safe z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/[0.03] border-t border-white/10 pb-safe z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
       <div className="flex items-center justify-around px-2 pt-2 pb-1">
         {navItems.map((item) => (
           <NavLink
@@ -41,8 +41,8 @@ export default function BottomNav() {
             className={({ isActive }) =>
               `flex flex-col items-center justify-center w-16 h-12 transition-colors ${
                 isActive
-                  ? 'text-[#C5A059]'
-                  : 'text-slate-400 hover:text-slate-600'
+                  ? 'text-[#22C55E]'
+                  : 'text-slate-400 hover:text-slate-400'
               }`
             }
           >
@@ -51,12 +51,12 @@ export default function BottomNav() {
                 <item.icon
                   size={24}
                   className={`mb-1 transition-all ${
-                    isActive ? 'scale-110 fill-[#C5A059]/10' : ''
+                    isActive ? 'scale-110 fill-[#22C55E]/10' : ''
                   }`}
                 />
                 <span
                   className={`text-[10px] font-bold ${
-                    isActive ? 'text-[#C5A059]' : 'text-slate-500'
+                    isActive ? 'text-[#22C55E]' : 'text-slate-500'
                   }`}
                 >
                   {item.label}

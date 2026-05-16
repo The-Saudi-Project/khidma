@@ -40,10 +40,10 @@ export default function MyBookingsPage() {
       <div className="flex gap-2 mb-6 overflow-x-auto scrollbar-hide pb-1">
         {STATUS_FILTERS.map(f => (
           <button key={f.value} onClick={() => { setStatus(f.value); setPage(1) }}
-            className={`flex-shrink-0 px-4 py-2 rounded-xl text-sm font-medium transition-all
+            className={`flex-shrink-0 px-4 py-2 rounded-2xl text-sm font-medium transition-all
               ${status === f.value
-                ? 'bg-brand-600 text-white shadow-sm'
-                : 'bg-white text-slate-600 border border-slate-200 hover:border-brand-300'
+                ? 'bg-brand-600 text-white shadow-2xl'
+                : 'bg-white/[0.03] text-slate-400 border border-white/10 hover:border-brand-300'
               }`}>
             {f.label}
           </button>
@@ -65,14 +65,14 @@ export default function MyBookingsPage() {
             {bookings.map(booking => (
               <div key={booking._id}
                 onClick={() => navigate(`/bookings/${booking._id}`)}
-                className="p-5 hover:bg-slate-50/60 cursor-pointer transition-colors flex items-center gap-4 group">
+                className="p-5 hover:bg-white/5 cursor-pointer transition-colors flex items-center gap-4 group">
                 {/* Status dot */}
                 <div className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${getStatusConfig(booking.status).dot}`} />
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <p className="font-semibold text-slate-900">{booking.serviceName}</p>
+                    <p className="font-semibold text-white">{booking.serviceName}</p>
                     <StatusBadge status={booking.status} />
                   </div>
                   <div className="flex items-center gap-4 text-xs text-slate-400 mt-1">
@@ -86,7 +86,7 @@ export default function MyBookingsPage() {
 
                 {/* Amount */}
                 <div className="text-right flex-shrink-0">
-                  <p className="font-bold text-slate-900">{formatCurrency(booking.totalAmount)}</p>
+                  <p className="font-bold text-white">{formatCurrency(booking.totalAmount)}</p>
                 </div>
 
                 <ChevronRight size={16} className="text-slate-300 group-hover:text-slate-500 flex-shrink-0 transition-colors" />

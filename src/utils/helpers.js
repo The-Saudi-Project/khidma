@@ -13,10 +13,10 @@ export const formatCurrency = (amount, currency = 'SAR') =>
 // ─── Booking status config ────────────────────────────────────────────────────
 export const BOOKING_STATUS = {
   pending_payment:   { label: 'Pending Payment',   badge: 'badge-yellow', dot: 'bg-amber-400' },
-  payment_uploaded:  { label: 'Payment Uploaded',  badge: 'badge-blue',   dot: 'bg-blue-400' },
-  payment_confirmed: { label: 'Payment Confirmed', badge: 'badge-blue',   dot: 'bg-brand-500' },
+  payment_uploaded:  { label: 'Payment Uploaded',  badge: 'badge-premium',   dot: 'bg-blue-400' },
+  payment_confirmed: { label: 'Payment Confirmed', badge: 'badge-premium',   dot: 'bg-brand-500' },
   provider_assigned: { label: 'Provider Assigned', badge: 'badge-purple', dot: 'bg-purple-500' },
-  in_progress:       { label: 'In Progress',       badge: 'badge-blue',   dot: 'bg-brand-600' },
+  in_progress:       { label: 'In Progress',       badge: 'badge-premium',   dot: 'bg-brand-600' },
   completed:         { label: 'Completed',         badge: 'badge-green',  dot: 'bg-emerald-500' },
   cancelled:         { label: 'Cancelled',         badge: 'badge-red',    dot: 'bg-red-400' },
   expired:           { label: 'Expired',           badge: 'badge-gray',   dot: 'bg-slate-400' },
@@ -28,7 +28,7 @@ export const getStatusConfig = (status) =>
 // ─── Payment status ───────────────────────────────────────────────────────────
 export const PAYMENT_STATUS = {
   pending:      { label: 'Pending Review',  badge: 'badge-yellow' },
-  under_review: { label: 'Under Review',    badge: 'badge-blue' },
+  under_review: { label: 'Under Review',    badge: 'badge-premium' },
   confirmed:    { label: 'Confirmed',       badge: 'badge-green' },
   rejected:     { label: 'Rejected',        badge: 'badge-red' },
 }
@@ -36,7 +36,7 @@ export const PAYMENT_STATUS = {
 // ─── Support ticket status ────────────────────────────────────────────────────
 export const TICKET_STATUS = {
   open:             { label: 'Open',             badge: 'badge-red' },
-  in_progress:      { label: 'In Progress',      badge: 'badge-blue' },
+  in_progress:      { label: 'In Progress',      badge: 'badge-premium' },
   waiting_customer: { label: 'Waiting on You',   badge: 'badge-yellow' },
   resolved:         { label: 'Resolved',         badge: 'badge-green' },
   closed:           { label: 'Closed',           badge: 'badge-gray' },

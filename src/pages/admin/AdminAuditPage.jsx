@@ -6,7 +6,7 @@ import { ShieldCheck, Search } from 'lucide-react'
 import { InlineLoader, EmptyState, Pagination } from '../../components/common/LoadingSpinner'
 
 const ACTION_COLORS = {
-  'auth.': 'bg-slate-100 text-slate-700',
+  'auth.': 'bg-white/5 text-slate-300',
   'booking.': 'bg-brand-50 text-brand-700',
   'payment.': 'bg-amber-50 text-amber-700',
   'payout.': 'bg-emerald-50 text-emerald-700',
@@ -18,7 +18,7 @@ const getActionColor = (action) => {
   for (const [prefix, cls] of Object.entries(ACTION_COLORS)) {
     if (action?.startsWith(prefix)) return cls
   }
-  return 'bg-slate-100 text-slate-600'
+  return 'bg-white/5 text-slate-400'
 }
 
 export default function AdminAuditPage() {
@@ -72,10 +72,10 @@ export default function AdminAuditPage() {
                     </span>
                   </td>
                   <td>
-                    <p className="text-sm font-medium text-slate-900">{log.performedBy?.name || 'System'}</p>
+                    <p className="text-sm font-medium text-white">{log.performedBy?.name || 'System'}</p>
                     <p className="text-xs text-slate-400 capitalize">{log.performedByRole}</p>
                   </td>
-                  <td className="text-slate-600 text-sm max-w-xs truncate">{log.description}</td>
+                  <td className="text-slate-400 text-sm max-w-xs truncate">{log.description}</td>
                   <td className="text-slate-400 font-mono text-xs">{log.ipAddress || '—'}</td>
                 </tr>
               ))}

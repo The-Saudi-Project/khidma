@@ -124,11 +124,11 @@ export default function BookingDetailPage() {
       {/* Return Action */}
       <div className="flex items-center justify-between mb-6">
         <button onClick={() => navigate('/bookings')} type="button"
-          className="flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-[#081225] transition-colors">
+          className="flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-white transition-colors">
           <ArrowLeft size={16} /> Return to Order Matrices
         </button>
         
-        <button onClick={refetch} type="button" className="text-[10px] text-slate-400 hover:text-[#C5A059] flex items-center gap-1">
+        <button onClick={refetch} type="button" className="text-[10px] text-slate-400 hover:text-[#22C55E] flex items-center gap-1">
           <RefreshCw size={12} className="animate-spin-slow" /> Force State Sync
         </button>
       </div>
@@ -140,17 +140,17 @@ export default function BookingDetailPage() {
         <div className="lg:col-span-7 space-y-6">
           
           {/* Header Metadata container */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm relative overflow-hidden">
-            <div className="absolute top-0 end-0 bg-slate-50 border-b border-s border-slate-100 px-3 py-1 rounded-bl-xl text-[9px] font-mono text-slate-400">
+          <div className="bg-white/[0.03] rounded-3xl p-6 border border-white/5 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 end-0 bg-white/[0.03] border-b border-s border-white/5 px-3 py-1 rounded-bl-xl text-[9px] font-mono text-slate-400">
               ID: {booking._id.slice(-6).toUpperCase()}
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <span className="text-[10px] font-bold text-[#C5A059] tracking-widest uppercase block mb-1">
+                <span className="text-[10px] font-bold text-[#22C55E] tracking-widest uppercase block mb-1">
                   Active Dispatch Descriptor
                 </span>
-                <h1 className="text-2xl font-black text-[#081225] tracking-tight leading-none">
+                <h1 className="text-2xl font-extrabold text-white tracking-tight leading-none">
                   {booking.serviceName}
                 </h1>
                 <p className="text-xs font-mono font-bold text-slate-400 mt-1.5">
@@ -165,23 +165,23 @@ export default function BookingDetailPage() {
               </div>
             </div>
 
-            <div className="mt-6 pt-5 border-t border-slate-100 grid grid-cols-2 gap-4">
+            <div className="mt-6 pt-5 border-t border-white/5 grid grid-cols-2 gap-4">
               <DetailBox icon={Calendar} label="Target Scheduled Date" value={`${formatDate(booking.scheduledDate)} @ ${booking.scheduledTime}`} />
               <DetailBox icon={MapPin} label="Geofence Anchor" value={`${booking.address?.city || 'Riyadh'}, ${booking.address?.district || 'Sector A'}`} />
             </div>
 
             {booking.provider && (
-              <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between bg-slate-50/60 rounded-xl p-3">
+              <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between bg-white/5 rounded-2xl p-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-[#081225] flex items-center justify-center text-[#C5A059] font-bold text-xs">
+                  <div className="w-8 h-8 rounded-lg bg-[#0B1120] flex items-center justify-center text-[#22C55E] font-bold text-xs">
                     {booking.provider.name?.charAt(0) || 'P'}
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-900">{booking.provider.name}</p>
+                    <p className="text-xs font-bold text-white">{booking.provider.name}</p>
                     <p className="text-[10px] text-[#10B981]">Assigned Technician Cluster</p>
                   </div>
                 </div>
-                <span className="text-[10px] font-mono bg-white px-2 py-1 rounded border border-slate-100">
+                <span className="text-[10px] font-mono bg-white/[0.03] px-2 py-1 rounded border border-white/5">
                   Verified Shield
                 </span>
               </div>
@@ -189,15 +189,15 @@ export default function BookingDetailPage() {
           </div>
 
           {/* Connected Logistics-Style Tracking Timeline */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
-            <div className="flex items-center gap-2 mb-6 pb-3 border-b border-slate-100">
-              <Layers className="w-5 h-5 text-[#081225]" />
-              <h3 className="font-extrabold text-[#081225] text-base tracking-tight">Logistics Timeline Audit</h3>
+          <div className="bg-white/[0.03] rounded-3xl p-6 border border-white/5 shadow-2xl">
+            <div className="flex items-center gap-2 mb-6 pb-3 border-b border-white/5">
+              <Layers className="w-5 h-5 text-white" />
+              <h3 className="font-extrabold text-white text-base tracking-tight">Logistics Timeline Audit</h3>
             </div>
 
             <div className="relative ps-3">
               {/* Vertical guideline bar */}
-              <div className="absolute start-[15px] top-3 bottom-3 w-0.5 bg-gradient-to-b from-[#10B981] via-[#C5A059]/40 to-slate-200" />
+              <div className="absolute start-[15px] top-3 bottom-3 w-0.5 bg-gradient-to-b from-[#10B981] via-[#22C55E]/40 to-slate-200" />
 
               <div className="space-y-6 relative z-10">
                 {timelineEvents.map((ev, idx) => {
@@ -207,14 +207,14 @@ export default function BookingDetailPage() {
                       <div className={`w-3.5 h-3.5 rounded-full mt-1.5 flex items-center justify-center transition-transform ${
                         isLatest
                           ? 'bg-[#10B981] text-white ring-4 ring-[#10B981]/20 scale-125'
-                          : 'bg-[#081225] text-[#C5A059]'
+                          : 'bg-[#0B1120] text-[#22C55E]'
                       }`}>
-                        <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-white/[0.03]" />
                       </div>
 
-                      <div className="flex-1 bg-surface-50 rounded-xl p-3.5 border border-slate-100 group-hover:border-slate-200 transition-colors">
+                      <div className="flex-1 bg-[#0B1120] rounded-2xl p-3.5 border border-white/5 group-hover:border-white/10 transition-colors">
                         <div className="flex items-center justify-between gap-2 mb-1">
-                          <span className="text-xs font-bold text-slate-900 capitalize tracking-wide">
+                          <span className="text-xs font-bold text-white capitalize tracking-wide">
                             {TIMELINE_LABELS[ev.status] || ev.status.replace(/_/g, ' ')}
                           </span>
                           <span className="text-[10px] font-mono text-slate-400">
@@ -236,7 +236,7 @@ export default function BookingDetailPage() {
           {canCancel && (
             <div className="text-center">
               <button onClick={() => setShowCancelModal(true)} type="button"
-                className="inline-flex items-center gap-2 text-xs font-bold text-red-500 hover:text-red-700 bg-red-50/50 hover:bg-red-50 px-4 py-2 rounded-xl transition-colors">
+                className="inline-flex items-center gap-2 text-xs font-bold text-red-500 hover:text-red-700 bg-red-50/50 hover:bg-red-50 px-4 py-2 rounded-2xl transition-colors">
                 <XCircle size={14} /> Initiate Order Abort Protocol
               </button>
             </div>
@@ -248,14 +248,14 @@ export default function BookingDetailPage() {
         <div className="lg:col-span-5 space-y-6">
           
           {/* Total Cost Quoted Display */}
-          <div className="bg-[#081225] rounded-3xl p-6 text-white border border-white/10 shadow-glass relative overflow-hidden">
+          <div className="bg-[#0B1120] rounded-3xl p-6 text-white border border-white/10 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 end-0 w-32 h-32 bg-[#10B981]/10 rounded-full blur-2xl pointer-events-none" />
 
             <span className="text-[10px] font-bold tracking-widest uppercase text-slate-400 block mb-1">
               Final Escrow Hold
             </span>
             <div className="flex items-baseline justify-between">
-              <span className="text-3xl font-black text-[#C5A059] font-mono tracking-tight">
+              <span className="text-3xl font-extrabold text-[#22C55E] font-mono tracking-tight">
                 {formatCurrency(booking.totalAmount)}
               </span>
               <span className="text-[10px] text-[#10B981] font-bold">SLA Protected</span>
@@ -275,35 +275,35 @@ export default function BookingDetailPage() {
 
           {/* Core Wire Transfer Upload Container */}
           {canUploadPayment && (
-            <div className="bg-white rounded-3xl p-6 border-2 border-[#C5A059]/40 shadow-glass relative">
-              <div className="absolute -top-3 end-6 bg-[#C5A059] text-[#081225] text-[9px] font-black tracking-widest uppercase px-2.5 py-0.5 rounded-full shadow-sm">
+            <div className="bg-white/[0.03] rounded-3xl p-6 border-2 border-[#22C55E]/40 shadow-2xl relative">
+              <div className="absolute -top-3 end-6 bg-[#22C55E] text-white text-[9px] font-extrabold tracking-widest uppercase px-2.5 py-0.5 rounded-full shadow-2xl">
                 Action Required
               </div>
 
-              <h3 className="text-sm font-bold text-slate-900 mb-1 flex items-center gap-2">
-                <FileText size={16} className="text-[#C5A059]" /> Bank Transfer Handshake
+              <h3 className="text-sm font-bold text-white mb-1 flex items-center gap-2">
+                <FileText size={16} className="text-[#22C55E]" /> Bank Transfer Handshake
               </h3>
               <p className="text-xs text-slate-500 leading-relaxed mb-4">
                 Execute wire transfer directly to our automated vault using the routing indices below to unlock technical dispatch.
               </p>
 
               {/* High fidelity static account display block */}
-              <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 space-y-2 text-xs text-slate-700 font-mono mb-4">
-                <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
+              <div className="bg-white/[0.03] rounded-2xl p-4 border border-white/10 space-y-2 text-xs text-slate-300 font-mono mb-4">
+                <div className="flex justify-between border-b border-white/10/60 pb-1.5">
                   <span className="text-slate-400 text-[10px]">VAULT BANK</span>
-                  <span className="font-bold text-slate-900">Al Rajhi Central Hub</span>
+                  <span className="font-bold text-white">Al Rajhi Central Hub</span>
                 </div>
-                <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
+                <div className="flex justify-between border-b border-white/10/60 pb-1.5">
                   <span className="text-slate-400 text-[10px]">ACCOUNT</span>
                   <span className="font-bold">1234-5678-9012-3456</span>
                 </div>
-                <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
+                <div className="flex justify-between border-b border-white/10/60 pb-1.5">
                   <span className="text-slate-400 text-[10px]">IBAN LAYER</span>
-                  <span className="text-[11px] font-bold text-[#081225]">SA44 2000 0001 2345 6789 1234</span>
+                  <span className="text-[11px] font-bold text-white">SA44 2000 0001 2345 6789 1234</span>
                 </div>
                 <div className="flex justify-between pt-0.5">
-                  <span className="text-[#C5A059] text-[10px] font-bold">REQUIRED REF</span>
-                  <span className="bg-[#C5A059]/10 text-[#081225] font-black px-1.5 py-0.5 rounded">
+                  <span className="text-[#22C55E] text-[10px] font-bold">REQUIRED REF</span>
+                  <span className="bg-[#22C55E]/10 text-white font-extrabold px-1.5 py-0.5 rounded">
                     {booking.bookingNumber}
                   </span>
                 </div>
@@ -313,10 +313,10 @@ export default function BookingDetailPage() {
               <input ref={fileRef} type="file" accept="image/*,.pdf" className="hidden" onChange={handleFileSelect} />
 
               {proofFile ? (
-                <div className="bg-slate-50 rounded-xl p-3 border border-slate-200 flex items-center justify-between gap-3 mb-4">
+                <div className="bg-white/[0.03] rounded-2xl p-3 border border-white/10 flex items-center justify-between gap-3 mb-4">
                   <div className="flex items-center gap-2 min-w-0">
                     <CheckCircle size={16} className="text-[#10B981] flex-shrink-0" />
-                    <span className="text-xs font-bold text-slate-800 truncate">{proofFile.name}</span>
+                    <span className="text-xs font-bold text-slate-200 truncate">{proofFile.name}</span>
                   </div>
                   <button onClick={() => setProofFile(null)} type="button" className="text-slate-400 hover:text-red-500 p-1">
                     <X size={14} />
@@ -324,17 +324,17 @@ export default function BookingDetailPage() {
                 </div>
               ) : (
                 <button onClick={() => fileRef.current.click()} type="button"
-                  className="w-full border-2 border-dashed border-slate-200 hover:border-[#C5A059] rounded-2xl p-4 text-center transition-all group mb-4">
-                  <div className="w-10 h-10 rounded-full bg-slate-50 group-hover:bg-[#C5A059]/10 flex items-center justify-center mx-auto mb-2 transition-colors">
-                    <Upload size={16} className="text-slate-500 group-hover:text-[#C5A059] transition-colors" />
+                  className="w-full border-2 border-dashed border-white/10 hover:border-[#22C55E] rounded-2xl p-4 text-center transition-all group mb-4">
+                  <div className="w-10 h-10 rounded-full bg-white/[0.03] group-hover:bg-[#22C55E]/10 flex items-center justify-center mx-auto mb-2 transition-colors">
+                    <Upload size={16} className="text-slate-500 group-hover:text-[#22C55E] transition-colors" />
                   </div>
-                  <span className="text-xs font-bold text-slate-700 block">Select receipt payload</span>
+                  <span className="text-xs font-bold text-slate-300 block">Select receipt payload</span>
                   <span className="text-[10px] text-slate-400 block mt-0.5">Accepts encrypted JPG/PNG/PDF (Max 5MB)</span>
                 </button>
               )}
 
               {booking.status === 'payment_uploaded' && !proofFile && (
-                <div className="bg-blue-50 text-blue-800 rounded-xl p-3 text-xs font-bold flex items-center gap-2 mb-4 border border-blue-100">
+                <div className="bg-blue-50 text-blue-800 rounded-2xl p-3 text-xs font-bold flex items-center gap-2 mb-4 border border-blue-100">
                   <Clock size={14} className="animate-spin-slow flex-shrink-0" />
                   <span>Payload locked in validation buffer. Admin authorization active.</span>
                 </div>
@@ -342,7 +342,7 @@ export default function BookingDetailPage() {
 
               {proofFile && (
                 <button onClick={handleUploadProof} disabled={uploading} type="button"
-                  className="btn-gold w-full justify-center py-3 text-xs tracking-widest uppercase font-black text-[#081225]">
+                  className="btn-primary w-full justify-center py-3 text-xs tracking-widest uppercase font-extrabold text-white">
                   {uploading ? <Loader2 size={16} className="animate-spin" /> : 'Transmit Cryptographic Payload'}
                 </button>
               )}
@@ -364,28 +364,28 @@ export default function BookingDetailPage() {
 
           {/* Review Builder Container Block */}
           {canReview && (
-            <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+            <div className="bg-white/[0.03] rounded-3xl p-6 border border-white/5 shadow-2xl">
               {!showReviewForm ? (
                 <button onClick={() => setShowReviewForm(true)} type="button" className="w-full text-start group">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-amber-50 group-hover:bg-[#C5A059]/10 flex items-center justify-center flex-shrink-0 transition-colors">
-                      <Star size={18} className="text-amber-500 group-hover:text-[#C5A059] transition-colors" />
+                    <div className="w-10 h-10 rounded-2xl bg-amber-50 group-hover:bg-[#22C55E]/10 flex items-center justify-center flex-shrink-0 transition-colors">
+                      <Star size={18} className="text-amber-500 group-hover:text-[#22C55E] transition-colors" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-xs font-bold text-slate-900 group-hover:text-[#081225]">Rate Service Execution</p>
+                      <p className="text-xs font-bold text-white group-hover:text-white">Rate Service Execution</p>
                       <p className="text-[10px] text-slate-400">Provide direct telemetry to improve Gulf SLA routing</p>
                     </div>
-                    <span className="text-xs font-bold text-[#C5A059] group-hover:underline">Launch</span>
+                    <span className="text-xs font-bold text-[#22C55E] group-hover:underline">Launch</span>
                   </div>
                 </button>
               ) : (
                 <div className="space-y-4 animate-scale-in">
-                  <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wide">Select Tier Stars</h3>
+                  <h3 className="text-xs font-bold text-white uppercase tracking-wide">Select Tier Stars</h3>
                   <div className="flex gap-2">
                     {[1, 2, 3, 4, 5].map(i => (
                       <button key={i} onClick={() => setRating(i)} type="button"
-                        className={`w-10 h-10 rounded-xl border text-base transition-all ${
-                          i <= rating ? 'bg-[#C5A059] border-[#C5A059] text-[#081225] font-black' : 'bg-slate-50 border-slate-200 text-slate-300'
+                        className={`w-10 h-10 rounded-2xl border text-base transition-all ${
+                          i <= rating ? 'bg-[#22C55E] border-[#22C55E] text-white font-extrabold' : 'bg-white/[0.03] border-white/10 text-slate-300'
                         }`}>
                         ★
                       </button>
@@ -404,7 +404,7 @@ export default function BookingDetailPage() {
                       Abort
                     </button>
                     <button onClick={handleReview} disabled={submittingReview} type="button"
-                      className="btn-primary btn-sm flex-1 justify-center bg-[#081225] font-bold">
+                      className="btn-primary btn-sm flex-1 justify-center bg-[#0B1120] font-bold">
                       {submittingReview ? <Loader2 size={14} className="animate-spin" /> : 'Log Payload'}
                     </button>
                   </div>
@@ -433,12 +433,12 @@ export default function BookingDetailPage() {
 
 function DetailBox({ icon: Icon, label, value }) {
   return (
-    <div className="bg-slate-50/50 rounded-xl p-3 border border-slate-100">
+    <div className="bg-white/5 rounded-2xl p-3 border border-white/5">
       <div className="flex items-center gap-1.5 mb-1 text-slate-400">
         <Icon size={12} />
         <span className="text-[10px] font-bold uppercase tracking-wide">{label}</span>
       </div>
-      <p className="text-xs font-bold text-slate-800 line-clamp-1">{value}</p>
+      <p className="text-xs font-bold text-slate-200 line-clamp-1">{value}</p>
     </div>
   )
 }

@@ -72,10 +72,10 @@ export default function PWAInstallBanner() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 p-4 z-[60] lg:hidden animate-slide-up">
-      <div className="bg-[#081225] rounded-2xl p-4 shadow-[0_-8px_30px_rgba(8,18,37,0.2)] border border-white/10 flex items-center gap-4 text-white">
+      <div className="bg-[#0B1120] rounded-2xl p-4 shadow-[0_-8px_30px_rgba(8,18,37,0.2)] border border-white/10 flex items-center gap-4 text-white">
         
         {/* App Icon Mock */}
-        <div className="w-12 h-12 bg-[#C5A059] rounded-xl flex items-center justify-center font-black text-xl text-[#081225] flex-shrink-0 shadow-inner">
+        <div className="w-12 h-12 bg-[#22C55E] rounded-2xl flex items-center justify-center font-extrabold text-xl text-white flex-shrink-0 shadow-inner">
           K
         </div>
         
@@ -94,7 +94,7 @@ export default function PWAInstallBanner() {
           {!isIOS && (
             <button
               onClick={handleInstallClick}
-              className="w-8 h-8 rounded-full bg-[#C5A059] flex items-center justify-center text-[#081225] hover:bg-white transition-colors flex-shrink-0"
+              className="w-8 h-8 rounded-full bg-[#22C55E] flex items-center justify-center text-white hover:bg-white/[0.03] transition-colors flex-shrink-0"
               aria-label="Install App"
             >
               <Download size={16} strokeWidth={2.5} />
@@ -103,7 +103,7 @@ export default function PWAInstallBanner() {
           
           <button
             onClick={handleDismiss}
-            className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-slate-300 hover:bg-white/20 transition-colors flex-shrink-0"
+            className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-slate-300 hover:bg-white/5 transition-colors flex-shrink-0"
             aria-label="Dismiss"
           >
             <X size={16} />
