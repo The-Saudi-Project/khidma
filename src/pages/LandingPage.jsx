@@ -135,33 +135,33 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              {/* Quick Suggestion Pills */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-2">
-                <span className="text-xs text-slate-400 font-medium">Popular:</span>
-                {['AC Repair', 'Home Cleaning', 'Plumbing', 'Painting'].map((tag) => (
-                  <button
-                    key={tag}
-                    onClick={() => setSearchQuery(tag)}
-                    type="button"
-                    className="text-xs px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/5 text-slate-300 border border-white/5 transition-colors"
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
+              {/* Quick Suggestion Pills & Trust Badges */}
+              <div className="flex flex-col xl:flex-row items-start xl:items-center justify-start w-full gap-y-4 pt-4 mt-2 border-t border-white/5">
+                {/* Popular Tags */}
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-xs text-slate-400 font-medium">Popular:</span>
+                  {['AC Repair', 'Cleaning', 'Plumbing'].map((tag) => (
+                    <button
+                      key={tag}
+                      onClick={() => setSearchQuery(tag)}
+                      type="button"
+                      className="text-[11px] px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition-colors"
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
 
-              <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[#10B981]" />
-                  <span className="text-xs font-bold text-slate-300">Verified Pros</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-[#22C55E]" />
-                  <span className="text-xs font-bold text-slate-300">Same-Day Booking</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <HeartHandshake className="w-4 h-4 text-[#22C55E]" />
-                  <span className="text-xs font-bold text-slate-300">Satisfaction Guarantee</span>
+                {/* Trust Badges */}
+                <div className="flex items-center gap-4 xl:gap-8 ms-auto xl:translate-x-[130%]">
+                  <div className="flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4 text-[#10B981]" />
+                    <span className="text-xs font-bold text-slate-300 whitespace-nowrap">Verified Pros</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="w-4 h-4 text-[#22C55E]" />
+                    <span className="text-xs font-bold text-slate-300 whitespace-nowrap">Same-Day Booking</span>
+                  </div>
                 </div>
               </div>
             </div>
