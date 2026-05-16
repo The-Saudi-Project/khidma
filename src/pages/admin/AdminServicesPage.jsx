@@ -82,46 +82,55 @@ export default function AdminServicesPage() {
         <EmptyState icon={Settings} title="No services yet"
           action={<button onClick={openCreate} className="btn-primary">Create first service</button>} />
       ) : (
-        <div className="table-wrapper">
-          <table className="table">
-            <thead>
-              <tr><th>Service</th><th>Category</th><th>Price</th><th>Duration</th><th>Status</th><th>Actions</th></tr>
-            </thead>
-            <tbody>
-              {data.map(s => (
-                <tr key={s._id}>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-brand-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                        {s.image
-                          ? <img src={s.image} className="w-8 h-8 rounded-lg object-cover" alt="" />
-                          : <span className="text-sm">🏠</span>}
-                      </div>
-                      <span className="font-medium text-white">{s.name}</span>
-                    </div>
-                  </td>
-                  <td className="text-slate-500">{s.category}</td>
-                  <td className="font-semibold">{formatCurrency(s.price)}</td>
-                  <td className="text-slate-500">{s.duration} min</td>
-                  <td>
-                    <span className={s.isActive ? 'badge-green' : 'badge-gray'}>
-                      {s.isActive ? 'Active' : 'Inactive'}
-                    </span>
-                  </td>
-                  <td>
-                    <div className="flex items-center gap-2">
-                      <button onClick={() => openEdit(s)} className="btn-ghost btn-sm p-1.5">
-                        <Pencil size={14} />
-                      </button>
-                      <button onClick={() => setDeleteTarget(s)} className="btn-ghost btn-sm p-1.5 text-red-400 hover:text-red-500 hover:bg-red-50">
-                        <Trash2 size={14} />
-                      </button>
-                    </div>
-                  </td>
+        <div className="glass rounded-3xl border border-white/5 shadow-2xl overflow-hidden mt-6">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-white/5 border-b border-white/5 text-[10px] font-bold text-slate-400 uppercase tracking-tight">
+                  <th className="py-3 px-4">Service</th>
+                  <th className="py-3 px-4">Category</th>
+                  <th className="py-3 px-4">Price</th>
+                  <th className="py-3 px-4">Duration</th>
+                  <th className="py-3 px-4">Status</th>
+                  <th className="py-3 px-4 text-right">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-white/[0.05] text-xs">
+                {data.map(s => (
+                  <tr key={s._id} className="hover:bg-white/5 transition-colors group">
+                    <td className="py-3.5 px-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-brand-500/10 rounded-lg flex items-center justify-center flex-shrink-0 border border-brand-500/20">
+                          {s.image
+                            ? <img src={s.image} className="w-8 h-8 rounded-lg object-cover" alt="" />
+                            : <span className="text-sm">🏠</span>}
+                        </div>
+                        <span className="font-bold text-white">{s.name}</span>
+                      </div>
+                    </td>
+                    <td className="py-3.5 px-4 text-slate-400 font-medium">{s.category}</td>
+                    <td className="py-3.5 px-4 font-mono font-extrabold text-white">{formatCurrency(s.price)}</td>
+                    <td className="py-3.5 px-4 text-slate-400 font-medium">{s.duration} min</td>
+                    <td className="py-3.5 px-4">
+                      <span className={s.isActive ? 'px-2 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'px-2 py-1 rounded-full text-[10px] font-bold bg-slate-500/10 text-slate-400 border border-slate-500/20'}>
+                        {s.isActive ? 'Active' : 'Inactive'}
+                      </span>
+                    </td>
+                    <td className="py-3.5 px-4 text-right">
+                      <div className="flex items-center justify-end gap-2">
+                        <button onClick={() => openEdit(s)} className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors">
+                          <Pencil size={14} />
+                        </button>
+                        <button onClick={() => setDeleteTarget(s)} className="p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors">
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 

@@ -3,7 +3,8 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { providerInterestAPI } from '../../api'
 import toast from 'react-hot-toast'
 import { Loader2, ChevronDown, ChevronUp, Check, X } from 'lucide-react'
-import { InlineLoader, Pagination } from '../../components/common/LoadingSpinner'
+import { InlineLoader, Pagination, EmptyState } from '../../components/common/LoadingSpinner'
+import { UserCheck } from 'lucide-react'
 
 export default function AdminProviderApplicationsPage() {
   const qc = useQueryClient()
@@ -64,14 +65,14 @@ export default function AdminProviderApplicationsPage() {
         </div>
       )}
 
-      <div className="flex gap-2 mb-6 flex-wrap">
+      <div className="flex gap-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
         {['pending', 'approved', 'rejected', 'all'].map((s) => (
           <button
             key={s}
             type="button"
             onClick={() => { setStatus(s); setPage(1) }}
-            className={`px-4 py-2 rounded-2xl text-sm font-semibold capitalize ${
-              status === s ? 'bg-brand-600 text-white' : 'glass border border-white/10 text-slate-400'
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all capitalize whitespace-nowrap ${
+              status === s ? 'bg-brand-500/20 text-brand-400 border border-brand-500/30' : 'bg-white/5 border border-white/10 text-slate-400 hover:bg-white/10'
             }`}
           >
             {s}
@@ -79,25 +80,38 @@ export default function AdminProviderApplicationsPage() {
         ))}
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-4">
         {applications.length === 0 && (
-          <p className="text-slate-500 text-center py-12">No applications in this tab.</p>
+          <EmptyState icon={UserCheck} title={`No ${status} applications`} message="There are no applications in this category right now." />
         )}
         {applications.map((a) => (
-          <div key={a._id} className="rounded-2xl border border-white/5 glass overflow-hidden">
+          <div key={a._id} className="glass rounded-3xl border border-white/5 shadow-2xl overflow-hidden">
             <button
               type="button"
-              className="w-full flex items-center justify-between p-4 text-left hover:glass"
+              className="w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors"
               onClick={() => setOpenId(openId === a._id ? null : a._id)}
             >
-              <div>
-                <p className="font-semibold text-white">{a.name}</p>
-                <p className="text-xs text-slate-500">{a.email} · {a.city}</p>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-brand-500/10 flex items-center justify-center border border-brand-500/20 text-brand-400 font-bold">
+                  {a.name.charAt(0)}
+                </div>
+                <div>
+                  <p className="font-bold text-white text-base">{a.name}</p>
+                  <p className="text-xs text-slate-400 font-medium">{a.email} <span className="text-white/20 mx-1">•</span> {a.city}</p>
+                </div>
               </div>
-              <span className="flex items-center gap-2 text-xs font-medium uppercase text-slate-500">
-                {a.status}
-                {openId === a._id ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-              </span>
+              <div className="flex items-center gap-3">
+                <span className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider hidden sm:inline-block ${
+                  a.status === 'pending' ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' : 
+                  a.status === 'approved' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 
+                  'bg-red-500/10 text-red-400 border border-red-500/20'
+                }`}>
+                  {a.status}
+                </span>
+                <span className="text-slate-500">
+                  {openId === a._id ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                </span>
+              </div>
             </button>
             {openId === a._id && (
               <div className="px-4 pb-4 border-t border-white/5 pt-3 space-y-3 text-sm">
